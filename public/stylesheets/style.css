@@ -1,8 +1,11 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.mtxl {
+    margin-top: 50px;
 }
 
-a {
-  color: #00B7FF;
+.mtm {
+    margin-top: 10px;
+}
+
+.mtl {
+    margin-top: 20px;
 }
