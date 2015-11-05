@@ -1,6 +1,6 @@
 {
     "name": "mark-it",
-    "version": "0.1.0",
+    "version": "0.1.0-1",
     "private": true,
     "scripts": {
         "start": "node ./bin/www"
@@ -14,9 +14,12 @@
         "debug": "~2.0.0",
         "jade": "~1.6.0",
         "mongoose": "^4.0.6",
-        "nodemailer":"^1.3.2",
-        "ejs":"^2.3.2",
-        "pm2": "0.14.5 ",
-        "nodemon":"1.3.8"
+        "nodemailer": "^1.3.2",
+        "ejs": "^2.3.2",
+        "passport-facebook":"^2.0.0"
+    },
+    "subdomain": "mark-it",
+    "engines": {
+        "node": "0.10.x"
     }
 }
