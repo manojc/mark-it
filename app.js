@@ -23,32 +23,31 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
 var user = require('./routes/user');
+var auth = require('./routes/auth');
+var externalAuth = require('./routes/external-auth');
 var routes = require('./routes/index');
 //routes end
 
-
-app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-  successRedirect: '/success',
-  failureRedirect: '/home'
-}));
-
-//routes
-app.use('/user', user);
-app.use('/', routes);
-//routes end
-
 passport.use(new FacebookStrategy({
-  clientID: FACEBOOK_APP_ID,
-  clientSecret: FACEBOOK_APP_SECRET,
-  callbackURL: 'http://localhost:8080/auth/facebook/callback'
+    clientID: FACEBOOK_APP_ID,
+    clientSecret: FACEBOOK_APP_SECRET,
+    profileFields: ['id', 'displayName', 'photos'],
+    callbackURL: 'http://localhost:8080/external-auth/facebook/callback'
 }, function(accessToken, refreshToken, profile, done) {
-      process.nextTick(function() {
-    //Assuming user exists
-    console.log(profile);
-    done(null, profile);
-  });
+    process.nextTick(function() {
+        //Assuming user exists
+        // console.log(profile);
+        done(null, profile);
+    });
 }));
+
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+    done(null, 'juancito');
+});
 //required packeges end
 
 //db manager
@@ -67,6 +66,13 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 //body parser ends
+
+//routes
+app.use('/user', user);
+app.use('/auth', auth);
+app.use('/external-auth', externalAuth);
+app.use('/', routes);
+//routes end
 
 //coockie parser
 app.use(cookieParser());
@@ -87,22 +93,24 @@ app.set('view engine', 'jade');
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
+// if (app.get('env') === 'development') {
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: err
     });
-}
+});
+// }
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.json({response:res});
-});
+// app.use(function(err, req, res, next) {
+//     res.status(err.status || 500);
+//     res.json({
+//         error: err
+//     });
+// });
 
 //create server
 var server = app.listen(8080, function() {

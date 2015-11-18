@@ -10,12 +10,17 @@ router.get('/', function(req, res) {
 
 /* GET home page. */
 router.get('/success', function(req, res) {
-    res.json({response:response});
+    console.log('res');
+    res.json({
+        response: 'success!!'
+    });
 });
 
 /* GET home page. */
 router.get('/error', function(req, res) {
-    res.json({response:response});
+    res.json({
+        response: response
+    });
 });
 
 /* GET home page. */
