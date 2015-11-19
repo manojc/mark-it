@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var authenticateRoute = require('../utility/authenticate-request');
 
 /* GET home page. */
 router.get('/', function(req, res) {
