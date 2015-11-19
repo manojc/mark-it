@@ -1,17 +1,19 @@
 var express = require('express');
+var passport = require('passport');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/facebook', function(req, res) {
-    console.log('internal fb');
-    res.redirect('/external-auth/facebook');
-});
+//facebook authentication
+router.get('/facebook', passport.authenticate('facebook', {
+    scope: ['email']
+}));
 
-/* GET home page. */
-router.get('/facebook/callback', function(req, res) {
-    console.log('internal fb callback');
-    console.log(req.user);
-    res.json(req.user);
-});
+router.get('/facebook/callback',
+    passport.authenticate('facebook', {
+        failureRedirect: '/home'
+    }),
+    function(req, res) {
+        res.redirect('/');
+    });
+//facebook authentication ends
 
 module.exports = router;

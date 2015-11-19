@@ -5,6 +5,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -15,6 +16,11 @@ var FACEBOOK_APP_SECRET = '1da8a9a3a796cc6de1fa4ab10444cdba';
 //initialize app
 var app = express();
 //initialize app ends
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninilitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -24,29 +30,28 @@ app.use(express.static(path.join(__dirname, 'public')));
 //routes
 var user = require('./routes/user');
 var auth = require('./routes/auth');
-var externalAuth = require('./routes/external-auth');
 var routes = require('./routes/index');
 //routes end
 
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
-    profileFields: ['id', 'displayName', 'photos'],
-    callbackURL: 'http://localhost:8080/external-auth/facebook/callback'
+    profileFields: ['id', 'displayName', 'photos', 'email', 'name'],
+    callbackURL: 'http://localhost:8080/auth/facebook/callback'
 }, function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
-        //Assuming user exists
-        // console.log(profile);
         done(null, profile);
     });
 }));
 
 passport.serializeUser(function(user, done) {
+    //save user in database
+    session.user = user;
     done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-    done(null, 'juancito');
+    done(null, session.user);
 });
 //required packeges end
 
@@ -70,7 +75,6 @@ app.use(bodyParser.urlencoded({
 //routes
 app.use('/user', user);
 app.use('/auth', auth);
-app.use('/external-auth', externalAuth);
 app.use('/', routes);
 //routes end
 
@@ -105,12 +109,12 @@ app.use(function(err, req, res, next) {
 
 // production error handler
 // no stacktraces leaked to user
-// app.use(function(err, req, res, next) {
-//     res.status(err.status || 500);
-//     res.json({
-//         error: err
-//     });
-// });
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.json({
+        error: err
+    });
+});
 
 //create server
 var server = app.listen(8080, function() {
