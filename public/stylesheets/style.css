@@ -9,3 +9,9 @@
 .mtl {
     margin-top: 20px;
 }
+.mll{
+	margin-left: 20px;
+}
+.hidden{
+	visibility: hidden;
+}

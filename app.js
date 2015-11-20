@@ -9,9 +9,13 @@ var session = require('express-session');
 
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 var FACEBOOK_APP_ID = '423338834538362';
 var FACEBOOK_APP_SECRET = '1da8a9a3a796cc6de1fa4ab10444cdba';
+
+var GOOGLE_CONSUMER_KEY = '978631038383-mc0lf23hgbhnrcvm8b22un241vdq04f0.apps.googleusercontent.com';
+var GOOGLE_CONSUMER_SECRET = 'hMcJZNWysmQhGTtZdIWFRYdA';
 
 //initialize app
 var app = express();
@@ -33,6 +37,25 @@ var auth = require('./routes/auth');
 var routes = require('./routes/index');
 //routes end
 
+//   invoke a callback with a user object.
+passport.use(new GoogleStrategy({
+    clientID: GOOGLE_CONSUMER_KEY,
+    clientSecret: GOOGLE_CONSUMER_SECRET,
+    callbackURL: "http://localhost:8080/auth/google/callback"
+  },
+  function(token, tokenSecret, profile, done) {
+    // asynchronous verification, for effect...
+    process.nextTick(function () {
+      
+      // To keep the example simple, the user's Google profile is returned to
+      // represent the logged-in user.  In a typical application, you would want
+      // to associate the Google account with a user record in your database,
+      // and return that user instead.
+      return done(null, profile);
+    });
+  }
+));
+
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
@@ -46,8 +69,11 @@ passport.use(new FacebookStrategy({
 
 passport.serializeUser(function(user, done) {
     //save user in database
+    console.log('\n\n\n\n\nthis is session value')
+    console.log(user);
+    console.log('\n\n\n\n\nthis is session value')
     session.user = user;
-    done(null, user.id);
+    done(null, user);
 });
 
 passport.deserializeUser(function(id, done) {
@@ -56,7 +82,7 @@ passport.deserializeUser(function(id, done) {
 //required packeges end
 
 //db manager
-//var db = require('./tools/database/database').db;
+// var db = require('./tools/database/database').db;
 //db manager ends
 
 //fevicon

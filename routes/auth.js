@@ -16,4 +16,20 @@ router.get('/facebook/callback',
     });
 //facebook authentication ends
 
+
+
+//google authentication
+router.get('/google', passport.authenticate('google', {
+    scope: ['email']
+}));
+
+router.get('/google/callback',
+    passport.authenticate('google', {
+        failureRedirect: '/home'
+    }),
+    function(req, res) {
+        res.redirect('/');
+    });
+//google authentication ends
+
 module.exports = router;

@@ -49,12 +49,22 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
+                <div id="profile" class="row hidden">
+                    <div class="col-lg-1">
+                        <img id="profile-pic" src="" alt="profile-pic" class="mll"></div>
+                </div>
+                <div class="row mtm">
+                    <div class="col-lg-3 text-left">
+                        <label id="user-name"></label>
+                    </div>
+                </div>
                 <div class="row">
+                    <div class="col-lg-3 text-left">
+                        <label id="user-email"></label>
+                    </div>
+                </div>
+                <div class="row mtxl">
                     <div class="col-lg-12">
-                        <h1>Simple Sidebar</h1>
-                        <br></br>
-                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
                         <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
                     </div>
                 </div>
@@ -66,25 +76,26 @@
 <script src="/javascripts/jquery.min.js"></script>
 <script>
 (function($, window, undefined) {
+    $('#profile').addClass('hidden');
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
-    // $('#fb-sign-in').click(function() {
-    //     $.ajax({
-    //         url: 'auth/facebook',
-    //         // data: myData,
-    //         type: 'GET',
-    //         crossDomain: true,
-    //         dataType: 'jsonp',
-    //         success: function(data) {
-    //             console.log(data);
-    //         },
-    //         error: function() {
-    //             alert('Failed!');
-    //         }
-    //     });
-    // });
+    $.get(
+        '/get-logged-in-user',
+        function(data) {
+            console.log(data);
+            appendUserDetails(data);
+        });
+
+    function appendUserDetails(data) {
+        $('#profile-pic').attr({
+            src: data.profilePicUrl
+        });
+        $('#user-name').text(data.firstName);
+        $('#user-email').text(data.email);
+        $('#profile').removeClass('hidden');
+    }
 })(jQuery, window);
 </script>
 
