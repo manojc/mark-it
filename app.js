@@ -10,12 +10,17 @@ var session = require('express-session');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
 
 var FACEBOOK_APP_ID = '423338834538362';
 var FACEBOOK_APP_SECRET = '1da8a9a3a796cc6de1fa4ab10444cdba';
 
 var GOOGLE_CONSUMER_KEY = '978631038383-mc0lf23hgbhnrcvm8b22un241vdq04f0.apps.googleusercontent.com';
 var GOOGLE_CONSUMER_SECRET = 'hMcJZNWysmQhGTtZdIWFRYdA';
+
+var TWITTER_CONSUMER_KEY = 'xofNk7P2ZUFtf6kVscrZSCfxd';
+var TWITTER_CONSUMER_SECRET = 'FpUNh5KCx44XZDOjCIWqT4hQmve9Nw6bgn8YY4wfz363tvmZ7Q';
+
 
 //initialize app
 var app = express();
@@ -39,21 +44,29 @@ var routes = require('./routes/index');
 
 //   invoke a callback with a user object.
 passport.use(new GoogleStrategy({
-    clientID: GOOGLE_CONSUMER_KEY,
-    clientSecret: GOOGLE_CONSUMER_SECRET,
-    callbackURL: "http://localhost:8080/auth/google/callback"
-  },
-  function(token, tokenSecret, profile, done) {
-    // asynchronous verification, for effect...
-    process.nextTick(function () {
-      
-      // To keep the example simple, the user's Google profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the Google account with a user record in your database,
-      // and return that user instead.
-      return done(null, profile);
-    });
-  }
+        clientID: GOOGLE_CONSUMER_KEY,
+        clientSecret: GOOGLE_CONSUMER_SECRET,
+        callbackURL: "http://localhost:8080/auth/google/callback"
+    },
+    function(token, tokenSecret, profile, done) {
+        if (!profile.provider) profile.provider = 'google';
+        process.nextTick(function() {
+            return done(null, profile);
+        });
+    }
+));
+
+passport.use(new TwitterStrategy({
+        consumerKey: TWITTER_CONSUMER_KEY,
+        consumerSecret: TWITTER_CONSUMER_SECRET,
+        callbackURL: "http://localhost:8080/auth/twitter/callback"
+    },
+    function(token, tokenSecret, profile, done) {
+        process.nextTick(function() {
+            if (!profile.provider) profile.provider = 'twitter';
+            return done(null, profile);
+        });
+    }
 ));
 
 passport.use(new FacebookStrategy({
@@ -63,15 +76,13 @@ passport.use(new FacebookStrategy({
     callbackURL: 'http://localhost:8080/auth/facebook/callback'
 }, function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
+        if (!profile.provider) profile.provider = 'facebook';
         done(null, profile);
     });
 }));
 
 passport.serializeUser(function(user, done) {
-    //save user in database
-    console.log('\n\n\n\n\nthis is session value')
     console.log(user);
-    console.log('\n\n\n\n\nthis is session value')
     session.user = user;
     done(null, user);
 });

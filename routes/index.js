@@ -32,7 +32,15 @@ router.get('/is-authenticated', function(req, res) {
 router.get('/get-logged-in-user', function(req, res) {
     if (!req.user || !req.isAuthenticated())
         res.json({});
-    else
+
+    if (req.user && req.user.provider === 'twitter') {
+        res.json({
+            id: req.user.id,
+            firstName: req.user.displayName,
+            email: null,
+            profilePicUrl: req.user.photos[0].value
+        });
+    } else
         res.json({
             id: req.user.id,
             firstName: req.user.displayName,

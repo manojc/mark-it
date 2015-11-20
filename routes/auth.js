@@ -32,4 +32,20 @@ router.get('/google/callback',
     });
 //google authentication ends
 
+
+
+//twitter authentication
+router.get('/twitter', passport.authenticate('twitter', {
+    scope: ['email']
+}));
+
+router.get('/twitter/callback',
+    passport.authenticate('twitter', {
+        failureRedirect: '/home'
+    }),
+    function(req, res) {
+        res.redirect('/');
+    });
+//twitter authentication ends
+
 module.exports = router;
