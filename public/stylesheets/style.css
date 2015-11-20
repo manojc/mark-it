@@ -10,8 +10,12 @@
     margin-top: 20px;
 }
 .mll{
-	margin-left: 20px;
+	margin-left: 40px;
 }
 .hidden{
 	visibility: hidden;
+}
+
+.bas{
+	border: solid black thin;
 }

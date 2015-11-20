@@ -28,7 +28,7 @@ var app = express();
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninilitialized: true
+    saveUninitialized: true    
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -82,7 +82,6 @@ passport.use(new FacebookStrategy({
 }));
 
 passport.serializeUser(function(user, done) {
-    console.log(user);
     session.user = user;
     done(null, user);
 });

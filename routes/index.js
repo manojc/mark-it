@@ -33,7 +33,7 @@ router.get('/get-logged-in-user', function(req, res) {
     if (!req.user || !req.isAuthenticated())
         res.json({});
 
-    if (req.user && req.user.provider === 'twitter') {
+    else if (req.user && req.user.provider === 'twitter') {
         res.json({
             id: req.user.id,
             firstName: req.user.displayName,
