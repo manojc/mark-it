@@ -19,7 +19,32 @@
                         <h2>Mark It</h2>
                     </a>
                 </li>
-                <li>
+                <li class="default-line-height white-font profile-background">
+                    <div class="container nopadding">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <img id="profile-pic" src="" alt="profile-pic">
+                                    </div>
+                                    <div class="col-lg-9 nopadding">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <span id="user-name" class="header-span"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row mts">
+                                            <div class="col-lg-12">
+                                                <span id="user-email"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="mtm">
                     <a href="#attendance">Attendence</a>
                 </li>
                 <li>
@@ -49,20 +74,6 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
-                <div id="profile" class="row hidden text-right">
-                    <div class="col-lg-1">
-                        <img id="profile-pic" src="" alt="profile-pic"></div>
-                </div>
-                <div class="row mtm">
-                    <div class="col-lg-3 text-left">
-                        <h3 id="user-name"></h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 text-left">
-                        <label id="user-email"></label>
-                    </div>
-                </div>
                 <div class="row mtxl">
                     <div class="col-lg-12">
                         <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
@@ -92,9 +103,27 @@
         $('#profile-pic').attr({
             src: data.profilePicUrl
         });
-        $('#user-name').text(data.firstName);
+        $('#user-name').text(capitalizInitialLetter(data.displayName));
         $('#user-email').text(data.email);
         $('#profile').removeClass('hidden');
+    }
+
+    function capitalizInitialLetter(string) {
+        if (!string)
+            return string;
+
+        var stringWords = string.trim().split(' ');
+
+        if (!stringWords)
+            return;
+
+        var capitalizedInitialLetter = '';
+        for (var i = 0; i < stringWords.length; i++) {
+            if (!stringWords[i].length)
+                continue;
+            stringWords[i] = stringWords[i].charAt(0).toUpperCase() + stringWords[i].slice(1).toLowerCase();
+        };
+        return stringWords.join(' ');
     }
 })(jQuery, window);
 </script>

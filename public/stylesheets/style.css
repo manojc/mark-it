@@ -9,13 +9,50 @@
 .mtl {
     margin-top: 20px;
 }
-.mll{
-	margin-left: 40px;
-}
-.hidden{
-	visibility: hidden;
+
+.mts {
+    margin-top: 5px;
 }
 
-.bas{
-	border: solid black thin;
+.mll {
+    margin-left: 40px;
+}
+
+.mls {
+    margin-left: 5px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.bas {
+    border: solid black thin;
+}
+
+.pls {
+    padding-right: 5px;
+}
+
+.header-span {
+    font-size: 1.5em;
+}
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.default-line-height {
+    line-height: normal !important;
+}
+
+.white-font {
+    color: white;
+}
+
+.profile-background {
+    border-bottom: solid white thin;
+    border-top: solid white thin;
+    padding: 10px 0 10px 0;
 }

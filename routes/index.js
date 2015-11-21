@@ -36,14 +36,14 @@ router.get('/get-logged-in-user', function(req, res) {
     else if (req.user && req.user.provider === 'twitter') {
         res.json({
             id: req.user.id,
-            firstName: req.user.displayName,
+            displayName: req.user.displayName,
             email: null,
             profilePicUrl: req.user.photos[0].value
         });
     } else
         res.json({
             id: req.user.id,
-            firstName: req.user.displayName,
+            displayName: req.user.displayName,
             email: req.user.emails[0].value,
             profilePicUrl: req.user.photos[0].value
         });
