@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var userAccountProvider = require('./provider/user-account.js');
 
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -28,7 +29,7 @@ var app = express();
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: true    
+    saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -82,8 +83,35 @@ passport.use(new FacebookStrategy({
 }));
 
 passport.serializeUser(function(user, done) {
-    session.user = user;
-    done(null, user);
+
+    if (!user)
+        throw new Error('invalid user, login failed!');
+
+    if (user.provider === 'twitter') {
+        session.user = {
+            id: user.id,
+            displayName: user.displayName,
+            email: null,
+            profilePicUrl: user.photos[0].value,
+            provider: user.provider
+        };
+    } else
+        session.user = {
+            id: user.id,
+            displayName: user.displayName,
+            email: user.emails[0].value,
+            profilePicUrl: user.photos[0].value,
+            provider: user.provider
+        };
+
+    userAccountProvider.saveUser(session.user, function(err, response) {
+        if (err) throw new Error(err);
+        else if (!response) throw new Error('user not found!');
+        else {
+            done(null, response);
+        }
+    })
+
 });
 
 passport.deserializeUser(function(id, done) {
@@ -92,7 +120,7 @@ passport.deserializeUser(function(id, done) {
 //required packeges end
 
 //db manager
-// var db = require('./tools/database/database').db;
+var db = require('./provider/db-initializer');
 //db manager ends
 
 //fevicon
@@ -102,7 +130,9 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 
 //body parser
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+    strict: false
+}));
 app.use(bodyParser.urlencoded({
     extended: false
 }));
@@ -153,10 +183,14 @@ app.use(function(err, req, res, next) {
 });
 
 //create server
+
 var server = app.listen(8080, function() {
     var host = server.address().address;
     var port = server.address().port;
     console.log('app is listening to http://%s:%s', host, port);
+    db.connect(function() {
+        console.log('database connected');
+    })
 });
 
 module.exports = app;

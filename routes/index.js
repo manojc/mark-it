@@ -30,6 +30,7 @@ router.get('/is-authenticated', function(req, res) {
 
 /* GET home page. */
 router.get('/get-logged-in-user', function(req, res) {
+
     if (!req.user || !req.isAuthenticated())
         res.json({});
 
@@ -38,14 +39,14 @@ router.get('/get-logged-in-user', function(req, res) {
             id: req.user.id,
             displayName: req.user.displayName,
             email: null,
-            profilePicUrl: req.user.photos[0].value
+            profilePicUrl: req.user.profilePicUrl
         });
     } else
         res.json({
             id: req.user.id,
             displayName: req.user.displayName,
-            email: req.user.emails[0].value,
-            profilePicUrl: req.user.photos[0].value
+            email: req.user.email,
+            profilePicUrl: req.user.profilePicUrl
         });
 });
 
