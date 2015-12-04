@@ -20,14 +20,14 @@
                     </a>
                 </li>
                 <li class="default-line-height white-font profile-background">
-                    <div class="container nopadding">
+                    <div class="container nopadding col-lg-11">
                         <div class="row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-12">
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <img id="profile-pic" src="" alt="profile-pic">
                                     </div>
-                                    <div class="col-lg-9 nopadding">
+                                    <div class="col-lg-9">
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <span id="user-name" class="header-span"></span>
@@ -76,7 +76,7 @@
             <div class="container-fluid">
                 <div class="row mtxl">
                     <div class="col-lg-12">
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    <h1>Content Goes Here..</h1>  
                     </div>
                 </div>
             </div>
@@ -84,48 +84,8 @@
         <!-- /#page-content-wrapper -->
     </div>
 </body>
-<script src="/javascripts/jquery.min.js"></script>
-<script>
-(function($, window, undefined) {
-    $('#profile').addClass('hidden');
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    $.get(
-        '/get-logged-in-user',
-        function(data) {
-            console.log(data);
-            appendUserDetails(data);
-        });
-
-    function appendUserDetails(data) {
-        $('#profile-pic').attr({
-            src: data.profilePicUrl
-        });
-        $('#user-name').text(capitalizInitialLetter(data.displayName));
-        $('#user-email').text(data.email);
-        $('#profile').removeClass('hidden');
-    }
-
-    function capitalizInitialLetter(string) {
-        if (!string)
-            return string;
-
-        var stringWords = string.trim().split(' ');
-
-        if (!stringWords)
-            return;
-
-        var capitalizedInitialLetter = '';
-        for (var i = 0; i < stringWords.length; i++) {
-            if (!stringWords[i].length)
-                continue;
-            stringWords[i] = stringWords[i].charAt(0).toUpperCase() + stringWords[i].slice(1).toLowerCase();
-        };
-        return stringWords.join(' ');
-    }
-})(jQuery, window);
-</script>
+<script src="/javascripts/libraries/jquery.min.js"></script>
+<script src="/javascripts/libraries/tiny-scroll-bar.js"></script>
+<script src="/javascripts/application.js"></script>
 
 </html>
