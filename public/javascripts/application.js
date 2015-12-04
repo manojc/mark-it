@@ -18,6 +18,9 @@
 
     function appendUserDetails(data) {
 
+        $('#user-name').attr('title', capitalizInitialLetter(data.displayName));
+        $('#user-email').attr('title', data.email);
+
         truncateUserInfo(data);
 
         $('#profile-pic').attr({
@@ -48,11 +51,13 @@
 
     function truncateUserInfo(userInfo) {
         if (userInfo.displayName.length > 13) {
-
+            var sliceNumber = 11 - userInfo.displayName.length;
+            userInfo.displayName = userInfo.displayName.slice(0, sliceNumber) + '..'
         }
 
-        if (userInfo.email.length > 19) {
-
+        if (userInfo.email && userInfo.email.length > 19) {
+            var sliceNumber = 11 - userInfo.email.length;
+            userInfo.email = userInfo.email.slice(0, sliceNumber) + '..'
         }
     }
 })(jQuery, window);
