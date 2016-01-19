@@ -86,7 +86,7 @@ passport.serializeUser(function(user, done) {
 
     if (!user)
         throw new Error('invalid user, login failed!');
-
+ 
     if (user.provider === 'twitter') {
         session.user = {
             id: user.id,
