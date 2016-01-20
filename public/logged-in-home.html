@@ -10,60 +10,49 @@
 </head>
 
 <body>
-    <div class="navbar navbar-default navbar-fixed-top position-inherit">
-        <div class="container">
-            <a class="navbar-brand" href="/">Mark It</a>
-            <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container"><a href="/" class="navbar-brand">Mark It</a>
+            <button data-toggle="collapse" data-target=".navHeaderCollapse" class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
             <div class="collapse navbar-collapse navHeaderCollapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Home</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toogle" data-toggle="dropdown">Attendance <b class="caret"></b></a>
+                    <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toogle">Attendance <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">New</a></li>
                             <li><a href="#">Reports</a></li>
                             <li><a href="#">Summary</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toogle" data-toggle="dropdown">Students <b class="caret"></b></a>
+                    <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toogle">Students <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">New</a></li>
                             <li><a href="#">Reports</a></li>
                             <li><a href="#">Summary</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toogle" data-toggle="dropdown">Reports <b class="caret"></b></a>
+                    <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toogle">Reports <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Daily</a></li>
                             <li><a href="#">Weekly</a></li>
                             <li><a href="#">Monthly</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toogle" data-toggle="dropdown">Announcements <b class="caret"></b></a>
+                    <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toogle">Announcements <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">New</a></li>
                             <li><a href="#">Details</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toogle" data-toggle="dropdown">About Us <b class="caret"></b></a>
+                    <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toogle">About Us <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Contact Us</a></li>
                             <li><a href="#">Feedback</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toogle" data-toggle="dropdown">Profile <b class="caret"></b></a>
+                    <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toogle">Profile <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Details</a></li>
-                            <li><a href="#">Logout</a></li>
+                            <li><a href="/logout">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -71,23 +60,19 @@
         </div>
     </div>
     <div class="container-fluid container-padding">
-        <div class="row" id="notify-container">
-            <div class="col-xs-12 col-lg-12">
-                <div class="alert alert-success alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    Hello <strong>Demo User! </strong> Login successful!
+        <div id="notify-container" class="row">
+            <div class="col-xs-12 col-lg-12 message">
+                <div role="alert" class="alert alert-info alert-dismissible">
+                    <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true">×</span></button> Welcome <strong>!</strong>
                 </div>
             </div>
         </div>
-        <div class="row" id="app-container">
-            <div class="col-xs-12 col-lg-12">
-                <div class="jumbotron">
-                    <h1>Mark It!</h1>
-                    <p>A free responsive web application for attendance tracking system.</p>
-                    <p>Attendance management is important to every single organisation, it can determine whether or not a business will be successful in the future. Businesses will have to keep a track of employees, this being their main concern and a lot of other things. Monitoring attendance helps in the long term for a business, as an employer will be able to tell which employees arrive early, which arrive late and who has the most absences without any valid reason. This could help an employer in deciding which employees are most suitable to work in the business, having employees who arrive to work on time means that the day-to-day tasks of the organisation will be fulfilled. Employees within an organisation should know about their employer’s attendance and absence policy, so that they are aware of what is required of them.[1] Attendance management is also a health and safety procedure something in which that has to be carried out. It is important because in case of an emergency that was to arise in a workplace like a fire, then if they register in the company they will know how many people are inside a building. It is important to manage a set of workforce as it can lead to higher profits as well as an increase in productivity.[2] If you have a look on the other side of what will happen if a business does not manage their attendance, it will mean that they will have no sort of information to look back on in case if it is needed in the future. They also will not be able to keep a track on their employees on a day-to-day basis which means there is no leadership in place.[3]</p>
-                    <p>
-                        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-                </div>
+        <div id="app-container" class="row mtl">
+            <div class="jumbotron">
+                <h1>Mark It!</h1>
+                <p>A free responsive web application for attendance tracking system.</p>
+                <p>Attendance management is important to every single organisation, it can determine whether or not a business will be successful in the future. Businesses will have to keep a track of employees, this being their main concern and a lot of other things. Monitoring attendance helps in the long term for a business, as an employer will be able to tell which employees arrive early, which arrive late and who has the most absences without any valid reason. This could help an employer in deciding which employees are most suitable to work in the business, having employees who arrive to work on time means that the day-to-day tasks of the organisation will be fulfilled. Employees within an organisation should know about their employer’s attendance and absence policy, so that they are aware of what is required of them.[1] Attendance management is also a health and safety procedure something in which that has to be carried out. It is important because in case of an emergency that was to arise in a workplace like a fire, then if they register in the company they will know how many people are inside a building. It is important to manage a set of workforce as it can lead to higher profits as well as an increase in productivity.[2] If you have a look on the other side of what will happen if a business does not manage their attendance, it will mean that they will have no sort of information to look back on in case if it is needed in the future. They also will not be able to keep a track on their employees on a day-to-day basis which means there is no leadership in place.[3]</p>
+                <p><a href="#" role="button" class="btn btn-primary btn-lg">Learn more</a></p>
             </div>
         </div>
     </div>
