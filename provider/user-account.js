@@ -8,12 +8,12 @@ exports.saveUser = function(user, callback) {
     if (!user) callback(null, user);
 
     userModel.findOne({
-        'Strategies.Info.Id': user.Id
+        'Strategy.Info.Id': user.Id
     }, function(err, response) {
         if (err) callback(err, null);
         if (!response) {
             var dbUser = new userModel();
-            dbUser.Strategies.push({
+            dbUser.Strategy = {
                 Name: user.provider,
                 Info: {
                     Id: user.Id,
@@ -21,7 +21,7 @@ exports.saveUser = function(user, callback) {
                     Email: user.Email,
                     ProfilePicUrl: user.ProfilePicUrl
                 }
-            });
+            };
             dbUser.save(function(err, dbResponse) {
                 if (err)
                     callback(err, dbResponse);

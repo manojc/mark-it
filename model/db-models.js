@@ -9,7 +9,7 @@ var dbModels = {
 
     User: {
         UserName: 'String',
-        Strategies: []
+        Strategy: {}
     },
 
     Strategy: {

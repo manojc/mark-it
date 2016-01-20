@@ -116,7 +116,7 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(dbUser, done) {
     // console.log(dbUser);
-    session.user = dbUser.Strategies[0].Info;
+    session.user = dbUser.Strategy.Info;
     done(null, session.user);
 });
 //required packeges end

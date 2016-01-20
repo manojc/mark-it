@@ -58,13 +58,4 @@ router.post('/add-user', function(req, res) {
     });
 });
 
-
-router.get('/', function(req, res) {
-    res.json({
-        name: 'manoj chalode',
-        email: 'chalodem@gmail.com',
-        description: 'first user'
-    });
-});
-
 module.exports = router;
