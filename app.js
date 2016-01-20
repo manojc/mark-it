@@ -47,7 +47,7 @@ var routes = require('./routes/index');
 passport.use(new GoogleStrategy({
         clientID: GOOGLE_CONSUMER_KEY,
         clientSecret: GOOGLE_CONSUMER_SECRET,
-        callbackURL: "http://localhost:8080/auth/google/callback"
+        callbackURL: "http://192.168.1.4:8080/auth/google/callback"
     },
     function(token, tokenSecret, profile, done) {
         if (!profile.provider) profile.provider = 'google';
@@ -60,7 +60,7 @@ passport.use(new GoogleStrategy({
 passport.use(new TwitterStrategy({
         consumerKey: TWITTER_CONSUMER_KEY,
         consumerSecret: TWITTER_CONSUMER_SECRET,
-        callbackURL: "http://localhost:8080/auth/twitter/callback"
+        callbackURL: "http://192.168.1.4:8080/auth/twitter/callback"
     },
     function(token, tokenSecret, profile, done) {
         process.nextTick(function() {
@@ -74,7 +74,7 @@ passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
     profileFields: ['id', 'displayName', 'photos', 'email', 'name'],
-    callbackURL: 'http://localhost:8080/auth/facebook/callback'
+    callbackURL: 'http://192.168.1.4:8080/auth/facebook/callback'
 }, function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
         if (!profile.provider) profile.provider = 'facebook';
@@ -86,22 +86,22 @@ passport.serializeUser(function(user, done) {
 
     if (!user)
         throw new Error('invalid user, login failed!');
- 
+
     if (user.provider === 'twitter') {
         session.user = {
-            id: user.id,
-            displayName: user.displayName,
-            email: null,
-            profilePicUrl: user.photos[0].value,
-            provider: user.provider
+            Id: user.id,
+            DisplayName: user.displayName,
+            Email: null,
+            ProfilePicUrl: user.photos[0].value,
+            Provider: user.provider
         };
     } else
         session.user = {
-            id: user.id,
-            displayName: user.displayName,
-            email: user.emails[0].value,
-            profilePicUrl: user.photos[0].value,
-            provider: user.provider
+            Id: user.id,
+            DisplayName: user.displayName,
+            Email: user.emails[0].value,
+            ProfilePicUrl: user.photos[0].value,
+            Provider: user.provider
         };
 
     userAccountProvider.saveUser(session.user, function(err, response) {
@@ -114,7 +114,9 @@ passport.serializeUser(function(user, done) {
 
 });
 
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser(function(dbUser, done) {
+    // console.log(dbUser);
+    session.user = dbUser.Strategies[0].Info;
     done(null, session.user);
 });
 //required packeges end

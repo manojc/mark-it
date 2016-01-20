@@ -3,15 +3,12 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-
     if (req.isAuthenticated())
-        res.sendFile('logged-in-home.html', {
-            root: './public'
+        res.render('logged-in-user-home', {
+            displayName: req.user.DisplayName
         });
     else
-        res.sendFile('home.html', {
-            root: './public'
-        });
+        res.render('home', {});
 });
 
 /* GET home page. */

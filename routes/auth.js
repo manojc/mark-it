@@ -16,8 +16,6 @@ router.get('/facebook/callback',
     });
 //facebook authentication ends
 
-
-
 //google authentication
 router.get('/google', passport.authenticate('google', {
     scope: ['email']
