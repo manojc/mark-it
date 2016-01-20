@@ -1,5 +1,5 @@
 doctype html
-html(lang='en')
+html(lang='en', ng-app='mark-it')
   head
     meta(charset='UTF-8')
     title test
@@ -7,93 +7,109 @@ html(lang='en')
     link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap.min.css')
     link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
   body
-    .navbar.navbar-default.navbar-fixed-top
-      .container
-        a.navbar-brand(href='/') Mark It
-        button.navbar-toggle(data-toggle='collapse', data-target='.navHeaderCollapse')
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        .collapse.navbar-collapse.navHeaderCollapse
-          ul.nav.navbar-nav
-            li.active
-              a(href='#') Home
-            li.dropdown
-              a.dropdown-toogle(href='#', data-toggle='dropdown')
-                | Attendance 
-                b.caret
-              ul.dropdown-menu
-                li
-                  a(href='#') New
-                li
-                  a(href='#') Reports
-                li
-                  a(href='#') Summary
-            li.dropdown
-              a.dropdown-toogle(href='#', data-toggle='dropdown')
-                | Students 
-                b.caret
-              ul.dropdown-menu
-                li
-                  a(href='#') New
-                li
-                  a(href='#') Reports
-                li
-                  a(href='#') Summary
-            li.dropdown
-              a.dropdown-toogle(href='#', data-toggle='dropdown')
-                | Reports 
-                b.caret
-              ul.dropdown-menu
-                li
-                  a(href='#') Daily
-                li
-                  a(href='#') Weekly
-                li
-                  a(href='#') Monthly
-            li.dropdown
-              a.dropdown-toogle(href='#', data-toggle='dropdown')
-                | Announcements 
-                b.caret
-              ul.dropdown-menu
-                li
-                  a(href='#') New
-                li
-                  a(href='#') Details
-            li.dropdown
-              a.dropdown-toogle(href='#', data-toggle='dropdown')
-                | About Us 
-                b.caret
-              ul.dropdown-menu
-                li
-                  a(href='#') Contact Us
-                li
-                  a(href='#') Feedback
-            li.dropdown
-              a.dropdown-toogle(href='#', data-toggle='dropdown')
-                | Profile 
-                b.caret
-              ul.dropdown-menu
-                li
-                  a(href='#') Details
-                li
-                  a(href='/logout') Logout
     .container-fluid.container-padding
+      .row
+        .col-xs-12.col-lg-12
+          .navbar.navbar-default.navbar-fixed-top
+            .container
+              a.navbar-brand(href='/') Mark It
+              button.navbar-toggle(data-toggle='collapse', data-target='.navHeaderCollapse')
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+              .collapse.navbar-collapse.navHeaderCollapse
+                ul.nav.navbar-nav
+                  li.active
+                    a(href='#') Home
+                  li.dropdown
+                    a.dropdown-toogle(href='#', data-toggle='dropdown')
+                      | Attendance 
+                      b.caret
+                    ul.dropdown-menu
+                      li
+                        a(href='#') New
+                      li
+                        a(href='#') Reports
+                      li
+                        a(href='#') Summary
+                  li.dropdown
+                    a.dropdown-toogle(href='#', data-toggle='dropdown')
+                      | Students 
+                      b.caret
+                    ul.dropdown-menu
+                      li
+                        a(href='#') New
+                      li
+                        a(href='#') Reports
+                      li
+                        a(href='#') Summary
+                  li.dropdown
+                    a.dropdown-toogle(href='#', data-toggle='dropdown')
+                      | Reports 
+                      b.caret
+                    ul.dropdown-menu
+                      li
+                        a(href='#') Daily
+                      li
+                        a(href='#') Weekly
+                      li
+                        a(href='#') Monthly
+                  li.dropdown
+                    a.dropdown-toogle(href='#', data-toggle='dropdown')
+                      | Announcements 
+                      b.caret
+                    ul.dropdown-menu
+                      li
+                        a(href='#') New
+                      li
+                        a(href='#') Details
+                  li.dropdown
+                    a.dropdown-toogle(href='#', data-toggle='dropdown')
+                      | About Us 
+                      b.caret
+                    ul.dropdown-menu
+                      li
+                        a(href='#') Contact Us
+                      li
+                        a(href='#') Feedback
+                  li.dropdown
+                    a.dropdown-toogle(href='#', data-toggle='dropdown')
+                      | Profile 
+                      b.caret
+                    ul.dropdown-menu
+                      li
+                        a(href='#') Details
+                      li
+                        a(href='/logout') Logout
       #notify-container.row
         .col-xs-12.col-lg-12.message
           .alert.alert-info.alert-dismissible(role='alert')
             button.close(type='button', data-dismiss='alert', aria-label='Close')
               span(aria-hidden='true') ×
-            |                     Welcome 
-            strong #{displayName}!
-      #app-container.row.mtl
-        .jumbotron
-          h1 Mark It!
-          p A free responsive web application for attendance tracking system.
-          p
-            | Attendance management is important to every single organisation, it can determine whether or not a business will be successful in the future. Businesses will have to keep a track of employees, this being their main concern and a lot of other things. Monitoring attendance helps in the long term for a business, as an employer will be able to tell which employees arrive early, which arrive late and who has the most absences without any valid reason. This could help an employer in deciding which employees are most suitable to work in the business, having employees who arrive to work on time means that the day-to-day tasks of the organisation will be fulfilled. Employees within an organisation should know about their employer’s attendance and absence policy, so that they are aware of what is required of them.[1] Attendance management is also a health and safety procedure something in which that has to be carried out. It is important because in case of an emergency that was to arise in a workplace like a fire, then if they register in the company they will know how many people are inside a building. It is important to manage a set of workforce as it can lead to higher profits as well as an increase in productivity.[2] If you have a look on the other side of what will happen if a business does not manage their attendance, it will mean that they will have no sort of information to look back on in case if it is needed in the future. They also will not be able to keep a track on their employees on a day-to-day basis which means there is no leadership in place.[3]
-          p
-            a.btn.btn-primary.btn-lg(href='#', role='button') Learn more
-    script(type='text/javascript', src='/javascripts/libraries/jquery.min.js')
-    script(type='text/javascript', src='/javascripts/libraries/bootstrap.min.js')
-    script(type='text/javascript', src='/javascripts/application.js')
+            |  Welcome 
+            strong #{DisplayName}!
+      #app-container.row.mtl(ng-controller='UserProfileController as user')
+        .col-xs-12.col-lg-8.col-lg-offset-2.mtl
+          .panel.panel-primary
+            .panel-heading
+              h3.panel-title User Details
+            .panel-body.text-center
+              .row.mts
+                .col-xs-12.col-lg-12
+                  .input-group
+                    span#basic-addon1.input-group-addon User Name
+                    input.form-control(type='text', placeholder='Username', aria-describedby='basic-addon1', ng-model='user.model.DisplayName')
+              .row.mts
+                .col-xs-12.col-lg-12
+                  .input-group
+                    span#basic-addon1.input-group-addon Email Id
+                    input.form-control(type='text', placeholder='Username', aria-describedby='basic-addon1', ng-model='user.model.Email')
+              .row.mts
+                .col-xs-12.col-lg-12
+                  .input-group
+                    span#basic-addon1.input-group-addon User Id
+                    input.form-control(type='text', placeholder='Username', aria-describedby='basic-addon1', ng-model='user.model.Id')
+      script(type='text/javascript', src='/javascripts/libraries/jquery.min.js')
+      script(type='text/javascript', src='/javascripts/libraries/angular.min.js')
+      script(type='text/javascript', src='/javascripts/libraries/bootstrap.min.js')
+      script(type='text/javascript', src='/javascripts/application.js')

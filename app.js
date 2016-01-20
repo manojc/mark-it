@@ -87,6 +87,9 @@ passport.serializeUser(function(user, done) {
     if (!user)
         throw new Error('invalid user, login failed!');
 
+    console.log('this is serialization');
+    console.log(user);
+
     if (user.provider === 'twitter') {
         session.user = {
             Id: user.id,
@@ -115,8 +118,6 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(dbUser, done) {
-    // console.log(dbUser);
-    session.user = dbUser.Strategy.Info;
     done(null, session.user);
 });
 //required packeges end

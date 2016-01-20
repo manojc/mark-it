@@ -1,12 +1,19 @@
-(function($, window, undefined) {
-    $('#log-in-link').off('click').click(function() {
-        $(this).parent().addClass('active');
-        $(this).parent().siblings().removeClass('active')
-        $('#app-container').html($('#login-strategy-template').html());
+(function(window, $, undefined) {
+
+    'use strict';
+
+    var app = angular.module('mark-it', []);
+
+    app.controller('UserProfileController', function() {
+
+        var self = this;
+
+        $.ajax({
+            url: '/user?id=569fa8eb2329eace3f05e20a',
+            success: function(response) {
+                self.model = response.data.Strategy.Info;
+            },
+            async: false
+        });
     });
-    $('#home-link').off('click').click(function() {
-        $(this).parent().addClass('active');
-        $(this).parent().siblings().removeClass('active')
-        $('#app-container').html($('#home-template').html());
-    });
-})(jQuery, window);
+})(window, jQuery);

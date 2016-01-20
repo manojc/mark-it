@@ -17,30 +17,30 @@ html(lang='en')
       </div>
     script#login-strategy-template(type='text/template').
       <div class="col-xs-12 col-lg-6 col-lg-offset-3 mtl">
-          <div class="panel panel-info">
-              <div class="panel-heading">
-                  <h3 class="panel-title">Login</h3>
-              </div>
-              <div class="panel-body text-center">
-                  <div class="row">
-                      <div class="col-xs-4">
-                          <a href="/auth/facebook">
-                              <img src="/images/Facebook-thumbnail.jpg" alt="facebook" class="image-thumbnail social-network-image">
-                          </a>
-                      </div>
-                      <div class="col-xs-4">
-                          <a href="/auth/google">
-                              <img src="/images/gmail-thumbnail.jpg" alt="gmail" class="image-thumbnail social-network-image">
-                          </a>
-                      </div>
-                      <div class="col-xs-4">
-                          <a href="/auth/twitter">
-                              <img src="/images/twitter-thumbnail.png" alt="twitter" class="image-circle social-network-image">
-                          </a>
-                      </div>
-                  </div>
-              </div>
-          </div>
+      <div class="panel panel-info">
+      <div class="panel-heading">
+      <h3 class="panel-title">Login</h3>
+      </div>
+      <div class="panel-body text-center">
+      <div class="row">
+      <div class="col-xs-4">
+      <a href="/auth/facebook">
+      <img src="/images/Facebook-thumbnail.jpg" alt="facebook" class="image-thumbnail social-network-image">
+      </a>
+      </div>
+      <div class="col-xs-4">
+      <a href="/auth/google">
+      <img src="/images/gmail-thumbnail.jpg" alt="gmail" class="image-thumbnail social-network-image">
+      </a>
+      </div>
+      <div class="col-xs-4">
+      <a href="/auth/twitter">
+      <img src="/images/twitter-thumbnail.png" alt="twitter" class="image-circle social-network-image">
+      </a>
+      </div>
+      </div>
+      </div>
+      </div>
     .navbar.navbar-default.navbar-fixed-top
       .container
         a.navbar-brand(href='#') Mark It
@@ -65,13 +65,22 @@ html(lang='en')
               a#log-in-link(href='#') Login
     .container-fluid.container-padding
       #app-container.row
-        <div class="jumbotron">
-        <h1>Mark It!</h1>
-        <p>A free responsive web application for attendance tracking system.</p>
-        <p>Attendance management is important to every single organisation, it can determine whether or not a business will be successful in the future. Businesses will have to keep a track of employees, this being their main concern and a lot of other things. Monitoring attendance helps in the long term for a business, as an employer will be able to tell which employees arrive early, which arrive late and who has the most absences without any valid reason. This could help an employer in deciding which employees are most suitable to work in the business, having employees who arrive to work on time means that the day-to-day tasks of the organisation will be fulfilled. Employees within an organisation should know about their employer’s attendance and absence policy, so that they are aware of what is required of them.[1] Attendance management is also a health and safety procedure something in which that has to be carried out. It is important because in case of an emergency that was to arise in a workplace like a fire, then if they register in the company they will know how many people are inside a building. It is important to manage a set of workforce as it can lead to higher profits as well as an increase in productivity.[2] If you have a look on the other side of what will happen if a business does not manage their attendance, it will mean that they will have no sort of information to look back on in case if it is needed in the future. They also will not be able to keep a track on their employees on a day-to-day basis which means there is no leadership in place.[3]</p>
-        <p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-        </div>
+        .col-xs-12.col-lg-6.col-lg-offset-3.mtl
+          .panel.panel-info
+            .panel-heading
+              h3.panel-title Login
+            .panel-body.text-center
+              .row
+                .col-xs-4
+                  a(href='/auth/facebook')
+                    img.image-thumbnail.social-network-image(src='/images/Facebook-thumbnail.jpg', alt='facebook')
+                .col-xs-4
+                  a(href='/auth/google')
+                    img.image-thumbnail.social-network-image(src='/images/gmail-thumbnail.jpg', alt='gmail')
+                .col-xs-4
+                  a(href='/auth/twitter')
+                    img.image-circle.social-network-image(src='/images/twitter-thumbnail.png', alt='twitter')
     script(type='text/javascript', src='/javascripts/libraries/jquery.min.js')
+    script(type='text/javascript', src='/javascripts/libraries/angular.min.js')
     script(type='text/javascript', src='/javascripts/libraries/bootstrap.min.js')
     script(type='text/javascript', src='/javascripts/application.js')

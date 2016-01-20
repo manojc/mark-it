@@ -25,7 +25,7 @@ router.get('/', function(req, res) {
         data: null
     });
     else {
-        loginModel.find({
+        loginModel.findOne({
             _id: req.query.id
         }, function(err, response) {
             if (err) res.json({

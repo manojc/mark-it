@@ -3,11 +3,12 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    if (req.isAuthenticated())
+    if (req.isAuthenticated()) {
+        console.log(req.user);
         res.render('logged-in-user-home', {
-            displayName: req.user.DisplayName
+            DisplayName: req.user.DisplayName
         });
-    else
+    } else
         res.render('home', {});
 });
 
@@ -28,22 +29,24 @@ router.get('/is-authenticated', function(req, res) {
 /* GET home page. */
 router.get('/get-logged-in-user', function(req, res) {
 
+    console.log(req.user);
+
     if (!req.user || !req.isAuthenticated())
         res.json({});
 
     else if (req.user && req.user.provider === 'twitter') {
         res.json({
-            id: req.user.id,
-            displayName: req.user.displayName,
-            email: null,
-            profilePicUrl: req.user.profilePicUrl
+            Id: req.user.id,
+            DisplayName: req.user.displayName,
+            Email: null,
+            ProfilePicUrl: req.user.profilePicUrl
         });
     } else
         res.json({
-            id: req.user.id,
-            displayName: req.user.displayName,
-            email: req.user.email,
-            profilePicUrl: req.user.profilePicUrl
+            Id: req.user.id,
+            DisplayName: req.user.displayName,
+            Email: req.user.email,
+            ProfilePicUrl: req.user.profilePicUrl
         });
 });
 
