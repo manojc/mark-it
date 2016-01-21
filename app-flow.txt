@@ -1,0 +1,29 @@
+################ Flow ################
+
+1. Login/register
+
+2. If new user, 
+		Save the details,
+		Ask for application specific details,
+		Save the details,
+		Validate user as existing user.
+
+3. Redirect to role based home page.
+
+---------------------------------------------------
+Roles - teacher, headmaster, admin
+---------------------------------------------------
+
+Admin access 		- 	*
+
+Head master access 	- 	Create new school profile
+					-	Add/update classrooms
+					-	Add/update teachers
+					-	Assign teachers to classrooms
+					-	Get classwise attendence details
+					-	Get teacher details
+					-	Get over all attendance details
+
+Teacher access		-	Add/update student list
+					-	Take class attendance
+					-	View attendance details of class
