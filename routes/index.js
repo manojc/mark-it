@@ -4,7 +4,6 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res) {
     if (req.isAuthenticated()) {
-        console.log(req.user);
         res.render('logged-in-user-home', {
             DisplayName: req.user.DisplayName
         });
@@ -29,24 +28,22 @@ router.get('/is-authenticated', function(req, res) {
 /* GET home page. */
 router.get('/get-logged-in-user', function(req, res) {
 
-    console.log(req.user);
-
     if (!req.user || !req.isAuthenticated())
         res.json({});
 
-    else if (req.user && req.user.provider === 'twitter') {
+    else if (req.user && req.user.Provider === 'twitter') {
         res.json({
-            Id: req.user.id,
-            DisplayName: req.user.displayName,
+            Id: req.user.Id,
+            DisplayName: req.user.DisplayName,
             Email: null,
-            ProfilePicUrl: req.user.profilePicUrl
+            ProfilePicUrl: req.user.ProfilePicUrl
         });
     } else
         res.json({
-            Id: req.user.id,
-            DisplayName: req.user.displayName,
-            Email: req.user.email,
-            ProfilePicUrl: req.user.profilePicUrl
+            Id: req.user.Id,
+            DisplayName: req.user.DisplayName,
+            Email: req.user.Email,
+            ProfilePicUrl: req.user.ProfilePicUrl
         });
 });
 

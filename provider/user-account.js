@@ -32,3 +32,15 @@ exports.saveUser = function(user, callback) {
         }
     });
 }
+
+exports.getUser = function(id, callback) {
+
+    if (!id) callback(null, user);
+
+    userModel.findOne({
+        '_id': id
+    }, function(err, response) {
+        if (err) callback(err, null);
+        callback(null, response);
+    });
+}

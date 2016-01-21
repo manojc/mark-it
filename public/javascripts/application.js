@@ -9,9 +9,9 @@
         var self = this;
 
         $.ajax({
-            url: '/user?id=569fa8eb2329eace3f05e20a',
+            url: '/get-logged-in-user',
             success: function(response) {
-                self.model = response.data.Strategy.Info;
+                self.model = response;
             },
             async: false
         });

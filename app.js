@@ -87,11 +87,10 @@ passport.serializeUser(function(user, done) {
     if (!user)
         throw new Error('invalid user, login failed!');
 
-    console.log('this is serialization');
-    console.log(user);
+    var dbUser = {};
 
     if (user.provider === 'twitter') {
-        session.user = {
+        dbUser = {
             Id: user.id,
             DisplayName: user.displayName,
             Email: null,
@@ -99,7 +98,7 @@ passport.serializeUser(function(user, done) {
             Provider: user.provider
         };
     } else
-        session.user = {
+        dbUser = {
             Id: user.id,
             DisplayName: user.displayName,
             Email: user.emails[0].value,
@@ -107,18 +106,27 @@ passport.serializeUser(function(user, done) {
             Provider: user.provider
         };
 
-    userAccountProvider.saveUser(session.user, function(err, response) {
+    userAccountProvider.saveUser(dbUser, function(err, response) {
         if (err) throw new Error(err);
         else if (!response) throw new Error('user not found!');
         else {
-            done(null, response);
+            done(null, response._id);
         }
-    })
-
+    });
 });
 
-passport.deserializeUser(function(dbUser, done) {
-    done(null, session.user);
+passport.deserializeUser(function(id, done) {
+    userAccountProvider.getUser(id, function(err, dbUser) {
+        if (err) throw new Error(err);
+        else if (!dbUser) throw new Error('user not found!');
+        done(null, {
+            Id: dbUser._id,
+            DisplayName: dbUser.Strategy.Info.DisplayName,
+            Email: dbUser.Strategy.Info.Email,
+            ProfilePicUrl: dbUser.Strategy.Info.ProfilePicUrl,
+            Provider: dbUser.Strategy.Info.Provider
+        });
+    });
 });
 //required packeges end
 
