@@ -2,16 +2,20 @@
 
     'use strict';
 
-    var app = angular.module('mark-it', []);
+    window.app = angular.module('mark-it', []);
 
-    app.controller('UserProfileController', function() {
+    app.controller('NotificationController', function() {
+
+    });
+
+    app.controller('UserProfileController', function($scope) {
 
         var self = this;
 
         $.ajax({
-            url: '/get-logged-in-user',
+            url: '/user?id=569fa8eb2329eace3f05e20a',
             success: function(response) {
-                self.model = response;
+                $scope.user = response.data.Strategy.Info;
             },
             async: false
         });

@@ -3,6 +3,18 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
+.app-background {
+    background-color: #f8f8f8;
+}
+
+.pts {
+    padding-top: 20px;
+}
+
+.pbs {
+    padding-bottom: 20px;
+}
+
 p {
     font-size: medium !important;
     padding: 0 5px 0 5px !important;
@@ -13,7 +25,7 @@ p {
 }
 
 .mtl {
-    margin-top: 100px;
+    margin-top: 40px;
 }
 
 .mts {

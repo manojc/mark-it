@@ -27,3 +27,6 @@ Head master access 	- 	Create new school profile
 Teacher access		-	Add/update student list
 					-	Take class attendance
 					-	View attendance details of class
+
+
+##### profile information #####

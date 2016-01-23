@@ -3,17 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>test</title>
+    <title>home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css -->
     <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
 </head>
 
 <body>
-    <div class="container-fluid container-padding">
+    <!-- html -->
+    <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12 col-lg-12">
-                <div class="navbar navbar-default navbar-fixed-top">
+                <div class="navbar navbar-default">
                     <div class="container"><a href="/" class="navbar-brand">Mark It</a>
                         <button data-toggle="collapse" data-target=".navHeaderCollapse" class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                         <div class="collapse navbar-collapse navHeaderCollapse">
@@ -65,47 +67,100 @@
             </div>
         </div>
         <div id="notify-container" class="row">
-            <div class="col-xs-12 col-lg-12 message">
+            <div class=" col-xs-12 col-lg-12">
                 <div role="alert" class="alert alert-info alert-dismissible">
-                    <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true">×</span></button> Welcome <strong>!</strong>
+                    <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true">×</span></button> Welcome <strong>{{user.DisplayName}}!</strong> Update your profile.
                 </div>
             </div>
         </div>
-        <div id="app-container" class="row mtl" ng-controller="UserProfileController as user">
-            <div class="col-xs-12 col-lg-8 col-lg-offset-2 mtl">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">User Details</h3>
+        <div id="app-container" class="row" ng-controller="UserProfileController as userProfile">
+            <div class="col-xs-12 col-lg-6 col-lg-offset-3 app-background">
+                <ul class="nav nav-tabs pts">
+                    <li role="presentation" class="active"><a href="#">Home</a></li>
+                    <li role="presentation"><a href="#">Profile</a></li>
+                    <li role="presentation"><a href="#">Messages</a></li>
+                </ul>
+                <div class="row mts">
+                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                        <label for="display-name">Display Name</label>
+                        <input id="display-name" type="text" disabled="disabled" class="form-control col-xs-12 col-lg-4" ng-model="user.DisplayName">
                     </div>
-                    <div class="panel-body text-center">
-                        <div class="row mts">
-                            <div class="col-xs-12 col-lg-12">
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon1">User Name</span>
-                                    <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" ng-model="user.model.DisplayName">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mts">
-                            <div class="col-xs-12 col-lg-12">
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon1">Email Id</span>
-                                    <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" ng-model="user.model.Email">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mts">
-                            <div class="col-xs-12 col-lg-12">
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon1">User Id</span>
-                                    <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" ng-model="user.model.Id">
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                <div class="row mts">
+                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                        <label for="email-id">Email Id</label>
+                        <input id="email-id" type="email" disabled="disabled" class="form-control col-xs-12 col-lg-4" ng-model="user.Email">
+                    </div>
+                </div>
+                <div class="row mts">
+                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                        <label for="user-name">User Name</label>
+                        <input id="user-name" type="text" class="form-control col-xs-12 col-lg-4" placeholder="e.g. cool_john">
+                    </div>
+                </div>
+                <div class="row mts">
+                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                        <label for="user-role">User Role</label>
+                        <select id="user-role" class="form-control col-xs-12 col-lg-4">
+                            <option>Select Role</option>
+                            <option>Admin</option>
+                            <option>Teacher</option>
+                            <option>Student</option>
+                            <option>Parent</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mtl pbs">
+                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                        <input type="button" id="btn-update-profile" class="btn btn-primary form-control" value="Update Profile">
                     </div>
                 </div>
             </div>
         </div>
+        <!-- scripts -->
+        <script type="text/html" id="user-profile-template">
+            <div class="col-xs-12 col-lg-6 col-lg-offset-3 app-background">
+                <ul class="nav nav-tabs pts">
+                    <li role="presentation" class="active"><a href="#">Home</a></li>
+                    <li role="presentation"><a href="#">Profile</a></li>
+                    <li role="presentation"><a href="#">Messages</a></li>
+                </ul>
+                <div class="row mts">
+                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                        <label for="display-name">Display Name</label>
+                        <input id="display-name" type="text" disabled="disabled" class="form-control col-xs-12 col-lg-4" ng-model="user.DisplayName">
+                    </div>
+                </div>
+                <div class="row mts">
+                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                        <label for="email-id">Email Id</label>
+                        <input id="email-id" type="email" disabled="disabled" class="form-control col-xs-12 col-lg-4" ng-model="user.Email">
+                    </div>
+                </div>
+                <div class="row mts">
+                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                        <label for="user-name">User Name</label>
+                        <input id="user-name" type="text" class="form-control col-xs-12 col-lg-4" placeholder="e.g. cool_john">
+                    </div>
+                </div>
+                <div class="row mts">
+                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                        <label for="user-role">User Role</label>
+                        <select id="user-role" class="form-control col-xs-12 col-lg-4">
+                            <option>Select Role</option>
+                            <option>Admin</option>
+                            <option>Teacher</option>
+                            <option>Student</option>
+                            <option>Parent</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mtl pbs">
+                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                        <input type="button" id="btn-update-profile" class="btn btn-primary form-control" value="Update Profile">
+                    </div>
+                </div>
+        </script>
         <script type="text/javascript" src="/javascripts/libraries/jquery.min.js"></script>
         <script type="text/javascript" src="/javascripts/libraries/angular.min.js"></script>
         <script type="text/javascript" src="/javascripts/libraries/bootstrap.min.js"></script>

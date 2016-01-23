@@ -3,13 +3,16 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    if (req.isAuthenticated()) {
-        res.render('logged-in-user-home', {
-            DisplayName: req.user.DisplayName
-        });
-    } else
-        res.render('home', {});
+    res.sendFile('logged-in-home.html', {
+        root: './public'
+    });
 });
+
+// router.get('/', function(req, res) {
+//     res.render('logged-in-user-home', {
+//         DisplayName: "Manoj Chalode"
+//     });
+// });
 
 /* GET home page. */
 router.get('/success', function(req, res) {
