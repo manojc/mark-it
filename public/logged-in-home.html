@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="mark-it">
+<html lang="en" data-ng-app="mark-it">
 
 <head>
     <meta charset="UTF-8">
@@ -66,10 +66,10 @@
                 </div>
             </div>
         </div>
-        <div id="notify-container" class="row">
+        <div id="notify-container" class="row" ng-controller="NotificationController as notify">
             <div class=" col-xs-12 col-lg-12">
                 <div role="alert" class="alert alert-info alert-dismissible">
-                    <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true">×</span></button> Welcome <strong>{{user.DisplayName}}!</strong> Update your profile.
+                    <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true">×</span></button> Welcome <strong>{{currentUser.DisplayName}}!</strong> Update your profile.
                 </div>
             </div>
         </div>
@@ -83,13 +83,13 @@
                 <div class="row mts">
                     <div class="col-xs-12 col-lg-10 col-lg-offset-1">
                         <label for="display-name">Display Name</label>
-                        <input id="display-name" type="text" disabled="disabled" class="form-control col-xs-12 col-lg-4" ng-model="user.DisplayName">
+                        <input id="display-name" type="text" disabled="disabled" class="form-control col-xs-12 col-lg-4" ng-model="currentUser.DisplayName">
                     </div>
                 </div>
                 <div class="row mts">
                     <div class="col-xs-12 col-lg-10 col-lg-offset-1">
                         <label for="email-id">Email Id</label>
-                        <input id="email-id" type="email" disabled="disabled" class="form-control col-xs-12 col-lg-4" ng-model="user.Email">
+                        <input id="email-id" type="email" disabled="disabled" class="form-control col-xs-12 col-lg-4" ng-model="currentUser.Email">
                     </div>
                 </div>
                 <div class="row mts">
@@ -117,54 +117,58 @@
                 </div>
             </div>
         </div>
-        <!-- scripts -->
-        <script type="text/html" id="user-profile-template">
-            <div class="col-xs-12 col-lg-6 col-lg-offset-3 app-background">
-                <ul class="nav nav-tabs pts">
-                    <li role="presentation" class="active"><a href="#">Home</a></li>
-                    <li role="presentation"><a href="#">Profile</a></li>
-                    <li role="presentation"><a href="#">Messages</a></li>
-                </ul>
-                <div class="row mts">
-                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
-                        <label for="display-name">Display Name</label>
-                        <input id="display-name" type="text" disabled="disabled" class="form-control col-xs-12 col-lg-4" ng-model="user.DisplayName">
-                    </div>
+    </div>
+    <!-- scripts -->
+    <script type="text/html" id="user-profile-template">
+        <div class="col-xs-12 col-lg-6 col-lg-offset-3 app-background">
+            <ul class="nav nav-tabs pts">
+                <li role="presentation" class="active"><a href="#">Home</a></li>
+                <li role="presentation"><a href="#">Profile</a></li>
+                <li role="presentation"><a href="#">Messages</a></li>
+            </ul>
+            <div class="row mts">
+                <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                    <label for="display-name">Display Name</label>
+                    <input id="display-name" type="text" disabled="disabled" class="form-control col-xs-12 col-lg-4" ng-model="user.DisplayName">
                 </div>
-                <div class="row mts">
-                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
-                        <label for="email-id">Email Id</label>
-                        <input id="email-id" type="email" disabled="disabled" class="form-control col-xs-12 col-lg-4" ng-model="user.Email">
-                    </div>
+            </div>
+            <div class="row mts">
+                <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                    <label for="email-id">Email Id</label>
+                    <input id="email-id" type="email" disabled="disabled" class="form-control col-xs-12 col-lg-4" ng-model="user.Email">
                 </div>
-                <div class="row mts">
-                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
-                        <label for="user-name">User Name</label>
-                        <input id="user-name" type="text" class="form-control col-xs-12 col-lg-4" placeholder="e.g. cool_john">
-                    </div>
+            </div>
+            <div class="row mts">
+                <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                    <label for="user-name">User Name</label>
+                    <input id="user-name" type="text" class="form-control col-xs-12 col-lg-4" placeholder="e.g. cool_john">
                 </div>
-                <div class="row mts">
-                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
-                        <label for="user-role">User Role</label>
-                        <select id="user-role" class="form-control col-xs-12 col-lg-4">
-                            <option>Select Role</option>
-                            <option>Admin</option>
-                            <option>Teacher</option>
-                            <option>Student</option>
-                            <option>Parent</option>
-                        </select>
-                    </div>
+            </div>
+            <div class="row mts">
+                <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                    <label for="user-role">User Role</label>
+                    <select id="user-role" class="form-control col-xs-12 col-lg-4">
+                        <option>Select Role</option>
+                        <option>Admin</option>
+                        <option>Teacher</option>
+                        <option>Student</option>
+                        <option>Parent</option>
+                    </select>
                 </div>
-                <div class="row mtl pbs">
-                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
-                        <input type="button" id="btn-update-profile" class="btn btn-primary form-control" value="Update Profile">
-                    </div>
+            </div>
+            <div class="row mtl pbs">
+                <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                    <input type="button" id="btn-update-profile" class="btn btn-primary form-control" value="Update Profile">
                 </div>
-        </script>
-        <script type="text/javascript" src="/javascripts/libraries/jquery.min.js"></script>
-        <script type="text/javascript" src="/javascripts/libraries/angular.min.js"></script>
-        <script type="text/javascript" src="/javascripts/libraries/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/javascripts/application.js"></script>
+            </div>
+    </script>
+    <script type="text/javascript" src="/javascript/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascript/libraries/angular.min.js"></script>
+    <script type="text/javascript" src="/javascript/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/javascript/application.js"></script>
+    <script type="text/javascript" src="/javascript/angular/factories/user-profile.js"></script>
+    <script type="text/javascript" src="/javascript/angular/controllers/user-profile.js"></script>
+    <script type="text/javascript" src="/javascript/angular/controllers/notification.js"></script>
 </body>
 
 </html>
