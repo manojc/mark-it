@@ -17,7 +17,11 @@
             <div class="col-xs-12 col-lg-12">
                 <div class="navbar navbar-default">
                     <div class="container"><a href="/" class="navbar-brand">Mark It</a>
-                        <button data-toggle="collapse" data-target=".navHeaderCollapse" class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                        <button data-toggle="collapse" data-target=".navHeaderCollapse" class="navbar-toggle">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
                         <div class="collapse navbar-collapse navHeaderCollapse">
                             <ul class="nav navbar-nav">
                                 <li class="active"><a href="#">Home</a></li>
@@ -74,32 +78,32 @@
             </div>
         </div>
         <div id="app-container" class="row" ng-controller="UserProfileController as userProfile">
-            <div class="col-xs-12 col-lg-6 col-lg-offset-3 app-background">
-                <ul class="nav nav-tabs pts">
+            <div class="col-xs-12 col-lg-12 app-background">
+                <ul class="nav nav-tabs pts col-lg-6 col-lg-offset-3">
                     <li role="presentation" class="active"><a href="#">Home</a></li>
                     <li role="presentation"><a href="#">Profile</a></li>
                     <li role="presentation"><a href="#">Messages</a></li>
                 </ul>
-                <div class="row mts">
-                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                <div class="row">
+                    <div class="col-xs-12 col-lg-6 col-lg-offset-3 mts">
                         <label for="display-name">Display Name</label>
                         <input id="display-name" type="text" disabled="disabled" class="form-control col-xs-12 col-lg-4" ng-model="currentUser.DisplayName">
                     </div>
                 </div>
-                <div class="row mts">
-                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                <div class="row">
+                    <div class="col-xs-12 col-lg-6 col-lg-offset-3 mts">
                         <label for="email-id">Email Id</label>
                         <input id="email-id" type="email" disabled="disabled" class="form-control col-xs-12 col-lg-4" ng-model="currentUser.Email">
                     </div>
                 </div>
-                <div class="row mts">
-                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                <div class="row">
+                    <div class="col-xs-12 col-lg-6 col-lg-offset-3 mts">
                         <label for="user-name">User Name</label>
                         <input id="user-name" type="text" class="form-control col-xs-12 col-lg-4" placeholder="e.g. cool_john">
                     </div>
                 </div>
-                <div class="row mts">
-                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                <div class="row">
+                    <div class="col-xs-12 col-lg-6 col-lg-offset-3 mts">
                         <label for="user-role">User Role</label>
                         <select id="user-role" class="form-control col-xs-12 col-lg-4">
                             <option>Select Role</option>
@@ -110,8 +114,8 @@
                         </select>
                     </div>
                 </div>
-                <div class="row mtl pbs">
-                    <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                <div class="row pbs">
+                    <div class="col-xs-12 col-lg-6 col-lg-offset-3 mtl">
                         <input type="button" id="btn-update-profile" class="btn btn-primary form-control" value="Update Profile">
                     </div>
                 </div>
