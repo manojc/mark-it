@@ -28,12 +28,12 @@ p {
     padding-top: 40px;
 }
 
-.mtl1 {
-    margin-bottom: 20px;
+.mbl {
+    margin-bottom: 40px;
 }
 
 .mts {
-    padding-top: 20px;
+    margin-top: 20px;
 }
 
 .social-network-image {
@@ -47,4 +47,8 @@ p {
     top: 60px;
     left: 1px;
     width: 100%;
+}
+
+.pointer {
+    cursor: pointer;
 }

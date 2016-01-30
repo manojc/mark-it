@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>home</title>
+    <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
@@ -25,40 +25,40 @@
                         <div class="collapse navbar-collapse navHeaderCollapse">
                             <ul class="nav navbar-nav">
                                 <li class="active"><a href="#">Home</a></li>
-                                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toogle">Attendance <b class="caret"></b></a>
+                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle pointer">Attendance <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">New</a></li>
                                         <li><a href="#">Reports</a></li>
                                         <li><a href="#">Summary</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle">Students <b class="caret"></b></a>
+                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle pointer">Students <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">New</a></li>
                                         <li><a href="#/student-attendsnce-list">Reports</a></li>
                                         <li><a href="#">Summary</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toogle">Reports <b class="caret"></b></a>
+                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle pointer">Reports <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">Daily</a></li>
                                         <li><a href="#">Weekly</a></li>
                                         <li><a href="#">Monthly</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toogle">Announcements <b class="caret"></b></a>
+                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle pointer">Announcements <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">New</a></li>
                                         <li><a href="#">Details</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toogle">About Us <b class="caret"></b></a>
+                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle pointer">About Us <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">Contact Us</a></li>
                                         <li><a href="#">Feedback</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toogle">Profile <b class="caret"></b></a>
+                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle pointer">Profile <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">Details</a></li>
                                         <li><a href="/logout">Logout</a></li>
@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <div id="notify-container" class="row">
+        <div id="notify-container" class="row hidden">
             <div class=" col-xs-12 col-lg-12">
                 <div role="alert" class="alert alert-info alert-dismissible">
                     <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true">×</span></button> Welcome <strong>Manoj Chalode!</strong> Update your profile.
@@ -129,6 +129,10 @@
     <script type="text/javascript" src="/javascript/libraries/angular.route.min.js"></script>
     <script type="text/javascript" src="/javascript/libraries/bootstrap.js"></script>
     <script type="text/javascript" src="/javascript/application.js"></script>
+    <script type="text/javascript" src="/javascript/angular/routes/routes.js"></script>
+    <script type="text/javascript" src="/javascript/angular/factories/attendance-report.js"></script>
+    <script type="text/javascript" src="/javascript/angular/controllers/attendance-report.js"></script>
+    <script type="text/javascript" src="/javascript/angular/controllers/attendance-details.js"></script>
 </body>
 
 </html>
