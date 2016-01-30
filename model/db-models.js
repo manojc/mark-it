@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 var dbModels = {
 
@@ -22,14 +23,28 @@ var dbModels = {
         }
     },
 
+    Student: {
+        FirstName: 'String',
+        LastName: 'String',
+        Class: 'String',
+        Division: 'String'
+    },
+
+    Attendance: {
+        StudentId: Schema.ObjectId,
+        Date: 'Date',
+        IsPresent: 'Boolean',
+        Note: 'String'
+    },
+
     getDbSchema: function(model, modelName, collectionName) {
 
         //singleton pattern
-        if (!this[model])
-            this[model] = mongoose.model(modelName, new mongoose.Schema(model, {
+        if (!this[modelName])
+            this[modelName] = mongoose.model(modelName, new mongoose.Schema(model, {
                 collection: collectionName
             }));
-        return this[model];
+        return this[modelName];
     }
 }
 

@@ -41,6 +41,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 var user = require('./routes/user');
 var auth = require('./routes/auth');
 var routes = require('./routes/index');
+var student = require('./routes/student');
+var attendance = require('./routes/attendance');
 //routes end
 
 //   invoke a callback with a user object.
@@ -141,17 +143,17 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 
 //body parser
-app.use(bodyParser.json({
-    strict: false
-}));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 //body parser ends
 
-//routes
+//routes`
 app.use('/user', user);
 app.use('/auth', auth);
+app.use('/student', student);
+app.use('/attendance', attendance);
 app.use('/', routes);
 //routes end
 
