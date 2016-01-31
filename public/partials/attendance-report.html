@@ -25,9 +25,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="model in ctrl.Collection">
-                        <td><a href="#/students/{{model.StudentId._id}}">{{$index+1}}</a></td>
-                        <td>{{ctrl.getStudentName(model)}}</td>
+                    <tr ng-repeat="model in ctrl.Collection" ng-class="model.IsPresent ? '' : 'warning'">
+                        <td>{{$index+1}}</td>
+                        <td>
+                            <a href="#/students/{{model.StudentId._id}}"> {{ctrl.getStudentName(model)}}</a>
+                        </td>
                         <td>{{model.Date | date:'yyyy-MM-dd'}}</td>
                         <td>{{ctrl.getStatus(model)}}</td>
                         <td>{{model.Note}}</td>

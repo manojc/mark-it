@@ -3,6 +3,14 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
+input[type=checkbox] {
+    height: 20px !important;
+}
+
+input[type=text] {
+    height: 30px !important;
+}
+
 .app-background {
     background-color: #f8f8f8;
 }

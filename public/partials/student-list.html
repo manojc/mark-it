@@ -25,8 +25,10 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="model in ctrl.Collection">
-                        <td><a href="#/students/{{model._id}}">{{$index+1}}</a></td>
-                        <td>{{ctrl.getFullName(model)}}</td>
+                        <td>{{$index+1}}</td>
+                        <td>
+                            <a href="#/students/{{model._id}}">{{ctrl.getFullName(model)}}</a>
+                        </td>
                         <td>{{model.Class}}</td>
                         <td>{{model.Division}}</td>
                         <td>

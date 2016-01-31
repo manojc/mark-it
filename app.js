@@ -38,11 +38,10 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
-var user = require('./routes/user');
 var auth = require('./routes/auth');
-var routes = require('./routes/index');
 var student = require('./routes/student');
 var attendance = require('./routes/attendance');
+var routes = require('./routes/index');
 //routes end
 
 //   invoke a callback with a user object.
@@ -149,8 +148,7 @@ app.use(bodyParser.urlencoded({
 }));
 //body parser ends
 
-//routes`
-app.use('/user', user);
+//routes
 app.use('/auth', auth);
 app.use('/student', student);
 app.use('/attendance', attendance);
@@ -170,7 +168,6 @@ app.use(function(req, res, next) {
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
 // error handlers
 

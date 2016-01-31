@@ -1,102 +1,144 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE student-attendance-list>
+<html lang="en" data-ng-app="mark-it">
 
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body>
-    <script id="home-template" type="text/template">
-        <div class="jumbotron">
-            <h1>Mark It!</h1>
-            <p>A free responsive web application for attendance tracking system.</p>
-            <p>Attendance management is important to every single organisation, it can determine whether or not a business will be successful in the future. Businesses will have to keep a track of employees, this being their main concern and a lot of other things. Monitoring attendance helps in the long term for a business, as an employer will be able to tell which employees arrive early, which arrive late and who has the most absences without any valid reason. This could help an employer in deciding which employees are most suitable to work in the business, having employees who arrive to work on time means that the day-to-day tasks of the organisation will be fulfilled. Employees within an organisation should know about their employer’s attendance and absence policy, so that they are aware of what is required of them.[1] Attendance management is also a health and safety procedure something in which that has to be carried out. It is important because in case of an emergency that was to arise in a workplace like a fire, then if they register in the company they will know how many people are inside a building. It is important to manage a set of workforce as it can lead to higher profits as well as an increase in productivity.[2] If you have a look on the other side of what will happen if a business does not manage their attendance, it will mean that they will have no sort of information to look back on in case if it is needed in the future. They also will not be able to keep a track on their employees on a day-to-day basis which means there is no leadership in place.[3]</p>
-            <p>
-                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+    <!-- html -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-lg-12">
+                <div class="navbar navbar-default">
+                    <div class="container"><a href="/" class="navbar-brand">Mark It</a>
+                        <button data-toggle="collapse" data-target=".navHeaderCollapse" class="navbar-toggle">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="collapse navbar-collapse navHeaderCollapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#">Home</a></li>
+                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle pointer">Attendance <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#/new-attendance">New</a></li>
+                                        <li><a href="#/attendance-report">Reports</a></li>
+                                        <li><a href="#">Summary</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle pointer">Students <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#/students/add">New</a></li>
+                                        <li><a href="#">Reports</a></li>
+                                        <li><a href="#/students/all">List</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle pointer">Reports <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Daily</a></li>
+                                        <li><a href="#">Weekly</a></li>
+                                        <li><a href="#">Monthly</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle pointer">Announcements <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">New</a></li>
+                                        <li><a href="#">Details</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle pointer">About Us <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Contact Us</a></li>
+                                        <li><a href="#">Feedback</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle pointer">Profile <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Details</a></li>
+                                        <li><a href="/logout">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </script>
-    <script id="login-strategy-template" type="text/template">
-        <div class="col-xs-12 col-lg-6 col-lg-offset-3 mtl">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Login</h3>
+        <div class="row" ng-controller="NotificationController as notification">
+            <div class=" col-xs-12 col-lg-8 col-lg-offset-2" ng-show="Model.Message">
+                <div role="alert" class="alert alert-dismissible {{notification.getAlertType()}}">
+                    <button type="button" data-dismiss="alert" aria-label="Close" class="close" ng-click="notification.resetMessage()">
+                        <span aria-hidden="true">×</span>
+                    </button> {{Model.Message}}
                 </div>
-                <div class="panel-body text-center">
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <a href="/auth/facebook">
-                                <img src="/images/Facebook-thumbnail.jpg" alt="facebook" class="image-thumbnail social-network-image">
-                            </a>
-                        </div>
-                        <div class="col-xs-4">
-                            <a href="/auth/google">
-                                <img src="/images/gmail-thumbnail.jpg" alt="gmail" class="image-thumbnail social-network-image">
-                            </a>
-                        </div>
-                        <div class="col-xs-4">
-                            <a href="/auth/twitter">
-                                <img src="/images/twitter-thumbnail.png" alt="twitter" class="image-circle social-network-image">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </script>
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container"><a href="#" class="navbar-brand">Mark It</a>
-            <button data-toggle="collapse" data-target=".navHeaderCollapse" class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-            <div class="collapse navbar-collapse navHeaderCollapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a id="home-link" href="#">Home</a></li>
-                    <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toogle">About Us <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Feedback</a></li>
-                        </ul>
-                    </li>
-                    <li><a id="log-in-link" href="#">Login</a></li>
-                </ul>
             </div>
         </div>
-    </div>
-    <div class="container-fluid container-padding">
-        <div id="app-container" class="row">
-            <div class="col-xs-12 col-lg-6 col-lg-offset-3 mtl">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Login</h3>
-                    </div>
-                    <div class="panel-body text-center">
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <a href="/auth/facebook">
-                                    <img src="/images/Facebook-thumbnail.jpg" alt="facebook" class="image-thumbnail social-network-image">
-                                </a>
-                            </div>
-                            <div class="col-xs-4">
-                                <a href="/auth/google">
-                                    <img src="/images/gmail-thumbnail.jpg" alt="gmail" class="image-thumbnail social-network-image">
-                                </a>
-                            </div>
-                            <div class="col-xs-4">
-                                <a href="/auth/twitter">
-                                    <img src="/images/twitter-thumbnail.png" alt="twitter" class="image-circle social-network-image">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div id="app-container" class="row app-background pbs" ng-view>
         </div>
     </div>
-    <script type="text/javascript" src="/javascripts/libraries/jquery.min.js"></script>
-    <script type="text/javascript" src="/javascripts/libraries/angular.min.js"></script>
-    <script type="text/javascript" src="/javascripts/libraries/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/javascripts/application.js"></script>
+    <!-- scripts -->
+    <script type="text/html" id="user-profile-template">
+        <div class="col-xs-12 col-lg-6 col-lg-offset-3 app-background">
+            <ul class="nav nav-tabs pts">
+                <li role="presentation" class="active"><a href="#">Home</a></li>
+                <li role="presentation"><a href="#">Profile</a></li>
+                <li role="presentation"><a href="#">Messages</a></li>
+            </ul>
+            <div class="row mts">
+                <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                    <label for="display-name">Display Name</label>
+                    <input id="display-name" type="text" disabled="disabled" class="form-control col-xs-12 col-lg-4" ng-model="user.DisplayName">
+                </div>
+            </div>
+            <div class="row mts">
+                <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                    <label for="email-id">Email Id</label>
+                    <input id="email-id" type="email" disabled="disabled" class="form-control col-xs-12 col-lg-4" ng-model="user.Email">
+                </div>
+            </div>
+            <div class="row mts">
+                <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                    <label for="user-name">User Name</label>
+                    <input id="user-name" type="text" class="form-control col-xs-12 col-lg-4" placeholder="e.g. cool_john">
+                </div>
+            </div>
+            <div class="row mts">
+                <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                    <label for="user-role">User Role</label>
+                    <select id="user-role" class="form-control col-xs-12 col-lg-4">
+                        <option>Select Role</option>
+                        <option>Admin</option>
+                        <option>Teacher</option>
+                        <option>Student</option>
+                        <option>Parent</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mtl pbs">
+                <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                    <input type="button" id="btn-update-profile" class="btn btn-primary form-control" value="Update Profile">
+                </div>
+            </div>
+    </script>
+    <script type="text/javascript" src="/javascript/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascript/libraries/angular.min.js"></script>
+    <script type="text/javascript" src="/javascript/libraries/angular.route.min.js"></script>
+    <script type="text/javascript" src="/javascript/libraries/bootstrap.js"></script>
+    <script type="text/javascript" src="/javascript/application.js"></script>
+    <script type="text/javascript" src="/javascript/angular/routes/routes.js"></script>
+    <script type="text/javascript" src="/javascript/angular/factories/db-provider.js"></script>
+    <script type="text/javascript" src="/javascript/angular/controllers/attendance-report.js"></script>
+    <script type="text/javascript" src="/javascript/angular/controllers/student-details.js"></script>
+    <script type="text/javascript" src="/javascript/angular/controllers/new-attendance.js"></script>
+    <script type="text/javascript" src="/javascript/angular/controllers/new-student.js"></script>
+    <script type="text/javascript" src="/javascript/angular/controllers/student-list.js"></script>
+    <script type="text/javascript" src="/javascript/angular/controllers/notification.js"></script>
 </body>
 
 </html>

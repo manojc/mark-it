@@ -3,16 +3,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.sendFile('logged-in-home.html', {
+    res.sendFile('home.html', {
         root: './public/pages'
     });
 });
-
-// router.get('/', function(req, res) {
-//     res.render('logged-in-user-home', {
-//         DisplayName: "Manoj Chalode"
-//     });
-// });
 
 /* GET home page. */
 router.get('/success', function(req, res) {
@@ -53,12 +47,6 @@ router.get('/get-logged-in-user', function(req, res) {
 /* GET home page. */
 router.get('/error', function(req, res) {
     res.json('<h1>user session expired!!</h1>');
-});
-
-/* GET home page. */
-router.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
 });
 
 /* GET home page. */

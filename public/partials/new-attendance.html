@@ -25,9 +25,9 @@
             <tbody>
                 <tr ng-repeat="model in ctrl.Collection">
                     <td>{{$index+1}}</td>
-                    <td class="col-lg-4"> {{ctrl.getFullName(model)}}</td>
-                    <td class="col-lg-1">
-                        <input type="checkbox" class="form-control" ng-model="model.IsPresent">
+                    <td> {{ctrl.getFullName(model)}}</td>
+                    <td>
+                        <input type="checkbox" class="form-control input-sm" ng-model="model.IsPresent">
                     </td>
                     <td>
                         <input class="form-control" type="text" ng-model="model.Note">
