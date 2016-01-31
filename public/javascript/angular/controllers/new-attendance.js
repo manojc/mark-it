@@ -11,12 +11,14 @@
 
         self.Collection = {};
 
-        // $scope.AttendanceDate = new Date();
-
         self.AttendanceData = [];
 
         AttendanceReportFactory.getAllStudents(function(data) {
             self.Collection = data;
+            if (self.Collection && self.Collection.length)
+                self.Collection.forEach(function(item) {
+                    item.IsPresent = true;
+                });
         });
 
         self.getFullName = function(model) {

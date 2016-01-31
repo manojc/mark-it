@@ -12,7 +12,11 @@
 
         self.addStudent = function() {
             self.StudentList.push(self.Student);
-            self.saveStudents();
+            self.Student = {};
+        };
+
+        self.getFullName = function(model) {
+            return model.FirstName + ' ' + model.LastName;
         };
 
         self.saveStudents = function() {
@@ -21,6 +25,11 @@
                     $location.path('/students/all');
             })
         };
+
+        self.removeSelectedRow = function(model) {
+            var index = self.StudentList.indexOf(model);
+            if (index >= 0) self.StudentList.splice(model, 1);
+        }
     }]);
 
 })(window.app = window.app || {});
