@@ -7,15 +7,12 @@
 
         var self = this;
 
-        self.model = {};
+        self.Model = {};
 
         AttendanceReportFactory.getStudentDetails($routeParams.id, function(response) {
-            self.model = response;
+            self.Model = response;
+            self.Model.DivisionDetails = self.Model.Class + ' (' + self.Model.Division + ')';
         });
-
-        self.getClassName = function() {
-            return self.model.Class + ' (' + self.model.Division + ')';
-        };
     }]);
 
 })(window.app = window.app || {});

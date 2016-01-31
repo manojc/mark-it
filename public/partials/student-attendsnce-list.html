@@ -11,8 +11,8 @@
             </thead>
             <tbody>
                 <tr ng-repeat="model in attrept.Collection">
-                    <td><a href="#/student-attendsnce-list/details/{{model.StudentId}}">{{$index+1}}</a></td>
-                    <td>{{model.Date}}</td>
+                    <td><a href="#/student-attendance-list/details/{{model.StudentId}}">{{$index+1}}</a></td>
+                    <td>{{model.Date | date:'yyyy-MM-dd'}}</td>
                     <td>{{attrept.getStatus(model)}}</td>
                     <td>{{model.Note}}</td>
                     <td>

@@ -64,7 +64,7 @@ router.get('/logout', function(req, res) {
 /* GET home page. */
 router.get('*', function(req, res) {
     res.sendFile('page-not-found.html', {
-        root: './public'
+        root: './public/pages'
     });
 });
 module.exports = router;

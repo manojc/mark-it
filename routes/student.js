@@ -4,12 +4,15 @@ var dbModels = require('../model/db-models');
 
 var studentModel = dbModels.getDbSchema(dbModels.Student, 'studentModel', 'students');
 
+//get all students
 router.get('/all', function(req, res) {
     studentModel.find({}, function(err, response) {
-        if (err) res.json({
-            status: 'failure',
-            data: null
-        });
+        if (err)
+            res.json({
+                status: 'failure',
+                message: 'an error has occured',
+                data: null
+            });
         else
             res.json({
                 status: 'success',
@@ -18,6 +21,7 @@ router.get('/all', function(req, res) {
     });
 });
 
+//get student with id
 router.get('/', function(req, res) {
     if (!req.query.id) res.json({
         status: 'id not found',
@@ -40,65 +44,28 @@ router.get('/', function(req, res) {
     }
 });
 
+//add students 
 router.post('/add-student', function(req, res) {
 
-    var studentList = [{
-        FirstName: 'FirstName1',
-        LastName: 'LastName1',
-        Class: '8',
-        Division: 'D'
-    }, {
-        FirstName: 'FirstName2',
-        LastName: 'LastName2',
-        Class: '8',
-        Division: 'D'
-    }, {
-        FirstName: 'FirstName3',
-        LastName: 'LastName3',
-        Class: '8',
-        Division: 'D'
-    }, {
-        FirstName: 'FirstName4',
-        LastName: 'LastName4',
-        Class: '8',
-        Division: 'D'
-    }, {
-        FirstName: 'FirstName5',
-        LastName: 'LastName5',
-        Class: '8',
-        Division: 'D'
-    }, {
-        FirstName: 'FirstName6',
-        LastName: 'LastName6',
-        Class: '8',
-        Division: 'D'
-    }, {
-        FirstName: 'FirstName7',
-        LastName: 'LastName7',
-        Class: '8',
-        Division: 'D'
-    }, {
-        FirstName: 'FirstName8',
-        LastName: 'LastName8',
-        Class: '8',
-        Division: 'D'
-    }, {
-        FirstName: 'FirstName9',
-        LastName: 'LastName9',
-        Class: '8',
-        Division: 'D'
-    }, {
-        FirstName: 'FirstName10',
-        LastName: 'LastName10',
-        Class: '8',
-        Division: 'D'
-    }];
+    if (!req.boddy || !req.body.length)
+        res.json({
+            status: 'failure',
+            message: 'student information is not present',
+            data: null
+        });
 
-    studentModel.collection.insert(studentList, function(err, response) {
+    studentModel.collection.insert(req.body, function(err, response) {
         if (!err)
-            res.json(response);
+            res.json({
+                status: 'failure',
+                message: 'an error has occured',
+                data: null
+            });
         else
-            res.json({});
+            res.json({
+                status: 'success',
+                data: response
+            });
     });
 });
 
