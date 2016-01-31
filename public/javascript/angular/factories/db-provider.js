@@ -15,6 +15,14 @@
                     throw Error("/attendance/all call failed");
                 });
             },
+            saveAttendance: function(attendanceList, callback) {
+                $http.post('/attendance/add-attendance', attendanceList).then(function(response) {
+                    callback(response.data.data);
+                }, function(a, b, c) {
+                    throw Error("/attendance/add-attendance call failed");
+                });
+            },
+            
             getStudentDetails: function(id, callback) {
                 $http.get('/student?id=' + id).then(function(response) {
                     callback(response.data.data);
@@ -29,18 +37,11 @@
                     throw Error("/student/all call failed");
                 });
             },
-            saveAttendance: function(attendanceList, callback) {
-                $http.post('/attendance/add-attendance', attendanceList).then(function(response) {
-                    callback(response.data.data);
-                }, function(a, b, c) {
-                    throw Error("/attendance/add-attendance call failed");
-                });
-            },
             saveStudents: function(studentList, callback) {
                 $http.post('/student/add-student', studentList).then(function(response) {
                     callback(response.data.data);
                 }, function(a, b, c) {
-                    throw Error("/attendance/add-attendance call failed");
+                    throw Error("/student/add-student call failed");
                 });
             }
         };

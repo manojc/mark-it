@@ -37,7 +37,7 @@
             });
 
             AttendanceReportFactory.saveAttendance(self.AttendanceData, function(data) {
-                $location.path('/');
+                $location.path('/attendance-report');
             });
         };
     }]);

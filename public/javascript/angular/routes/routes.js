@@ -20,14 +20,14 @@
 
 
         when('/students/add', {
-            templateUrl: 'partials/new-attendance.html',
-            controller: 'AddStudentController',
+            templateUrl: 'partials/new-student.html',
+            controller: 'NewStudentController',
             controllerAs: 'ctrl'
         }).
 
         when('/students/all', {
-            templateUrl: 'partials/student-attendance-details.html',
-            controller: 'AttendanceDetailsController',
+            templateUrl: 'partials/student-list.html',
+            controller: 'StudentListController',
             controllerAs: 'ctrl'
         }).
 

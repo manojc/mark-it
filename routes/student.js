@@ -48,38 +48,6 @@ router.get('/', function(req, res) {
 //add students 
 router.post('/add-student', function(req, res) {
 
-    var data = [{
-        FirstName: 'FirstName1',
-        LastName: 'LastName1',
-        Class: '8',
-        Division: 'D'
-    }, {
-        FirstName: 'FirstName2',
-        LastName: 'LastName2',
-        Class: '8',
-        Division: 'D'
-    }, {
-        FirstName: 'FirstName3',
-        LastName: 'LastName3',
-        Class: '8',
-        Division: 'D'
-    }, {
-        FirstName: 'FirstName4',
-        LastName: 'LastName4',
-        Class: '8',
-        Division: 'D'
-    }, {
-        FirstName: 'FirstName5',
-        LastName: 'LastName5',
-        Class: '8',
-        Division: 'D'
-    }, {
-        FirstName: 'FirstName6',
-        LastName: 'LastName6',
-        Class: '8',
-        Division: 'D'
-    }];
-
     if (!req.body || !req.body.length)
         res.json({
             status: 'failure',
@@ -88,11 +56,11 @@ router.post('/add-student', function(req, res) {
         });
 
     else
-        studentModel.collection.insert(data, function(err, response) {
-            if (!err)
+        studentModel.collection.insert(req.body, function(err, response) {
+            if (err)
                 res.json({
                     status: 'failure',
-                    message: 'an error has occured',
+                    message: err,
                     data: null
                 });
             else
