@@ -3,9 +3,25 @@
     if (!app)
         throw Error("Application is not initialized");
 
-    app.factory('AttendanceReportFactory', ['$http', function($http) {
+
+    app.factory('ScopesFactory', function($rootScope) {
+        var mem = {};
+
+        return {
+            store: function(key, value) {
+                mem[key] = value;
+            },
+            get: function(key) {
+                return mem[key];
+            }
+        };
+    });
+
+    app.factory('AttendanceReportFactory', ['$http', 'ScopesFactory', function($http, scopesFactory) {
 
         var self = this;
+
+        self.NotificationResponse = {};
 
         return {
             getAattendanceReport: function(callback) {
@@ -22,7 +38,7 @@
                     throw Error("/attendance/add-attendance call failed");
                 });
             },
-            
+
             getStudentDetails: function(id, callback) {
                 $http.get('/student?id=' + id).then(function(response) {
                     callback(response.data.data);
@@ -43,8 +59,15 @@
                 }, function(a, b, c) {
                     throw Error("/student/add-student call failed");
                 });
+            },
+
+            setNotification: function(status, message) {
+
+                var notificationScope = scopesFactory.get('NotificationController');
+                notificationScope.Model = notificationScope.Model || {};
+                notificationScope.Model.Status = status;
+                notificationScope.Model.Message = message;
             }
         };
     }]);
-
 })(window.app = window.app || {});

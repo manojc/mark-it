@@ -70,10 +70,12 @@
                 </div>
             </div>
         </div>
-        <div id="notify-container" class="row hidden">
-            <div class=" col-xs-12 col-lg-12">
-                <div role="alert" class="alert alert-info alert-dismissible">
-                    <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true">×</span></button> Welcome <strong>Manoj Chalode!</strong> Update your profile.
+        <div class="row" ng-controller="NotificationController as notification">
+            <div class=" col-xs-12 col-lg-8 col-lg-offset-2" ng-show="Model.Message">
+                <div role="alert" class="alert alert-dismissible {{notification.getAlertType()}}">
+                    <button type="button" data-dismiss="alert" aria-label="Close" class="close" ng-click="notification.resetMessage()">
+                        <span aria-hidden="true">×</span>
+                    </button> {{Model.Message}}
                 </div>
             </div>
         </div>
@@ -136,6 +138,7 @@
     <script type="text/javascript" src="/javascript/angular/controllers/new-attendance.js"></script>
     <script type="text/javascript" src="/javascript/angular/controllers/new-student.js"></script>
     <script type="text/javascript" src="/javascript/angular/controllers/student-list.js"></script>
+    <script type="text/javascript" src="/javascript/angular/controllers/notification.js"></script>
 </body>
 
 </html>

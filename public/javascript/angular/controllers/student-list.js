@@ -11,6 +11,7 @@
 
         AttendanceReportFactory.getAllStudents(function(data) {
             self.Collection = data;
+            AttendanceReportFactory.setNotification('Success', 'Student list fecthed successfully!');
         });
 
         self.getFullName = function(model) {
