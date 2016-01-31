@@ -3,16 +3,6 @@ var Schema = mongoose.Schema;
 
 var dbModels = {
 
-    login: {
-        FirstName: 'String',
-        LastName: 'String'
-    },
-
-    User: {
-        UserName: 'String',
-        Strategy: {}
-    },
-
     Strategy: {
         Name: 'String',
         Info: {
@@ -21,20 +11,6 @@ var dbModels = {
             Email: 'String',
             ProfilePicUrl: 'String'
         }
-    },
-
-    Student: {
-        FirstName: 'String',
-        LastName: 'String',
-        Class: 'String',
-        Division: 'String'
-    },
-
-    Attendance: {
-        StudentId: Schema.ObjectId,
-        Date: 'Date',
-        IsPresent: 'Boolean',
-        Note: 'String'
     },
 
     getDbSchema: function(model, modelName, collectionName) {

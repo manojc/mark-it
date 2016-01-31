@@ -21,6 +21,13 @@
         self.getStatus = function(model) {
             return model.IsPresent ? 'Present' : 'Absent';
         };
+
+        self.getStudentName = function(model) {
+            if (!model || !model.StudentId)
+                return '';
+            return model.StudentId.FirstName + ' ' + model.StudentId.LastName;
+        }
+
         self.removeSelectedRow = function(model) {
             var index = self.Collection.indexOf(model);
             if (index > -1)

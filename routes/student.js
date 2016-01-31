@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var dbModels = require('../model/db-models');
+var dbSchema = require('../model/database-schema');
 
-var studentModel = dbModels.getDbSchema(dbModels.Student, 'studentModel', 'students');
+var studentModel = dbSchema.Student;
 
 //get all students
 router.get('/all', function(req, res) {

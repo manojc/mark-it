@@ -13,10 +13,11 @@
     </div>
     <div class="row">
         <div class="col-xs-12 col-lg-12">
-            <table class="table table-hover table-bordered text-center">
+            <table class="table table-hover table-bordered table-condensed text-center">
                 <thead>
                     <tr>
                         <th class="text-center">Id</th>
+                        <th class="text-center">Name</th>
                         <th class="text-center">Date</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">Note</th>
@@ -25,7 +26,8 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="model in ctrl.Collection">
-                        <td><a href="#/students/{{model.StudentId}}">{{$index+1}}</a></td>
+                        <td><a href="#/students/{{model.StudentId._id}}">{{$index+1}}</a></td>
+                        <td>{{ctrl.getStudentName(model)}}</td>
                         <td>{{model.Date | date:'yyyy-MM-dd'}}</td>
                         <td>{{ctrl.getStatus(model)}}</td>
                         <td>{{model.Note}}</td>

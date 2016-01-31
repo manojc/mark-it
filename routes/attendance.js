@@ -1,24 +1,27 @@
 var express = require('express');
 var router = express.Router();
-var dbModels = require('../model/db-models');
+var dbSchema = require('../model/database-schema');
 
-var attendanceModel = dbModels.getDbSchema(dbModels.Attendance, 'attendanceModel', 'attendance');
+var attendanceModel = dbSchema.Attendance;
 
 router.get('/all', function(req, res) {
-    attendanceModel.find({}, function(err, response) {
-        if (err)
-            res.json({
-                status: 'failure',
-                message: 'an error has occured',
-                data: null
-            });
-        else
-            res.json({
-                status: 'success',
-                message: '',
-                data: response
-            });
-    });
+    attendanceModel
+        .find({})
+        .populate('StudentId', 'FirstName LastName')
+        .exec(function(err, response) {
+            if (err)
+                res.json({
+                    status: 'failure',
+                    message: 'an error has occured',
+                    data: null
+                });
+            else
+                res.json({
+                    status: 'success',
+                    message: '',
+                    data: response
+                });
+        });
 });
 
 router.get('/', function(req, res) {
