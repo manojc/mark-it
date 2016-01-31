@@ -23,10 +23,11 @@ router.get('/all', function(req, res) {
 
 //get student with id
 router.get('/', function(req, res) {
-    if (!req.query.id) res.json({
-        status: 'id not found',
-        data: null
-    });
+    if (!req.query.id)
+        res.json({
+            status: 'id not found',
+            data: null
+        });
     else {
         studentModel.findOne({
             _id: req.query.id
@@ -47,26 +48,59 @@ router.get('/', function(req, res) {
 //add students 
 router.post('/add-student', function(req, res) {
 
-    if (!req.boddy || !req.body.length)
+    var data = [{
+        FirstName: 'FirstName1',
+        LastName: 'LastName1',
+        Class: '8',
+        Division: 'D'
+    }, {
+        FirstName: 'FirstName2',
+        LastName: 'LastName2',
+        Class: '8',
+        Division: 'D'
+    }, {
+        FirstName: 'FirstName3',
+        LastName: 'LastName3',
+        Class: '8',
+        Division: 'D'
+    }, {
+        FirstName: 'FirstName4',
+        LastName: 'LastName4',
+        Class: '8',
+        Division: 'D'
+    }, {
+        FirstName: 'FirstName5',
+        LastName: 'LastName5',
+        Class: '8',
+        Division: 'D'
+    }, {
+        FirstName: 'FirstName6',
+        LastName: 'LastName6',
+        Class: '8',
+        Division: 'D'
+    }];
+
+    if (!req.body || !req.body.length)
         res.json({
             status: 'failure',
             message: 'student information is not present',
             data: null
         });
 
-    studentModel.collection.insert(req.body, function(err, response) {
-        if (!err)
-            res.json({
-                status: 'failure',
-                message: 'an error has occured',
-                data: null
-            });
-        else
-            res.json({
-                status: 'success',
-                data: response
-            });
-    });
+    else
+        studentModel.collection.insert(data, function(err, response) {
+            if (!err)
+                res.json({
+                    status: 'failure',
+                    message: 'an error has occured',
+                    data: null
+                });
+            else
+                res.json({
+                    status: 'success',
+                    data: response
+                });
+        });
 });
 
 module.exports = router;

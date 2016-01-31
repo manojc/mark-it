@@ -3,7 +3,7 @@
     if (!app)
         throw Error("Application is not initialized");
 
-    app.controller('NewAttendanceController', ['AttendanceReportFactory', '$location', function(AttendanceReportFactory, $location) {
+    app.controller('NewAttendanceController', ['AttendanceReportFactory', '$location', '$scope', function(AttendanceReportFactory, $location, $scope) {
 
         var self = this;
 
@@ -11,10 +11,12 @@
 
         self.Collection = {};
 
+        // $scope.AttendanceDate = new Date();
+
         self.AttendanceData = [];
 
-        AttendanceReportFactory.getAllStudents(function(response) {
-            self.Collection = response;
+        AttendanceReportFactory.getAllStudents(function(data) {
+            self.Collection = data;
         });
 
         self.getFullName = function(model) {
@@ -34,7 +36,7 @@
                 });
             });
 
-            AttendanceReportFactory.saveAttendance(self.AttendanceData, function(response) {
+            AttendanceReportFactory.saveAttendance(self.AttendanceData, function(data) {
                 $location.path('/');
             });
         };

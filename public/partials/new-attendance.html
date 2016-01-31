@@ -1,13 +1,18 @@
-<div class="col-xs-12 col-lg-8 col-lg-offset-2 mbl" ng-controller="NewAttendanceController as nac">
-    <div class="row">
-        <div class="col-xs-12 col-lg-6">
-            <h3>Attendance - {{nac.AttendanceDate | date: "dd MMM yyyy"}}</h3>
-        </div>
-        <div class="col-xs-12 col-lg-6">
-            <button class="btn btn-primary col-lg-4 col-lg-offset-7 mtxs" ng-click="nac.saveDetails()">Submit Report</button>
+<div class="col-xs-12 col-lg-8 col-lg-offset-2">
+    <div class="row" ng-hide="ctrl.Collection.length">
+        <div class="col-xs-12 col-lg-12">
+            <h3 class="text-center">Students data is not available!</h3>
         </div>
     </div>
-    <div class="row">
+    <div class="row" ng-show="ctrl.Collection.length">
+        <div class="col-xs-12 col-lg-6">
+            <h3>Attendance - {{ctrl.AttendanceDate | date: "dd MMM yyyy"}}</h3>
+        </div>
+        <div class="col-xs-12 col-lg-6">
+            <button class="btn btn-primary col-lg-4 col-lg-offset-7 mtxs" ng-click="ctrl.saveDetails()">Submit Report</button>
+        </div>
+    </div>
+    <div class="row" ng-show="ctrl.Collection.length">
         <table class="table table-hover table-bordered text-center">
             <thead>
                 <tr>
@@ -18,9 +23,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="model in nac.Collection">
+                <tr ng-repeat="model in ctrl.Collection">
                     <td>{{$index+1}}</td>
-                    <td class="col-lg-4"> {{nac.getFullName(model)}}</td>
+                    <td class="col-lg-4"> {{ctrl.getFullName(model)}}</td>
                     <td class="col-lg-1">
                         <input type="checkbox" class="form-control" ng-model="model.IsPresent">
                     </td>

@@ -6,11 +6,12 @@ var attendanceModel = dbModels.getDbSchema(dbModels.Attendance, 'attendanceModel
 
 router.get('/all', function(req, res) {
     attendanceModel.find({}, function(err, response) {
-        if (err) res.json({
-            status: 'failure',
-            message: 'an error has occured',
-            data: null
-        });
+        if (err)
+            res.json({
+                status: 'failure',
+                message: 'an error has occured',
+                data: null
+            });
         else
             res.json({
                 status: 'success',
