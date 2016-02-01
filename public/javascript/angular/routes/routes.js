@@ -7,46 +7,46 @@
         $routeProvider.
 
         when('/attendance-report', {
-            templateUrl: 'partials/attendance-report.html',
+            templateUrl: 'partials/attendance/report.html',
             controller: 'AttendanceController',
             controllerAs: 'ctrl'
         }).
         when('/new-attendance', {
-            templateUrl: 'partials/new-attendance.html',
+            templateUrl: 'partials/attendance/new.html',
             controller: 'AttendanceController',
             controllerAs: 'ctrl'
         }).
 
 
         when('/students/add', {
-            templateUrl: 'partials/new-student.html',
+            templateUrl: 'partials/student/new.html',
             controller: 'StudentController',
             controllerAs: 'ctrl'
         }).
         when('/students/all', {
-            templateUrl: 'partials/student-list.html',
+            templateUrl: 'partials/student/list.html',
             controller: 'StudentController',
             controllerAs: 'ctrl'
         }).
         when('/students/:id', {
-            templateUrl: 'partials/student-details.html',
+            templateUrl: 'partials/student/details.html',
             controller: 'StudentController',
             controllerAs: 'ctrl'
         }).
 
 
         when('/class-room/add', {
-            templateUrl: 'partials/new-class-room.html',
+            templateUrl: 'partials/class-room/new.html',
             controller: 'ClassRoomController',
             controllerAs: 'ctrl'
         }).
         when('/class-room/all', {
-            templateUrl: 'partials/class-room-list.html',
+            templateUrl: 'partials/class-room/list.html',
             controller: 'ClassRoomController',
             controllerAs: 'ctrl'
         }).
         when('/class-room/:id', {
-            templateUrl: 'partials/class-room-details.html',
+            templateUrl: 'partials/class-room/details.html',
             controller: 'ClassRoomController',
             controllerAs: 'ctrl'
         }).
