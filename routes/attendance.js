@@ -7,7 +7,7 @@ var attendanceModel = dbSchema.Attendance;
 router.get('/all', function(req, res) {
     attendanceModel
         .find({})
-        .populate('StudentId', 'FirstName LastName')
+        .populate('StudentId', 'FirstName LastName RollNumber')
         .exec(function(err, response) {
             if (err)
                 res.json({

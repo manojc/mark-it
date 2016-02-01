@@ -18,7 +18,6 @@
                     <tr>
                         <th class="text-center">Id</th>
                         <th class="text-center">Name</th>
-                        <th class="text-center">Division</th>
                         <th class="text-center">Class Teacher</th>
                         <th class="text-center">Actions</th>
                     </tr>
@@ -29,7 +28,6 @@
                         <td>
                             <a href="#/class-room/{{model._id}}">{{model.Name}}</a>
                         </td>
-                        <td>{{model.Division}}</td>
                         <td>{{model.ClassTeacher}}</td>
                         <td>
                             <span class="glyphicon glyphicon-trash pointer" ng-click="ctrl.removeSelectedRow(model)"></span>

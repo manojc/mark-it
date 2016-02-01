@@ -16,21 +16,19 @@
             <table class="table table-hover table-bordered table-condensed text-center">
                 <thead>
                     <tr>
-                        <th class="text-center">Id</th>
+                        <th class="text-center">Roll Number</th>
                         <th class="text-center">Name</th>
                         <th class="text-center">Class</th>
-                        <th class="text-center">Division</th>
                         <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="model in ctrl.Collection">
-                        <td>{{$index+1}}</td>
+                        <td>{{model.RollNumber}}</td>
                         <td>
                             <a href="#/students/{{model._id}}">{{ctrl.getFullName(model)}}</a>
                         </td>
                         <td>{{model.Class}}</td>
-                        <td>{{model.Division}}</td>
                         <td>
                             <span class="glyphicon glyphicon-trash pointer" ng-click="ctrl.removeSelectedRow(model)"></span>
                         </td>

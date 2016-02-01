@@ -9,14 +9,14 @@
             <h3>Attendance - {{ctrl.AttendanceDate | date: "dd MMM yyyy"}}</h3>
         </div>
         <div class="col-xs-12 col-lg-6">
-            <button class="btn btn-primary btn-link col-lg-4 col-lg-offset-7 mts" ng-click="ctrl.saveDetails()">Submit Attendance</button>
+            <button class="btn btn-primary col-lg-5 col-lg-offset-7 mtxs" ng-click="ctrl.saveDetails()">Submit Attendance</button>
         </div>
     </div>
     <div class="row" ng-show="ctrl.StudentCollection.length">
         <table class="table table-hover table-bordered table-condensed text-center">
             <thead>
                 <tr>
-                    <th class="text-center">Id</th>
+                    <th class="text-center">Roll Number</th>
                     <th class="text-center">Name</th>
                     <th class="text-center">Attendance</th>
                     <th class="text-center">Note</th>
@@ -24,7 +24,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="model in ctrl.StudentCollection">
-                    <td>{{$index+1}}</td>
+                    <td>{{model.RollNumber}}</td>
                     <td> {{ctrl.getFullStudentName(model)}}</td>
                     <td>
                         <input type="checkbox" class="form-control input-sm" ng-model="model.IsPresent">

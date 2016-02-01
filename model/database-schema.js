@@ -6,9 +6,6 @@ var ClassRoomSchema = new Schema({
     Name: {
         type: String
     },
-    Division: {
-        type: String
-    },
     ClassTeacher: {
         type: String
     },
@@ -31,15 +28,15 @@ var StudentSchema = new Schema({
     Class: {
         type: String
     },
-    Division: {
+    RollNumber: {
         type: String
+    },
+    ClassRoomId: {
+        type: Schema.Types.ObjectId,
+        ref: 'ClassRoom',
+        required: true
     }
-    //,
-    // ClassRoomId: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'ClassRoom',
-    //     required: true
-    // }
+
 });
 var Student = mongoose.model('Student', StudentSchema);
 //student model ends
@@ -60,14 +57,13 @@ var AttendanceSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Student',
         required: true
+    },
+    ClassRoomId: {
+        required: true,
+        type: Schema.Types.ObjectId,
+        ref: 'ClassRoom',
+        required: true
     }
-    // ,
-    // ClassRoomId: {
-    //     required: true,
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'ClassRoom',
-    //     required: true
-    // }
 });
 var Attendance = mongoose.model('Attendance', AttendanceSchema);
 //attendance model ends

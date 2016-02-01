@@ -16,7 +16,7 @@
             <table class="table table-hover table-bordered table-condensed text-center">
                 <thead>
                     <tr>
-                        <th class="text-center">Id</th>
+                        <th class="text-center">Roll Number</th>
                         <th class="text-center">Name</th>
                         <th class="text-center">Date</th>
                         <th class="text-center">Status</th>
@@ -26,7 +26,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="model in ctrl.AttendanceCollection" ng-class="model.IsPresent ? '' : 'warning'">
-                        <td>{{$index+1}}</td>
+                        <td>{{model.StudentId.RollNumber}}</td>
                         <td>
                             <a href="#/students/{{model.StudentId._id}}"> {{ctrl.getStudentName(model)}}</a>
                         </td>
