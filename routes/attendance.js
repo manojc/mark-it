@@ -13,13 +13,13 @@ router.get('/all', function(req, res) {
                 res.json({
                     status: 'failure',
                     message: 'an error has occured',
-                    data: null
+                    Data: null
                 });
             else
                 res.json({
                     status: 'success',
                     message: '',
-                    data: response
+                    Data: response
                 });
         });
 });
@@ -29,7 +29,7 @@ router.get('/', function(req, res) {
         res.json({
             status: 'success',
             message: 'attendance id not found',
-            data: null
+            Data: null
         });
     else {
         attendanceModel.findOne({
@@ -38,12 +38,12 @@ router.get('/', function(req, res) {
             if (err) res.json({
                 status: 'failure',
                 message: 'an error has occured',
-                data: null
+                Data: null
             });
             else
                 res.json({
                     status: 'success',
-                    data: response
+                    Data: response
                 });
         });
     }
@@ -56,7 +56,7 @@ router.post('/add-attendance', function(req, res) {
         res.json({
             status: 'failure',
             message: 'attendance details not found',
-            data: null
+            Data: null
         });
 
     req.body.forEach(function(attendance, index, array) {
@@ -73,12 +73,12 @@ router.post('/add-attendance', function(req, res) {
             res.json({
                 status: 'failure',
                 message: 'failed to insert attendance list',
-                data: null
+                Data: null
             });
         else
             res.json({
                 status: 'success',
-                data: response
+                Data: response
             });
     });
 });

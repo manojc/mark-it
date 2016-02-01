@@ -1,36 +1,41 @@
-var express = require('express'),
-    router = express.Router(),
-    dbSchema = require('../model/database-schema'),
-    studentModel = dbSchema.Student;
+var express = require('express');
+var router = express.Router();
+var dbSchema = require('../model/database-schema');
+var classRoomModel = dbSchema.ClassRoom;
 
-//get all students
+//get all class rooms
 router.get('/all', function(req, res) {
-    studentModel.find({}, function(err, response) {
+
+    classRoomModel.find({}, function(err, response) {
         if (err)
             res.json({
-                status: 'Failure',
-                message: 'an error has occured',
+                Status: 'Failure',
+                Message: 'An error has occured',
                 Data: null
             });
+
         else
             res.json({
-                status: 'success',
-                Message: 'Students are fetched successfully!',
+                Status: 'Success',
+                Message: 'Class rooms are fetched successfully!',
                 Data: response
             });
     });
 });
 
-//get student with id
+//get class room
 router.get('/', function(req, res) {
+
     if (!req.query.id)
         res.json({
             status: 'Failure',
             Message: "Id doesn't exist",
             Data: null
         });
+
     else
-        studentModel.findOne({
+        classRoomModel
+        .findOne({
             _id: req.query.id
         }, function(err, response) {
             if (err) res.json({
@@ -41,25 +46,25 @@ router.get('/', function(req, res) {
             else
                 res.json({
                     status: 'success',
-                    Message: 'Student details are fetched successfully!',
+                    Message: 'Class room details are fetched successfully!',
                     Data: response
                 });
         });
-
 });
 
-//add students 
-router.post('/add-student', function(req, res) {
+//add class rooms
+router.post('/add-class-room', function(req, res) {
 
     if (!req.body || !req.body.length)
         res.json({
             status: 'Failure',
-            message: 'student information is not present',
+            message: 'class room information is not present',
             Data: null
         });
 
     else
-        studentModel.collection.insert(req.body, function(err, response) {
+        classRoomModel.collection
+        .insert(req.body, function(err, response) {
             if (err)
                 res.json({
                     status: 'Failure',

@@ -25,40 +25,48 @@
                         <div class="collapse navbar-collapse navHeaderCollapse">
                             <ul class="nav navbar-nav">
                                 <li class="active"><a href="#">Home</a></li>
-                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle pointer">Attendance <b class="caret"></b></a>
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toogle pointer">Class Room
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#/class-room/add">New</a></li>
+                                        <li><a href="#/class-room/all">List</a></li>
+                                        <li><a href="#">Reports</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toogle pointer">Attendance
+                                        <b class="caret"></b>
+                                    </a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#/new-attendance">New</a></li>
-                                        <li><a href="#/attendance-report">Reports</a></li>
-                                        <li><a href="#">Summary</a></li>
+                                        <li><a href="#/attendance-report">List</a></li>
+                                        <li><a href="#">Reports</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle pointer">Students <b class="caret"></b></a>
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toogle pointer">Students  <b class="caret"></b>
+                                    </a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#/students/add">New</a></li>
-                                        <li><a href="#">Reports</a></li>
                                         <li><a href="#/students/all">List</a></li>
+                                        <li><a href="#">Reports</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle pointer">Reports <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Daily</a></li>
-                                        <li><a href="#">Weekly</a></li>
-                                        <li><a href="#">Monthly</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle pointer">Announcements <b class="caret"></b></a>
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toogle pointer">Programs 
+                                        <b class="caret"></b>
+                                    </a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">New</a></li>
                                         <li><a href="#">Details</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle pointer">About Us <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Contact Us</a></li>
-                                        <li><a href="#">Feedback</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toogle pointer">Profile <b class="caret"></b></a>
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toogle pointer">Profile 
+                                        <b class="caret"></b>
+                                    </a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">Details</a></li>
                                         <li><a href="/logout">Logout</a></li>
@@ -71,7 +79,7 @@
             </div>
         </div>
         <div class="row" ng-controller="NotificationController as notification">
-            <div class=" col-xs-12 col-lg-8 col-lg-offset-2" ng-show="Model.Message">
+            <div class=" col-xs-12 col-lg-10 col-lg-offset-1" ng-show="Model.Message">
                 <div role="alert" class="alert alert-dismissible {{notification.getAlertType()}}">
                     <button type="button" data-dismiss="alert" aria-label="Close" class="close" ng-click="notification.resetMessage()">
                         <span aria-hidden="true">×</span>
@@ -82,63 +90,19 @@
         <div id="app-container" class="row app-background pbs" ng-view>
         </div>
     </div>
-    <!-- scripts -->
-    <script type="text/html" id="user-profile-template">
-        <div class="col-xs-12 col-lg-6 col-lg-offset-3 app-background">
-            <ul class="nav nav-tabs pts">
-                <li role="presentation" class="active"><a href="#">Home</a></li>
-                <li role="presentation"><a href="#">Profile</a></li>
-                <li role="presentation"><a href="#">Messages</a></li>
-            </ul>
-            <div class="row mts">
-                <div class="col-xs-12 col-lg-10 col-lg-offset-1">
-                    <label for="display-name">Display Name</label>
-                    <input id="display-name" type="text" disabled="disabled" class="form-control col-xs-12 col-lg-4" ng-model="user.DisplayName">
-                </div>
-            </div>
-            <div class="row mts">
-                <div class="col-xs-12 col-lg-10 col-lg-offset-1">
-                    <label for="email-id">Email Id</label>
-                    <input id="email-id" type="email" disabled="disabled" class="form-control col-xs-12 col-lg-4" ng-model="user.Email">
-                </div>
-            </div>
-            <div class="row mts">
-                <div class="col-xs-12 col-lg-10 col-lg-offset-1">
-                    <label for="user-name">User Name</label>
-                    <input id="user-name" type="text" class="form-control col-xs-12 col-lg-4" placeholder="e.g. cool_john">
-                </div>
-            </div>
-            <div class="row mts">
-                <div class="col-xs-12 col-lg-10 col-lg-offset-1">
-                    <label for="user-role">User Role</label>
-                    <select id="user-role" class="form-control col-xs-12 col-lg-4">
-                        <option>Select Role</option>
-                        <option>Admin</option>
-                        <option>Teacher</option>
-                        <option>Student</option>
-                        <option>Parent</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row mtl pbs">
-                <div class="col-xs-12 col-lg-10 col-lg-offset-1">
-                    <input type="button" id="btn-update-profile" class="btn btn-primary form-control" value="Update Profile">
-                </div>
-            </div>
-    </script>
+    <!-- library scripts -->
     <script type="text/javascript" src="/javascript/libraries/jquery.min.js"></script>
     <script type="text/javascript" src="/javascript/libraries/angular.min.js"></script>
     <script type="text/javascript" src="/javascript/libraries/angular.route.min.js"></script>
     <script type="text/javascript" src="/javascript/libraries/bootstrap.js"></script>
+    <!-- application scripts -->
     <script type="text/javascript" src="/javascript/application.js"></script>
     <script type="text/javascript" src="/javascript/angular/routes/routes.js"></script>
     <script type="text/javascript" src="/javascript/angular/factories/db-provider.js"></script>
-    <script type="text/javascript" src="/javascript/angular/controllers/attendance-report.js"></script>
-    <script type="text/javascript" src="/javascript/angular/controllers/student-details.js"></script>
-    <script type="text/javascript" src="/javascript/angular/controllers/new-attendance.js"></script>
-    <script type="text/javascript" src="/javascript/angular/controllers/new-student.js"></script>
-    <script type="text/javascript" src="/javascript/angular/controllers/student-list.js"></script>
+    <script type="text/javascript" src="/javascript/angular/controllers/attendance.js"></script>
+    <script type="text/javascript" src="/javascript/angular/controllers/student.js"></script>
     <script type="text/javascript" src="/javascript/angular/controllers/notification.js"></script>
+    <script type="text/javascript" src="/javascript/angular/controllers/class-room.js"></script>
 </body>
 
 </html>

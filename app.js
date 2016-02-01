@@ -38,6 +38,7 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
+var classRoom = require('./routes/class-room');
 var auth = require('./routes/auth');
 var student = require('./routes/student');
 var attendance = require('./routes/attendance');
@@ -148,7 +149,8 @@ app.use(bodyParser.urlencoded({
 }));
 //body parser ends
 
-//routes
+//routes    
+app.use('/class-room', classRoom);
 app.use('/auth', auth);
 app.use('/student', student);
 app.use('/attendance', attendance);

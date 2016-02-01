@@ -1,14 +1,14 @@
-<div class="col-xs-12 col-lg-8 col-lg-offset-2" ng-hide="ctrl.Collection.length" ng-init="ctrl.getAllStudents()">
+<div class="col-xs-12 col-lg-8 col-lg-offset-2" ng-hide="ctrl.Collection.length" ng-init="ctrl.getClassRooms()">
     <div class="row">
         <div class="col-xs-12 col-lg-12">
-            <h3 class="text-center">Student details are not available!</h3>
+            <h3 class="text-center">Class room details are not available!</h3>
         </div>
     </div>
 </div>
 <div class="col-xs-12 col-lg-8 col-lg-offset-2" ng-show="ctrl.Collection.length">
     <div class="row">
         <div class="col-xs-12 col-lg-12">
-            <h3 class="text-center">Student Details</h3>
+            <h3 class="text-center">Class Room Details</h3>
         </div>
     </div>
     <div class="row">
@@ -18,8 +18,8 @@
                     <tr>
                         <th class="text-center">Id</th>
                         <th class="text-center">Name</th>
-                        <th class="text-center">Class</th>
                         <th class="text-center">Division</th>
+                        <th class="text-center">Class Teacher</th>
                         <th class="text-center">Actions</th>
                     </tr>
                 </thead>
@@ -27,10 +27,10 @@
                     <tr ng-repeat="model in ctrl.Collection">
                         <td>{{$index+1}}</td>
                         <td>
-                            <a href="#/students/{{model._id}}">{{ctrl.getFullName(model)}}</a>
+                            <a href="#/class-room/{{model._id}}">{{model.Name}}</a>
                         </td>
-                        <td>{{model.Class}}</td>
                         <td>{{model.Division}}</td>
+                        <td>{{model.ClassTeacher}}</td>
                         <td>
                             <span class="glyphicon glyphicon-trash pointer" ng-click="ctrl.removeSelectedRow(model)"></span>
                         </td>
