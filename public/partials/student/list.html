@@ -19,7 +19,6 @@
                         <th class="text-center">Roll Number</th>
                         <th class="text-center">Name</th>
                         <th class="text-center">Class</th>
-                        <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,9 +28,6 @@
                             <a href="#/students/{{model._id}}">{{ctrl.getFullName(model)}}</a>
                         </td>
                         <td>{{model.Class}}</td>
-                        <td>
-                            <span class="glyphicon glyphicon-trash pointer" ng-click="ctrl.removeSelectedRow(model)"></span>
-                        </td>
                     </tr>
                 </tbody>
             </table>

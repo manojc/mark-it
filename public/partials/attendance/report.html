@@ -20,8 +20,6 @@
                         <th class="text-center">Name</th>
                         <th class="text-center">Date</th>
                         <th class="text-center">Status</th>
-                        <th class="text-center">Note</th>
-                        <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,10 +30,6 @@
                         </td>
                         <td>{{model.Date | date:'yyyy-MM-dd'}}</td>
                         <td>{{ctrl.getStatus(model)}}</td>
-                        <td>{{model.Note}}</td>
-                        <td>
-                            <span class="glyphicon glyphicon-trash pointer" ng-click="ctrl.removeSelectedRow(model)"></span>
-                        </td>
                     </tr>
                 </tbody>
             </table>
