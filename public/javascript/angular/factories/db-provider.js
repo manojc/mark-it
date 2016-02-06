@@ -3,23 +3,10 @@
     if (!app)
         throw Error("Application is not initialized");
 
-
-    app.factory('ScopesFactory', function($rootScope) {
-        var mem = {};
-
-        return {
-            store: function(key, value) {
-                mem[key] = value;
-            },
-            get: function(key) {
-                return mem[key];
-            }
-        };
-    });
-
-    app.factory('AttendanceReportFactory', ['$http', 'ScopesFactory', function($http, scopesFactory) {
+    app.factory('AttendanceReportFactory', ['$http', function($http) {
 
         var self = this;
+        var mem = {};
 
         self.NotificationResponse = {};
 
@@ -89,11 +76,20 @@
 
             setNotification: function(status, message) {
 
-                var notificationScope = scopesFactory.get('NotificationController');
+                var notificationScope = self.get('NotificationController');
                 notificationScope.Model = notificationScope.Model || {};
                 notificationScope.Model.Status = status;
                 notificationScope.Model.Message = message;
+            },
+
+            store: function(key, value) {
+                mem[key] = value;
+            },
+
+            get: function(key) {
+                return mem[key];
             }
         };
     }]);
+
 })(window.app = window.app || {});

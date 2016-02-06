@@ -1,11 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var appConfig = require('dotenv').config();
+var swig = require('swig');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.sendFile('home.html', {
-        root: './public/pages'
-    });
+    res.send(swig.renderFile('./public/pages/home.html', {
+            IsDevEnvironment: process.env.ENV === 'DEV'
+        }));
+
 });
 
 /* GET home page. */

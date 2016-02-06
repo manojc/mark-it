@@ -3,13 +3,13 @@
     if (!app)
         throw Error("Application is not initialized");
 
-    app.controller('NotificationController', ['AttendanceReportFactory', '$location', '$scope', 'ScopesFactory', function(AttendanceReportFactory, $location, $scope, scopesFactory) {
+    app.controller('NotificationController', ['AttendanceReportFactory', '$location', '$scope', function(AttendanceReportFactory, $location, $scope) {
 
         var self = this;
 
         $scope.Model = {};
 
-        scopesFactory.store('NotificationController', $scope);
+        AttendanceReportFactory.store('NotificationController', $scope);
 
         self.getAlertType = function() {
 

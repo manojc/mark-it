@@ -4,10 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    {% if IsDevEnvironment %}
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css"> 
+    {% endif %} {% if !IsDevEnvironment %}
+    <!-- minified css -->
+    <link rel="stylesheet" type="text/css" href="/css/style.min.css"> 
+    {% endif %}
 </head>
 
 <body>
@@ -90,6 +95,7 @@
         <div id="app-container" class="row app-background pbs" ng-view>
         </div>
     </div>
+    {% if IsDevEnvironment %}
     <!-- library scripts -->
     <script type="text/javascript" src="/javascript/libraries/jquery.min.js"></script>
     <script type="text/javascript" src="/javascript/libraries/angular.min.js"></script>
@@ -103,6 +109,10 @@
     <script type="text/javascript" src="/javascript/angular/controllers/student.js"></script>
     <script type="text/javascript" src="/javascript/angular/controllers/notification.js"></script>
     <script type="text/javascript" src="/javascript/angular/controllers/class-room.js"></script>
+    {% endif %} {% if !IsDevEnvironment %}
+    <!-- minified script file -->
+    <script type="text/javascript" src="/javascript/script.min.js"></script>
+    {% endif %}
 </body>
 
 </html>
