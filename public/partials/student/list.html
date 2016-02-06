@@ -1,14 +1,17 @@
-<div class="col-xs-12 col-lg-8 col-lg-offset-2" ng-hide="ctrl.Collection.length" ng-init="ctrl.getAllStudents()">
+<div class="col-xs-12 col-lg-8 col-lg-offset-2" ng-hide="ctrl.StudentCollection.length" ng-init="ctrl.getAllStudents()">
     <div class="row">
         <div class="col-xs-12 col-lg-12">
             <h3 class="text-center">Student details are not available!</h3>
         </div>
     </div>
 </div>
-<div class="col-xs-12 col-lg-8 col-lg-offset-2" ng-show="ctrl.Collection.length">
+<div class="col-xs-12 col-lg-8 col-lg-offset-2" ng-show="ctrl.StudentCollection.length">
     <div class="row">
-        <div class="col-xs-12 col-lg-12">
-            <h3 class="text-center">Student Details</h3>
+        <div class="col-xs-12 col-lg-2">
+            <select class="form-control mtxs col-lg-2" ng-options="class as class.Name for class in ctrl.ClassRoomCollection track by class._id" ng-model="ctrl.SelectedClass" ng-change="ctrl.updateStudentListPerClass()"></select>
+        </div>
+        <div class="col-xs-12 col-lg-7 col-lg-offset-3">
+            <h3>Student Details</h3>
         </div>
     </div>
     <div class="row">
@@ -18,16 +21,14 @@
                     <tr>
                         <th class="text-center">Roll Number</th>
                         <th class="text-center">Name</th>
-                        <th class="text-center">Class</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="model in ctrl.Collection">
+                    <tr ng-repeat="model in ctrl.StudentCollectionPerClass | orderBy : 'RollNumber'">
                         <td>{{model.RollNumber}}</td>
                         <td>
                             <a href="#/students/{{model._id}}">{{ctrl.getFullName(model)}}</a>
                         </td>
-                        <td>{{model.Class}}</td>
                     </tr>
                 </tbody>
             </table>

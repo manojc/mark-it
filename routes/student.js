@@ -5,20 +5,23 @@ var express = require('express'),
 
 //get all students
 router.get('/all', function(req, res) {
-    studentModel.find({}, function(err, response) {
-        if (err)
-            res.json({
-                status: 'Failure',
-                message: 'an error has occured',
-                Data: null
-            });
-        else
-            res.json({
-                status: 'success',
-                Message: 'Students are fetched successfully!',
-                Data: response
-            });
-    });
+    studentModel
+        .find({})
+        .populate('ClassRoomId', 'Name ClassTeacher')
+        .exec(function(err, response) {
+            if (err)
+                res.json({
+                    status: 'Failure',
+                    message: 'an error has occured',
+                    Data: null
+                });
+            else
+                res.json({
+                    status: 'success',
+                    Message: 'Students are fetched successfully!',
+                    Data: response
+                });
+        });
 });
 
 //get student with id

@@ -5,11 +5,14 @@
         </div>
     </div>
     <div class="row" ng-show="ctrl.StudentCollection.length">
-        <div class="col-xs-12 col-lg-6">
-            <h3>Attendance - {{ctrl.AttendanceDate | date: "dd MMM yyyy"}}</h3>
+        <div class="col-lg-2">
+            <select class="form-control mtxs col-lg-2" ng-options="class as class.Name for class in ctrl.ClassRoomCollection track by class._id" ng-model="ctrl.SelectedClass" ng-change="ctrl.updateStudentListPerClass()"></select>
         </div>
-        <div class="col-xs-12 col-lg-6">
-            <button class="btn btn-primary col-lg-5 col-lg-offset-7 mtxs" ng-click="ctrl.saveDetails()">Submit Attendance</button>
+        <div class="col-xs-12 col-lg-5 col-lg-offset-1">
+            <h3 class="text-center">Attendance - {{ctrl.AttendanceDate | date: "dd MMM yyyy"}}</h3>
+        </div>
+        <div class="col-xs-12 col-lg-4">
+            <button class="btn btn-primary col-lg-7 col-lg-offset-5 mtxs" ng-click="ctrl.saveDetails()">Submit Attendance</button>
         </div>
     </div>
     <div class="row" ng-show="ctrl.StudentCollection.length">
@@ -23,7 +26,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="model in ctrl.StudentCollection">
+                <tr ng-repeat="model in ctrl.StudentCollectionPerClass | orderBy:'RollNumber'">
                     <td>{{model.RollNumber}}</td>
                     <td> {{ctrl.getFullStudentName(model)}}</td>
                     <td>

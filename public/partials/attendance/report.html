@@ -7,8 +7,11 @@
 </div>
 <div class="col-xs-12 col-lg-8 col-lg-offset-2" ng-show="ctrl.AttendanceCollection.length">
     <div class="row">
-        <div class="col-xs-12 col-lg-12">
-            <h3 class="text-center">Attendance Details</h3>
+        <div class="col-lg-2">
+            <select class="form-control mtxs col-lg-2" ng-options="class as class.Name for class in ctrl.ClassRoomCollection track by class._id" ng-model="ctrl.SelectedClass" ng-change="ctrl.updateAttendenceListPerClass()"></select>
+        </div>
+        <div class="col-xs-12 col-lg-8 col-lg-offset-2">
+            <h3>Attendance Details</h3>
         </div>
     </div>
     <div class="row">
@@ -23,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="model in ctrl.AttendanceCollection" ng-class="model.IsPresent ? '' : 'warning'">
+                    <tr ng-repeat="model in ctrl.AttendanceCollectionPerClass | orderBy:'StudentId.RollNumber'" ng-class="model.IsPresent ? '' : 'warning'">
                         <td>{{model.StudentId.RollNumber}}</td>
                         <td>
                             <a href="#/students/{{model.StudentId._id}}"> {{ctrl.getStudentName(model)}}</a>

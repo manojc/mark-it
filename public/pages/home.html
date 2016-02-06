@@ -4,15 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    {% if IsDevEnvironment %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> {% if IsDevEnvironment %}
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/css/style.css"> 
-    {% endif %} {% if !IsDevEnvironment %}
+    <link rel="stylesheet" type="text/css" href="/css/style.css"> {% endif %} {% if !IsDevEnvironment %}
     <!-- minified css -->
-    <link rel="stylesheet" type="text/css" href="/css/style.min.css"> 
-    {% endif %}
+    <link rel="stylesheet" type="text/css" href="/css/style.min.css"> {% endif %}
 </head>
 
 <body>
@@ -102,6 +99,7 @@
     <script type="text/javascript" src="/javascript/libraries/angular.route.min.js"></script>
     <script type="text/javascript" src="/javascript/libraries/bootstrap.js"></script>
     <!-- application scripts -->
+    <script type="text/javascript" src="/javascript/utilities/extensions.js"></script>
     <script type="text/javascript" src="/javascript/application.js"></script>
     <script type="text/javascript" src="/javascript/angular/routes/routes.js"></script>
     <script type="text/javascript" src="/javascript/angular/factories/db-provider.js"></script>

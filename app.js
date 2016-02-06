@@ -200,7 +200,6 @@ app.use(function(err, req, res, next) {
 //create server
 
 var server = app.listen(8080, function() {
-    console.log(process.env.DEVELOPER_NAME);
     var host = server.address().address;
     var port = server.address().port;
     console.log('app is listening to http://%s:%s', host, port);

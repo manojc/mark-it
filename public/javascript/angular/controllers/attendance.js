@@ -10,11 +10,25 @@
 
         //new attendance controller
         self.StudentCollection = [];
-        self.NewAttendanceData = [];
+        self.ClassRoomCollection = [];
+        self.AttendanceCollection = [];
+
+        self.AttendanceCollectionPerClass = [];
+        self.StudentCollectionPerClass = [];
+
+        self.SelectedClass = {};
 
         self.getStudentList = function() {
             AttendanceReportFactory.getAllStudents(function(data) {
                 self.StudentCollection = data;
+                self.StudentCollection.forEach(function(model, index, array) {
+                    if (!self.ClassRoomCollection.containsObject(model.ClassRoomId, '_id'))
+                        self.ClassRoomCollection.push(model.ClassRoomId);
+                });
+
+                self.SelectedClass = self.ClassRoomCollection[0] || {};
+                self.updateStudentListPerClass();
+
                 if (self.StudentCollection && self.StudentCollection.length)
                     self.StudentCollection.forEach(function(item) {
                         item.IsPresent = true;
@@ -31,16 +45,33 @@
                 return;
 
             self.StudentCollection.forEach(function(model, index, array) {
-                self.NewAttendanceData.push({
+                self.AttendanceCollection.push({
                     StudentId: model._id,
+                    ClassRoomId: model.ClassRoomId,
                     Date: new Date(),
                     IsPresent: model.IsPresent || false,
                     Note: model.Note || ''
                 });
             });
 
-            AttendanceReportFactory.saveAttendance(self.NewAttendanceData, function(data) {
+            AttendanceReportFactory.saveAttendance(self.AttendanceCollection, function(data) {
                 $location.path('/attendance-report');
+            });
+        };
+
+        self.updateStudentListPerClass = function() {
+            if (!self.SelectedClass || !self.SelectedClass._id)
+                return;
+            self.StudentCollectionPerClass = self.StudentCollection.filter(function(model) {
+                return model.ClassRoomId._id === self.SelectedClass._id;
+            });
+        };
+
+        self.updateAttendenceListPerClass = function() {
+            if (!self.SelectedClass || !self.SelectedClass._id)
+                return;
+            self.AttendanceCollectionPerClass = self.AttendanceCollection.filter(function(model) {
+                return model.ClassRoomId._id === self.SelectedClass._id;
             });
         };
         //new attendance controller ends
@@ -52,6 +83,17 @@
         self.getAttendanceDetails = function() {
             AttendanceReportFactory.getAattendanceReport(function(data) {
                 self.AttendanceCollection = data;
+
+                self.AttendanceCollection.forEach(function(model, index, array) {
+                    if (!self.StudentCollection.containsObject(model.StudentId, '_id'))
+                        self.StudentCollection.push(model.StudentId);
+
+                    if (!self.ClassRoomCollection.containsObject(model.ClassRoomId, '_id'))
+                        self.ClassRoomCollection.push(model.ClassRoomId);
+                });
+
+                self.SelectedClass = self.ClassRoomCollection[0] || {};
+                self.updateAttendenceListPerClass();
             });
         };
 

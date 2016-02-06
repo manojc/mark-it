@@ -22,7 +22,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="model in ctrl.Collection">
+                    <tr ng-repeat="model in ctrl.Collection | orderBy:'Name'">
                         <td>{{$index+1}}</td>
                         <td>
                             <a href="#/class-room/{{model._id}}">{{model.Name}}</a>

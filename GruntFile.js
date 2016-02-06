@@ -11,7 +11,7 @@ module.exports = function(grunt) {
         uglify: {
             my_target: {
                 files: {
-                    'public/javascript/script.min.js': ['public/release/script.js']
+                    'public/javascript/script.min.js': ['public/javascript/script.min.js']
                 }
             }
         },
@@ -26,6 +26,7 @@ module.exports = function(grunt) {
                     'public/javascript/libraries/angular.min.js',
                     'public/javascript/libraries/angular.route.min.js',
                     'public/javascript/libraries/bootstrap.js',
+                    'public/javascript/utilities/extensions.js',
                     'public/javascript/application.js',
                     'public/javascript/angular/routes/routes.js',
                     'public/javascript/angular/factories/db-provider.js',
@@ -34,7 +35,7 @@ module.exports = function(grunt) {
                     'public/javascript/angular/controllers/notification.js',
                     'public/javascript/angular/controllers/class-room.js'
                 ],
-                dest: 'public/javascript/script.js'
+                dest: 'public/javascript/script.min.js'
             }
         },
 
