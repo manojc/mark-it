@@ -11,4 +11,16 @@
         return false;
     };
 
+    Array.prototype.sortBy = function(property, isAscending) {
+        if (!this || !this.length)
+            return [];
+
+        if (!isAscending)
+            isAscending = false;
+
+        this.sort(function(item1, item2) {
+            return item1[property] > item2[property];
+        });
+    };
+
 })(window);

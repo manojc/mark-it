@@ -41,13 +41,13 @@
         };
 
         self.saveDetails = function() {
-            if (!self.StudentCollection || !self.StudentCollection.length)
+            if (!self.StudentCollectionPerClass || !self.StudentCollectionPerClass.length)
                 return;
 
-            self.StudentCollection.forEach(function(model, index, array) {
+            self.StudentCollectionPerClass.forEach(function(model, index, array) {
                 self.AttendanceCollection.push({
                     StudentId: model._id,
-                    ClassRoomId: model.ClassRoomId,
+                    ClassRoomId: model.ClassRoomId._id,
                     Date: new Date(),
                     IsPresent: model.IsPresent || false,
                     Note: model.Note || ''

@@ -30,6 +30,7 @@
         self.getClassRooms = function() {
             AttendanceReportFactory.getAllClassRooms(function(data) {
                 self.ClassRoomCollection = data;
+                self.ClassRoomCollection.sortBy('Name');
                 self.SelectedClass = data[0];
             });
         };

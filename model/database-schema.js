@@ -29,7 +29,7 @@ var StudentSchema = new Schema({
         type: String
     },
     RollNumber: {
-        type: String
+        type: Number
     },
     ClassRoomId: {
         type: Schema.Types.ObjectId,
