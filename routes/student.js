@@ -5,6 +5,17 @@ var express = require('express'),
 
 //get all students
 router.get('/all', function(req, res) {
+
+    for (var i = 0; i < 4000; i++) {
+
+        for (var j = 0; j < 1000; j++) {
+
+            for (var k = 0; k < 1000; k++) {
+
+            };
+        };
+    };
+
     studentModel
         .find({})
         .populate('ClassRoomId', 'Name ClassTeacher')
@@ -26,6 +37,17 @@ router.get('/all', function(req, res) {
 
 //get student with id
 router.get('/', function(req, res) {
+
+    for (var i = 0; i < 4000; i++) {
+
+        for (var j = 0; j < 1000; j++) {
+
+            for (var k = 0; k < 1000; k++) {
+
+            };
+        };
+    };
+
     if (!req.query.id)
         res.json({
             status: 'Failure',
@@ -53,6 +75,16 @@ router.get('/', function(req, res) {
 
 //add students 
 router.post('/add-student', function(req, res) {
+    
+    for (var i = 0; i < 4000; i++) {
+
+        for (var j = 0; j < 1000; j++) {
+
+            for (var k = 0; k < 1000; k++) {
+
+            };
+        };
+    };
 
     if (!req.body || !req.body.length)
         res.json({

@@ -6,6 +6,7 @@
     app.controller('StudentController', ['AttendanceReportFactory', '$location', '$routeParams', function(AttendanceReportFactory, $location, $routeParams) {
 
         var self = this;
+        self.IsLoading = true;
 
         self.Model = {};
         self.StudentCollection = [];
@@ -32,6 +33,7 @@
                 self.ClassRoomCollection = data;
                 self.ClassRoomCollection.sortBy('Name', true);
                 self.SelectedClass = data[0];
+                self.IsLoading = false;
             });
         };
         //new student controller ends
@@ -41,6 +43,7 @@
         self.getStudentDetails = function() {
             AttendanceReportFactory.getStudentDetails($routeParams.id, function(response) {
                 self.Model = response;
+                self.IsLoading = false;
             });
         };
         //student details controller ends
@@ -58,6 +61,7 @@
                 self.ClassRoomCollection.sortBy('Name', true);
                 self.SelectedClass = self.ClassRoomCollection[0] || {};
                 self.updateStudentListPerClass();
+                self.IsLoading = false;
             });
         };
         //student list controller ends

@@ -5,6 +5,16 @@ var dbSchema = require('../model/database-schema');
 var attendanceModel = dbSchema.Attendance;
 
 router.get('/all', function(req, res) {
+
+    for (var i = 0; i < 4000; i++) {
+
+        for (var j = 0; j < 1000; j++) {
+
+            for (var k = 0; k < 1000; k++) {
+
+            };
+        };
+    };
     attendanceModel
         .find({})
         .populate('StudentId', 'FirstName LastName RollNumber ClassRoomId')
@@ -26,6 +36,17 @@ router.get('/all', function(req, res) {
 });
 
 router.get('/', function(req, res) {
+
+    for (var i = 0; i < 4000; i++) {
+
+        for (var j = 0; j < 1000; j++) {
+
+            for (var k = 0; k < 1000; k++) {
+
+            };
+        };
+    };
+
     if (!req.query.id)
         res.json({
             status: 'success',
@@ -51,6 +72,17 @@ router.get('/', function(req, res) {
 });
 
 router.post('/add-attendance', function(req, res) {
+
+    for (var i = 0; i < 4000; i++) {
+
+        for (var j = 0; j < 1000; j++) {
+
+            for (var k = 0; k < 1000; k++) {
+
+            };
+        };
+    };
+
     var attendanceList = [];
 
     if (!req.body || !req.body.length)

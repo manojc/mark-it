@@ -6,6 +6,7 @@
     app.controller('AttendanceController', ['AttendanceReportFactory', '$location', '$scope', function(AttendanceReportFactory, $location, $scope) {
 
         var self = this;
+        self.IsLoading = true;
         self.AttendanceDate = new Date();
 
         //new attendance controller
@@ -33,6 +34,7 @@
                     self.StudentCollection.forEach(function(item) {
                         item.IsPresent = true;
                     });
+                self.IsLoading = false;
             });
         }
 
@@ -78,8 +80,6 @@
 
 
         //attendance report controller
-        self.AttendanceCollection = [];
-
         self.getAttendanceDetails = function() {
             AttendanceReportFactory.getAattendanceReport(function(data) {
                 self.AttendanceCollection = data;
@@ -95,6 +95,7 @@
                 self.ClassRoomCollection.sortBy('Name', true);
                 self.SelectedClass = self.ClassRoomCollection[0] || {};
                 self.updateAttendenceListPerClass();
+                self.IsLoading = false;
             });
         };
 
@@ -106,12 +107,6 @@
             if (!model || !model.StudentId)
                 return '';
             return model.StudentId.FirstName + ' ' + model.StudentId.LastName;
-        }
-
-        self.removeSelectedRow = function(model) {
-            var index = self.AttendanceCollection.indexOf(model);
-            if (index > -1)
-                self.AttendanceCollection.splice(index, 1);
         };
         //attendance report controller ends
     }]);

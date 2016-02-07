@@ -27,6 +27,7 @@ module.exports = function(grunt) {
                     'public/javascript/libraries/angular.route.min.js',
                     'public/javascript/libraries/bootstrap.js',
                     'public/javascript/utilities/extensions.js',
+                    'public/javascript/libraries/loading-bar.js',
                     'public/javascript/application.js',
                     'public/javascript/angular/routes/routes.js',
                     'public/javascript/angular/factories/db-provider.js',
@@ -44,6 +45,7 @@ module.exports = function(grunt) {
                 files: {
                     'public/css/style.min.css': [
                         'public/css/bootstrap.css',
+                        'public/css/loading-bar.css',
                         'public/css/style.css'
                     ]
                 }

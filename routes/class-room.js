@@ -6,6 +6,16 @@ var classRoomModel = dbSchema.ClassRoom;
 //get all class rooms
 router.get('/all', function(req, res) {
 
+    for (var i = 0; i < 4000; i++) {
+
+        for (var j = 0; j < 1000; j++) {
+
+            for (var k = 0; k < 1000; k++) {
+
+            };
+        };
+    };
+
     classRoomModel.find({}, function(err, response) {
         if (err)
             res.json({
@@ -25,6 +35,16 @@ router.get('/all', function(req, res) {
 
 //get class room
 router.get('/', function(req, res) {
+
+    for (var i = 0; i < 4000; i++) {
+
+        for (var j = 0; j < 1000; j++) {
+
+            for (var k = 0; k < 1000; k++) {
+
+            };
+        };
+    };
 
     if (!req.query.id)
         res.json({
@@ -54,6 +74,16 @@ router.get('/', function(req, res) {
 
 //add class rooms
 router.post('/add-class-room', function(req, res) {
+
+    for (var i = 0; i < 4000; i++) {
+
+        for (var j = 0; j < 1000; j++) {
+
+            for (var k = 0; k < 1000; k++) {
+
+            };
+        };
+    };
 
     if (!req.body || !req.body.length)
         res.json({

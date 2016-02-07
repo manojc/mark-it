@@ -7,6 +7,7 @@
     app.controller('ClassRoomController', ['AttendanceReportFactory', '$location', '$routeParams', function(AttendanceReportFactory, $location, $routeParams) {
 
         var self = this;
+        self.IsLoading = true;
 
         self.Model = {};
         self.Collection = {};
@@ -20,12 +21,14 @@
         self.getClassRooms = function() {
             AttendanceReportFactory.getAllClassRooms(function(data) {
                 self.Collection = data;
+                self.IsLoading = false;
             });
         };
 
         self.getClassRoom = function() {
             AttendanceReportFactory.getClassRoom($routeParams.id, function(data) {
                 self.Model = data;
+                self.IsLoading = false;
             });
         };
 
