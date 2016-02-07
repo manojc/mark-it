@@ -3,7 +3,7 @@
     if (!app)
         throw Error("Application is not initialized");
 
-    app.config(['$routeProvider', function($routeProvider) {
+    app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
         $routeProvider.
 
         when('/attendance-report', {
@@ -54,6 +54,7 @@
         otherwise({
             redirectTo: '/'
         });
+
     }]);
 
 })(window.app = window.app || {});

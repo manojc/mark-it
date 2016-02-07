@@ -18,7 +18,7 @@
         <div class="col-xs-12 col-lg-12">
             <table class="table table-hover table-bordered table-condensed text-center">
                 <thead>
-                    <tr>
+                    <tr class="bg-primary">
                         <th class="text-center">Roll Number</th>
                         <th class="text-center">Name</th>
                         <th class="text-center">Date</th>
@@ -26,13 +26,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="model in ctrl.AttendanceCollectionPerClass | orderBy:'StudentId.RollNumber'" ng-class="model.IsPresent ? '' : 'warning'">
+                    <tr ng-repeat="model in ctrl.AttendanceCollectionPerClass | orderBy:'StudentId.RollNumber'" ng-class="model.IsPresent ? 'success' : 'danger'">
                         <td>{{model.StudentId.RollNumber}}</td>
                         <td>
                             <a href="#/students/{{model.StudentId._id}}"> {{ctrl.getStudentName(model)}}</a>
                         </td>
                         <td>{{model.Date | date:'yyyy-MM-dd'}}</td>
-                        <td>{{ctrl.getStatus(model)}}</td>
+                        <td ng-class="model.IsPresent ? 'text-success' : 'text-danger'">{{ctrl.getStatus(model)}}</td>
                     </tr>
                 </tbody>
             </table>

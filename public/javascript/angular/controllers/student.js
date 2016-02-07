@@ -30,7 +30,7 @@
         self.getClassRooms = function() {
             AttendanceReportFactory.getAllClassRooms(function(data) {
                 self.ClassRoomCollection = data;
-                self.ClassRoomCollection.sortBy('Name');
+                self.ClassRoomCollection.sortBy('Name', true);
                 self.SelectedClass = data[0];
             });
         };
@@ -55,6 +55,7 @@
                         self.ClassRoomCollection.push(model.ClassRoomId);
                 });
 
+                self.ClassRoomCollection.sortBy('Name', true);
                 self.SelectedClass = self.ClassRoomCollection[0] || {};
                 self.updateStudentListPerClass();
             });
@@ -66,11 +67,9 @@
             var index = self.StudentCollection.indexOf(model);
             if (index >= 0) self.StudentCollection.splice(model, 1);
         };
-
         self.getFullName = function(model) {
             return model.FirstName + ' ' + model.LastName;
         };
-
         self.updateStudentListPerClass = function() {
             if (!self.SelectedClass || !self.SelectedClass._id)
                 return;

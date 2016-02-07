@@ -25,7 +25,7 @@
                     if (!self.ClassRoomCollection.containsObject(model.ClassRoomId, '_id'))
                         self.ClassRoomCollection.push(model.ClassRoomId);
                 });
-
+                self.ClassRoomCollection.sortBy('Name', true);
                 self.SelectedClass = self.ClassRoomCollection[0] || {};
                 self.updateStudentListPerClass();
 
@@ -92,6 +92,7 @@
                         self.ClassRoomCollection.push(model.ClassRoomId);
                 });
 
+                self.ClassRoomCollection.sortBy('Name', true);
                 self.SelectedClass = self.ClassRoomCollection[0] || {};
                 self.updateAttendenceListPerClass();
             });

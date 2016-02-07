@@ -19,7 +19,7 @@
             isAscending = false;
 
         this.sort(function(item1, item2) {
-            return item1[property] > item2[property];
+            return isAscending ? (item1[property] > item2[property]) : (item1[property] < item2[property]);
         });
     };
 
