@@ -9,70 +9,46 @@
             <h3 class="text-center">Class room data not available!</h3>
         </div>
     </div>
-    <div class="row" ng-show="!ctrl.IsLoading && ctrl.ClassRoomCollection.length">
-        <div class="col-lg-3 col-lg-offset-1">
-            <div class="row text-center">
-                <div class="col-lg-12">
-                    <h3>Add New Student</h3>
+    <div class="row" ng-show="!ctrl.IsLoading">
+        <div class="col-lg-8 col-lg-offset-2">
+            <div class="row text-center mtxs">
+                <div class="col-lg-4 col-lg-offset-4">
+                    <h3>Added Students</h3>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <label for="email-id">First Name</label>
-                    <input id="email-id" type="text" class="form-control" ng-model="ctrl.Model.FirstName">
-                </div>
-            </div>
-            <div class="row mts">
-                <div class="col-lg-12">
-                    <label for="email-id">Last Name</label>
-                    <input id="email-id" type="text" class="form-control" ng-model="ctrl.Model.LastName">
-                </div>
-            </div>
-            <div class="row mts">
-                <div class="col-lg-12">
-                    <label for="email-id">Class</label>
-                    <select class="form-control" ng-options="class as class.Name for class in ctrl.ClassRoomCollection track by class._id" ng-model="ctrl.SelectedClass"></select>
-                </div>
-            </div>
-            <div class="row mts">
-                <div class="col-lg-12">
-                    <label for="email-id">Roll Number</label>
-                    <input id="email-id" type="text" class="form-control" ng-model="ctrl.Model.RollNumber">
-                </div>
-            </div>
-            <div class="row mtl">
-                <div class="col-lg-12">
-                    <button class=" btn btn-primary col-lg-12" ng-click="ctrl.addStudent()">Add New Student</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 col-lg-offset-1">
-            <div class="row text-center">
-                <div class="col-lg-12">
-                    <h3>Added Students</h3>
-                </div>
-            </div>
-            <div class="row mts text-center" ng-hide="ctrl.StudentCollection.length">
-                <h3>No students added yet!</h3>
-            </div>
-            <div class="row mts" ng-show="ctrl.StudentCollection.length">
-                <div class="col-lg-12">
                     <table class="table table-hover table-bordered text-center">
                         <thead>
                             <tr class="bg-primary text-center">
-                                <th class="text-center col-lg-1">Id</th>
-                                <th class="text-center col-lg-6">Name</th>
-                                <th class="text-center col-lg-1">Class</th>
-                                <th class="text-center col-lg-3">Roll Number</th>
-                                <th class="text-center col-lg-1">Actions</th>
+                                <th class="text-center">Id</th>
+                                <th class="text-center col-lg-4">First Name</th>
+                                <th class="text-center col-lg-4">Last Name</th>
+                                <th class="text-center">Class</th>
+                                <th class="text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input type="text" class="form-control" ng-model="ctrl.Model.FirstName">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" ng-model="ctrl.Model.LastName">
+                                </td>
+                                <td>
+                                    <select class="form-control" ng-options="class as class.Name for class in ctrl.ClassRoomCollection track by class._id" ng-model="ctrl.SelectedClass"></select>
+                                </td>
+                                <td>
+                                    <button class=" btn btn-success col-lg-12" ng-click="ctrl.addStudent()">Add</button>
+                                </td>
+                            </tr>
                             <tr ng-repeat="model in ctrl.StudentCollection">
                                 <td>{{$index+1}}</td>
-                                <td>{{ctrl.getFullName(model)}}</td>
+                                <td>{{model.FirstName}}</td>
+                                <td>{{model.LastName}}</td>
                                 <td>{{model.Class}}</td>
-                                <td>{{model.RollNumber}}</td>
                                 <td>
                                     <span class="glyphicon glyphicon-trash pointer" ng-click="ctrl.removeSelectedRow(model)"></span>
                                 </td>
@@ -82,8 +58,8 @@
                 </div>
             </div>
             <div class="row" ng-show="ctrl.StudentCollection.length">
-                <div class="col-lg-12">
-                    <button class="btn btn-primary col-lg-4 col-lg-offset-8" ng-click="ctrl.saveStudentList()">Save List</button>
+                <div class="col-lg-3 col-lg-offset-9">
+                    <button class="btn btn-success col-lg-12" ng-click="ctrl.saveStudentList()">Save New List</button>
                 </div>
             </div>
         </div>
