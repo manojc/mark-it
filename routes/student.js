@@ -70,7 +70,6 @@ router.get('/', function(req, res) {
                     Data: response
                 });
         });
-
 });
 
 //add students 
@@ -94,8 +93,11 @@ router.post('/add-student', function(req, res) {
         });
 
     else {
+        var roomId = req.body[0].ClassRoomId;
         studentModel
-            .count()
+            .count({
+                'ClassRoomId': roomId
+            })
             .exec(function(err, count) {
                 if (err)
                     res.json({
@@ -132,10 +134,16 @@ router.get('/count', function(req, res, next) {
     studentModel
         .count()
         .exec(function(err, count) {
-            console.log('\n\n\n count is ' + count + '\n\n\n');
-            res.json({
-                count: count
-            });
+            if (err)
+                res.json({
+                    status: 'Failure',
+                    message: 'Failed to get student count',
+                    Data: null
+                });
+            else
+                res.json({
+                    count: count
+                });
         });
 });
 
@@ -554,6 +562,7 @@ router.post('/add-student1', function(req, res) {
     var students = [];
 
     var nameIndex = 0
+    var rollNumner = 1;
 
     names.forEach(function(name, index, array) {
 
@@ -562,15 +571,17 @@ router.post('/add-student1', function(req, res) {
         students.push({
             FirstName: splitName[0],
             LastName: splitName[1],
-            RollNumber: index + 1,
+            RollNumber: rollNumner,
             ClassRoomId: attendanceIds[nameIndex],
             Class: classRooms[nameIndex]
         });
 
-        if (nameIndex == 2)
+        if (nameIndex == 2) {
             nameIndex = 0;
-        else
+            rollNumner++;
+        } else {
             nameIndex++;
+        }
 
     });
 
