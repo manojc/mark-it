@@ -6,7 +6,7 @@ var attendanceModel = dbSchema.Attendance;
 
 router.get('/all', function(req, res) {
 
-    for (var i = 0; i < 4000; i++) {
+    for (var i = 0; i < 1000; i++) {
 
         for (var j = 0; j < 1000; j++) {
 
@@ -37,7 +37,7 @@ router.get('/all', function(req, res) {
 
 router.get('/', function(req, res) {
 
-    for (var i = 0; i < 4000; i++) {
+    for (var i = 0; i < 1000; i++) {
 
         for (var j = 0; j < 1000; j++) {
 
@@ -73,7 +73,7 @@ router.get('/', function(req, res) {
 
 router.post('/add-attendance', function(req, res) {
 
-    for (var i = 0; i < 4000; i++) {
+    for (var i = 0; i < 1000; i++) {
 
         for (var j = 0; j < 1000; j++) {
 

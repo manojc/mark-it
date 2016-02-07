@@ -6,7 +6,7 @@ var classRoomModel = dbSchema.ClassRoom;
 //get all class rooms
 router.get('/all', function(req, res) {
 
-    for (var i = 0; i < 4000; i++) {
+    for (var i = 0; i < 1000; i++) {
 
         for (var j = 0; j < 1000; j++) {
 
@@ -36,7 +36,7 @@ router.get('/all', function(req, res) {
 //get class room
 router.get('/', function(req, res) {
 
-    for (var i = 0; i < 4000; i++) {
+    for (var i = 0; i < 1000; i++) {
 
         for (var j = 0; j < 1000; j++) {
 
@@ -75,7 +75,7 @@ router.get('/', function(req, res) {
 //add class rooms
 router.post('/add-class-room', function(req, res) {
 
-    for (var i = 0; i < 4000; i++) {
+    for (var i = 0; i < 1000; i++) {
 
         for (var j = 0; j < 1000; j++) {
 

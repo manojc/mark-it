@@ -6,7 +6,7 @@ var express = require('express'),
 //get all students
 router.get('/all', function(req, res) {
 
-    for (var i = 0; i < 4000; i++) {
+    for (var i = 0; i < 1000; i++) {
 
         for (var j = 0; j < 1000; j++) {
 
@@ -38,7 +38,7 @@ router.get('/all', function(req, res) {
 //get student with id
 router.get('/', function(req, res) {
 
-    for (var i = 0; i < 4000; i++) {
+    for (var i = 0; i < 1000; i++) {
 
         for (var j = 0; j < 1000; j++) {
 
@@ -75,8 +75,8 @@ router.get('/', function(req, res) {
 
 //add students 
 router.post('/add-student', function(req, res) {
-    
-    for (var i = 0; i < 4000; i++) {
+
+    for (var i = 0; i < 1000; i++) {
 
         for (var j = 0; j < 1000; j++) {
 
@@ -93,20 +93,49 @@ router.post('/add-student', function(req, res) {
             Data: null
         });
 
-    else
-        studentModel.collection.insert(req.body, function(err, response) {
-            if (err)
-                res.json({
-                    status: 'Failure',
-                    message: 'An error has occured',
-                    Data: null
-                });
-            else
-                res.json({
-                    status: 'success',
-                    message: 'student information is inserted successfully',
-                    Data: response
-                });
+    else {
+        studentModel
+            .count()
+            .exec(function(err, count) {
+                if (err)
+                    res.json({
+                        status: 'Failure',
+                        message: 'Failed to get student count',
+                        Data: null
+                    });
+
+                else {
+                    req.body.forEach(function(model, index, array) {
+                        model.RollNumber = count + index + 1;
+                    });
+
+                    studentModel.collection.insert(req.body, function(err, response) {
+                        if (err)
+                            res.json({
+                                status: 'Failure',
+                                message: 'An error has occured',
+                                Data: null
+                            });
+                        else
+                            res.json({
+                                status: 'success',
+                                message: 'student information is inserted successfully',
+                                Data: response
+                            });
+                    });
+                }
+            });
+    }
+});
+
+router.get('/count', function(req, res, next) {
+    studentModel
+        .count()
+        .exec(function(err, count) {
+            console.log('\n\n\n count is ' + count + '\n\n\n');
+            res.json({
+                count: count
+            });
         });
 });
 
