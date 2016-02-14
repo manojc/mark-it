@@ -1,0 +1,50 @@
+<div class="col-lg-12" ng-init="ctrl.getProfileDetails()">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3" ng-show="ctrl.IsLoading">
+            <h3 class="text-center">Loading profile details..</h3>
+        </div>
+        <div class="col-lg-6 col-lg-offset-3" ng-show="!ctrl.IsLoading && !ctrl.Model">
+            <h3 class="text-center">Profile details is not available!</h3>
+        </div>
+        <div class="col-lg-6 col-lg-offset-3" ng-show="!ctrl.IsLoading && ctrl.Model">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3 text-center">
+                    <h3>Profile Details</h3>
+                </div>
+                <div class="col-lg-1 text-center mtxs">
+                    <img src="{{ctrl.Model.ProfilePicUrl}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <label for="display-name">Display Name</label>
+                    <input id="display-name" type="text" disabled="disabled" class="form-control col-lg-4" ng-model="ctrl.Model.DisplayName">
+                </div>
+            </div>
+            <div class="row mts">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <label for="email-id">Email</label>
+                    <input id="email-id" type="text" disabled="disabled" class="form-control col-lg-4" ng-model="ctrl.Model.Email">
+                </div>
+            </div>
+            <div class="row mts">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <label for="user-name">User Role</label>
+                    <select ng-show="ctrl.Model.IsNew" class="form-control" ng-options="Role.Type for Role in ctrl.RoleCollection" ng-model="ctrl.SelectedRole"></select>
+                    <input type="text" ng-hide="ctrl.Model.IsNew" disabled="disabled" class="form-control col-lg-4" ng-model="ctrl.Model.Type">
+                </div>
+            </div>
+            <div class="row mts">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <label for="user-name">User Name</label>
+                    <input type="text" ng-disabled="!ctrl.Model.IsNew" class="form-control col-lg-4" ng-model="ctrl.Model.UserName">
+                </div>
+            </div>
+            <div class="row mts" ng-show="ctrl.Model.IsNew">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <button class="btn btn-success col-lg-12" ng-click="ctrl.updateUserDetails()">Update User Profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

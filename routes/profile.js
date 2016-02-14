@@ -1,0 +1,159 @@
+var express = require('express'),
+    router = express.Router(),
+    dbSchema = require('../model/database-schema');
+
+/* GET master user role list*/
+router.get('/get-user-roles', function(req, res) {
+
+    dbSchema
+        .RoleMaster
+        .find({})
+        .exec(function(err, response) {
+            if (err)
+                res.json({
+                    status: 'failure',
+                    message: 'an error has occured',
+                    Data: null
+                });
+            else
+                res.json({
+                    status: 'success',
+                    message: 'roles fetched successfully',
+                    Data: response
+                });
+        });
+});
+
+/* GET user details with id */
+router.get('/get-user-details', function(req, res) {
+
+    if (!req.user || !req.user.Id)
+        res.json({
+            status: 'failure',
+            message: 'user id not found',
+            Data: null
+        });
+    else {
+        dbSchema
+            .User
+            .findOne({
+                _id: req.user.Id
+            })
+            .populate('UserRoleId', 'Type Name Parents')
+            .exec(function(err, response) {
+                if (err)
+                    res.json({
+                        status: 'failure',
+                        message: 'an error has occured',
+                        Data: null
+                    });
+                else {
+                    var userName = '';
+                    var type = '';
+                    if (response.UserRoleId) {
+                        if (response.UserRoleId.Name)
+                            userName = response.UserRoleId.Name;
+                        if (response.UserRoleId.Type)
+                            type = response.UserRoleId.Type;
+                    }
+                    res.json({
+                        status: 'success',
+                        message: 'user fetched successfully',
+                        Data: {
+                            DisplayName: response.DisplayName,
+                            Email: response.Email,
+                            ProfilePicUrl: response.ProfilePicUrl,
+                            Id: response._id,
+                            UserName: userName,
+                            Type: type,
+                            IsNew: response.IsNew
+                        }
+                    });
+                }
+            });
+    }
+});
+
+router.post('/update-user-details', function(req, res) {
+
+    if (!req.body)
+        res.json({
+            status: 'failure',
+            message: 'user details not found',
+            Data: null
+        });
+    dbSchema
+        .User
+        .findOne({
+            '_id': req.body.Id
+        })
+        .exec(function(err, response) {
+            if (err)
+                res.json({
+                    status: 'failure',
+                    message: 'an error has occured',
+                    Data: null
+                });
+            else {
+                if (!response) {
+                    res.json({
+                        status: 'failure',
+                        message: 'user details not found',
+                        Data: null
+                    });
+                } else {
+                    if (!response.IsNew) {
+                        res.json({
+                            status: 'Warning',
+                            message: 'user details already updated',
+                            Data: response
+                        });
+                    } else {
+                        response.IsNew = false;
+                        new dbSchema.Role({
+                            Type: req.body.Type,
+                            Name: req.body.UserName
+                        }).save(function(err, roleResponse) {
+                            console.log(err);
+                            if (err)
+                                res.json({
+                                    status: 'failure',
+                                    message: 'an error has occured',
+                                    Data: null
+                                });
+                            else {
+                                if (!roleResponse)
+                                    res.json({
+                                        status: 'failure',
+                                        message: 'failed to save user role',
+                                        Data: null
+                                    });
+                                else {
+                                    response.UserRoleId = roleResponse._id;
+                                    response.save(function(err, updatedUser) {
+                                        if (err)
+                                            res.json({
+                                                status: 'failure',
+                                                message: 'an error has occured',
+                                                Data: null
+                                            });
+                                        else {
+                                            res.json({
+                                                status: 'Success',
+                                                message: 'user details updated successfully',
+                                                Data: updatedUser
+                                            });
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        });
+
+
+});
+
+module.exports = router;

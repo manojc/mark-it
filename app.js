@@ -7,8 +7,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-
-
 var userAccountProvider = require('./provider/user-account.js');
 
 var passport = require('passport');
@@ -45,6 +43,7 @@ var classRoom = require('./routes/class-room');
 var auth = require('./routes/auth');
 var student = require('./routes/student');
 var attendance = require('./routes/attendance');
+var profile = require('./routes/profile');
 var routes = require('./routes/index');
 //routes end
 
@@ -52,7 +51,7 @@ var routes = require('./routes/index');
 passport.use(new GoogleStrategy({
         clientID: GOOGLE_CONSUMER_KEY,
         clientSecret: GOOGLE_CONSUMER_SECRET,
-        callbackURL: "http://192.168.1.4:8080/auth/google/callback"
+        callbackURL: "http://localhost:8080/auth/google/callback"
     },
     function(token, tokenSecret, profile, done) {
         if (!profile.provider) profile.provider = 'google';
@@ -65,7 +64,7 @@ passport.use(new GoogleStrategy({
 passport.use(new TwitterStrategy({
         consumerKey: TWITTER_CONSUMER_KEY,
         consumerSecret: TWITTER_CONSUMER_SECRET,
-        callbackURL: "http://192.168.1.4:8080/auth/twitter/callback"
+        callbackURL: "http://localhost:8080/auth/twitter/callback"
     },
     function(token, tokenSecret, profile, done) {
         process.nextTick(function() {
@@ -79,7 +78,7 @@ passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
     profileFields: ['id', 'displayName', 'photos', 'email', 'name'],
-    callbackURL: 'http://192.168.1.4:8080/auth/facebook/callback'
+    callbackURL: 'http://localhost:8080/auth/facebook/callback'
 }, function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
         if (!profile.provider) profile.provider = 'facebook';
@@ -112,8 +111,12 @@ passport.serializeUser(function(user, done) {
         };
 
     userAccountProvider.saveUser(dbUser, function(err, response) {
-        if (err) throw new Error(err);
-        else if (!response) throw new Error('user not found!');
+        if (err)
+            throw new Error(err);
+
+        else if (!response)
+            throw new Error('user not found!');
+
         else {
             done(null, response._id);
         }
@@ -122,14 +125,18 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(id, done) {
     userAccountProvider.getUser(id, function(err, dbUser) {
-        if (err) throw new Error(err);
-        else if (!dbUser) throw new Error('user not found!');
+        if (err)
+            throw new Error(err);
+
+        else if (!dbUser)
+            throw new Error('user not found!');
+
         done(null, {
             Id: dbUser._id,
-            DisplayName: dbUser.Strategy.Info.DisplayName,
-            Email: dbUser.Strategy.Info.Email,
-            ProfilePicUrl: dbUser.Strategy.Info.ProfilePicUrl,
-            Provider: dbUser.Strategy.Info.Provider
+            DisplayName: dbUser.DisplayName,
+            Email: dbUser.Email,
+            ProfilePicUrl: dbUser.ProfilePicUrl,
+            Provider: dbUser.Provider
         });
     });
 });
@@ -157,6 +164,7 @@ app.use('/class-room', classRoom);
 app.use('/auth', auth);
 app.use('/student', student);
 app.use('/attendance', attendance);
+app.use('/profile', profile);
 app.use('/', routes);
 //routes end
 

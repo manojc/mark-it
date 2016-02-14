@@ -1,17 +1,42 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
+var RoleMasterSchema = new Schema({
+    Type: 'String'
+});
+var RoleMaster = mongoose.model('RoleMaster', RoleMasterSchema);
+
+var RoleSchema = new Schema({
+    Type: 'String',
+    Name: 'String',
+    ParentId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Role'
+    },
+    Parents: []
+});
+var Role = mongoose.model('Role', RoleSchema);
+
+var UserSchema = new Schema({
+    Provider: 'String',
+    PassportId: 'String',
+    DisplayName: 'String',
+    Email: 'String',
+    ProfilePicUrl: 'String',
+    IsNew: 'Boolean',
+    UserRoleId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Role'
+    }
+});
+var User = mongoose.model('User', UserSchema);
+
+
 //class room model
 var ClassRoomSchema = new Schema({
-    Name: {
-        type: String
-    },
-    ClassTeacher: {
-        type: String
-    },
-    Details: {
-        type: String
-    }
+    Name: String,
+    ClassTeacher: String,
+    Details: String
 });
 var ClassRoom = mongoose.model('ClassRoom', ClassRoomSchema);
 //class room model ends
@@ -19,24 +44,15 @@ var ClassRoom = mongoose.model('ClassRoom', ClassRoomSchema);
 
 //student model
 var StudentSchema = new Schema({
-    FirstName: {
-        type: String
-    },
-    LastName: {
-        type: String
-    },
-    Class: {
-        type: String
-    },
-    RollNumber: {
-        type: Number
-    },
+    FirstName: String,
+    LastName: String,
+    Class: String,
+    RollNumber: Number,
     ClassRoomId: {
         type: Schema.Types.ObjectId,
         ref: 'ClassRoom',
         required: true
     }
-
 });
 var Student = mongoose.model('Student', StudentSchema);
 //student model ends
@@ -44,15 +60,9 @@ var Student = mongoose.model('Student', StudentSchema);
 
 //attendance model
 var AttendanceSchema = new Schema({
-    Date: {
-        type: Date
-    },
-    IsPresent: {
-        type: Boolean
-    },
-    Note: {
-        type: String
-    },
+    Date: Date,
+    IsPresent: Boolean,
+    Note: String,
     StudentId: {
         type: Schema.Types.ObjectId,
         ref: 'Student',
@@ -70,6 +80,9 @@ var Attendance = mongoose.model('Attendance', AttendanceSchema);
 
 
 module.exports = {
+    User: User,
+    Role: Role,
+    RoleMaster: RoleMaster,
     Attendance: Attendance,
     Student: Student,
     ClassRoom: ClassRoom

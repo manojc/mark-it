@@ -56,7 +56,6 @@
                     throw Error('/class-room?id=' + id + ' call failed');
                 });
             },
-
             getAllClassRooms: function(callback) {
                 $http.get('/class-room/all').then(function(response) {
                     callback(response.data.Data);
@@ -64,7 +63,6 @@
                     throw Error('/add-class-room call failed');
                 });
             },
-
             saveClassRooms: function(classRoomList, callback) {
                 $http.post('/class-room/add-class-room', classRoomList).then(function(response) {
                     callback(response.data.Data);
@@ -72,6 +70,36 @@
                     throw Error('/class-room/add call failed');
                 });
 
+            },
+
+            getLoggedInUser: function(callback) {
+                $http.get('/auth/get-logged-in-user').then(function(response) {
+                    callback(response.data);
+                }, function(error) {
+                    throw Error('/auth/is-authenticated call failed');
+                });
+            },
+
+            getUserRoles: function(callback) {
+                $http.get('/profile/get-user-roles').then(function(response) {
+                    callback(response.data);
+                }, function(error) {
+                    throw Error('/profile/get-user-roles call failed');
+                });
+            },
+            getProfileDetails: function(callback) {
+                $http.get('/profile/get-user-details').then(function(response) {
+                    callback(response.data);
+                }, function(error) {
+                    throw Error('/profile/get-user-details call failed');
+                });
+            },
+            updateUserDetails: function(user, callback) {
+                $http.post('/profile/update-user-details',user).then(function(response) {
+                    callback(response.data);
+                }, function(error) {
+                    throw Error('/profile/update-user-details call failed');
+                });
             },
 
             setNotification: function(status, message) {

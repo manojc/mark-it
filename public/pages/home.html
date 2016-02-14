@@ -28,7 +28,7 @@
                         </button>
                         <div class="collapse navbar-collapse navHeaderCollapse">
                             <ul class="nav navbar-nav">
-                                <li class="active"><a href="#">Home</a></li>
+                                <li class="active"><a href="#/">Home</a></li>
                                 <li class="dropdown">
                                     <a data-toggle="dropdown" class="dropdown-toogle pointer">Class Room
                                         <b class="caret"></b>
@@ -36,7 +36,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="#/class-room/add">New</a></li>
                                         <li><a href="#/class-room/all">List</a></li>
-                                        <li><a href="#">Reports</a></li>
+                                        <li><a href="#/">Reports</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
@@ -46,7 +46,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="#/new-attendance">New</a></li>
                                         <li><a href="#/attendance-report">List</a></li>
-                                        <li><a href="#">Reports</a></li>
+                                        <li><a href="#/">Reports</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
@@ -55,7 +55,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="#/students/add">New</a></li>
                                         <li><a href="#/students/all">List</a></li>
-                                        <li><a href="#">Reports</a></li>
+                                        <li><a href="#/">Reports</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
@@ -63,8 +63,8 @@
                                         <b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">New</a></li>
-                                        <li><a href="#">Details</a></li>
+                                        <li><a href="#/">New</a></li>
+                                        <li><a href="#/">Details</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
@@ -72,8 +72,8 @@
                                         <b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Details</a></li>
-                                        <li><a href="/logout">Logout</a></li>
+                                        <li><a href="#/profile-details">Details</a></li>
+                                        <li><a href="/auth/logout">Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -105,7 +105,9 @@
     <script src="/javascript/utilities/extensions.js"></script>
     <script src="/javascript/application.js"></script>
     <script src="/javascript/angular/routes/routes.js"></script>
-    <script src="/javascript/angular/factories/db-provider.js"></script>
+    <script src="/javascript/angular/factories/app-data.js"></script>
+    <script src="/javascript/angular/controllers/authentication.js"></script>
+    <script src="/javascript/angular/controllers/profile.js"></script>
     <script src="/javascript/angular/controllers/attendance.js"></script>
     <script src="/javascript/angular/controllers/student.js"></script>
     <script src="/javascript/angular/controllers/notification.js"></script>

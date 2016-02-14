@@ -50,6 +50,16 @@
             controller: 'ClassRoomController',
             controllerAs: 'ctrl'
         }).
+        when('/profile-details', {
+            templateUrl: 'partials/profile/details.html',
+            controller: 'ProfileController',
+            controllerAs: 'ctrl'
+        }).
+        when('/', {
+            templateUrl: 'partials/authentication/authentication.html',
+            controller: 'AuthenticationController',
+            controllerAs: 'ctrl'
+        }).
 
         otherwise({
             redirectTo: '/'
