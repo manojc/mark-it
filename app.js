@@ -51,7 +51,7 @@ var routes = require('./routes/index');
 passport.use(new GoogleStrategy({
         clientID: GOOGLE_CONSUMER_KEY,
         clientSecret: GOOGLE_CONSUMER_SECRET,
-        callbackURL: "http://localhost:8080/auth/google/callback"
+        callbackURL: "http://localhost:3000/auth/google/callback"
     },
     function(token, tokenSecret, profile, done) {
         if (!profile.provider) profile.provider = 'google';
@@ -64,7 +64,7 @@ passport.use(new GoogleStrategy({
 passport.use(new TwitterStrategy({
         consumerKey: TWITTER_CONSUMER_KEY,
         consumerSecret: TWITTER_CONSUMER_SECRET,
-        callbackURL: "http://localhost:8080/auth/twitter/callback"
+        callbackURL: "http://localhost:3000/auth/twitter/callback"
     },
     function(token, tokenSecret, profile, done) {
         process.nextTick(function() {
@@ -78,7 +78,7 @@ passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
     profileFields: ['id', 'displayName', 'photos', 'email', 'name'],
-    callbackURL: 'http://localhost:8080/auth/facebook/callback'
+    callbackURL: 'http://localhost:3000/auth/facebook/callback'
 }, function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
         if (!profile.provider) profile.provider = 'facebook';
@@ -207,7 +207,7 @@ app.use(function(err, req, res, next) {
 
 //create server
 
-var server = app.listen(8080, function() {
+var server = app.listen(3000, function() {
     var host = server.address().address;
     var port = server.address().port;
     console.log('app is listening to http://%s:%s', host, port);
