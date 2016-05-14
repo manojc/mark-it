@@ -44,6 +44,7 @@
 
         self.updateUserDetails = function() {
             self.Model.Type = self.SelectedRole.Type;
+            self.Model.parentRoles = self.Model.Roles;
             AttendanceReportFactory.updateUserDetails(self.Model, function(data) {
                 if (data && data.Data) {
                     AttendanceReportFactory.store('User', data.Data);

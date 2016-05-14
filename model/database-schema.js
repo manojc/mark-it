@@ -2,29 +2,25 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var RoleMasterSchema = new Schema({
-    Type: 'String'
+    Type: String
 });
 var RoleMaster = mongoose.model('RoleMaster', RoleMasterSchema);
 
 var RoleSchema = new Schema({
-    Type: 'String',
-    Name: 'String',
-    ParentId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Role'
-    },
-    Parents: []
+    Type: String,
+    Name: String,
+    IsMyRole: Boolean
 });
 var Role = mongoose.model('Role', RoleSchema);
 
 var UserSchema = new Schema({
-    Provider: 'String',
-    PassportId: 'String',
-    DisplayName: 'String',
-    Email: 'String',
-    ProfilePicUrl: 'String',
-    IsNew: 'Boolean',
-    Roles: []
+    Provider: String,
+    PassportId: String,
+    DisplayName: String,
+    Email: String,
+    ProfilePicUrl: String,
+    IsNew: Boolean,
+    Roles: [RoleSchema]
 });
 var User = mongoose.model('User', UserSchema);
 

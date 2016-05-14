@@ -17,7 +17,7 @@
 <body>
     <!-- html -->
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" ng-controller="HeaderController as ctrl">
             <div class="col-xs-12 col-lg-12">
                 <div class="navbar navbar-default">
                     <div class="container"><a href="/" class="navbar-brand">Mark It</a>
@@ -30,32 +30,12 @@
                             <ul class="nav navbar-nav">
                                 <li class="active"><a href="#/">Home</a></li>
                                 <li class="dropdown">
-                                    <a data-toggle="dropdown" class="dropdown-toogle pointer">Class Room
-                                        <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#/class-room/add">New</a></li>
-                                        <li><a href="#/class-room/all">List</a></li>
-                                        <li><a href="#/">Reports</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
                                     <a data-toggle="dropdown" class="dropdown-toogle pointer">Attendance
                                         <b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#/new-attendance">New</a></li>
                                         <li><a href="#/attendance-report">List</a></li>
-                                        <li><a href="#/">Reports</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a data-toggle="dropdown" class="dropdown-toogle pointer">Students
-                                        <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#/students/add">New</a></li>
-                                        <li><a href="#/students/all">List</a></li>
+                                        <li><a href="#">Ressults</a></li>
                                         <li><a href="#/">Reports</a></li>
                                     </ul>
                                 </li>
@@ -64,7 +44,7 @@
                                         <b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#/">New</a></li>
+                                        <li><a href="#/">List</a></li>
                                         <li><a href="#/">Details</a></li>
                                     </ul>
                                 </li>
@@ -74,7 +54,7 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#/profile-details">Details</a></li>
-                                        <li><a href="/auth/logout">Logout</a></li>
+                                        <li><a href="#" ng-click="ctrl.logout()">Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -83,10 +63,10 @@
                 </div>
             </div>
         </div>
-        <div class="row" ng-controller="NotificationController as notification">
+        <div class="row" ng-controller="NotificationController as ctrl">
             <div class=" col-xs-12 col-lg-10 col-lg-offset-1" ng-show="Model.Message">
-                <div role="alert" class="alert alert-dismissible {{notification.getAlertType()}}">
-                    <button type="button" data-dismiss="alert" aria-label="Close" class="close" ng-click="notification.resetMessage()">
+                <div role="alert" class="alert alert-dismissible {{ctrl.getAlertType()}}">
+                    <button type="button" data-dismiss="alert" aria-label="Close" class="close" ng-click="ctrl.resetMessage()">
                         <span aria-hidden="true">×</span>
                     </button> {{Model.Message}}
                 </div>
@@ -107,6 +87,7 @@
     <script src="/javascript/application.js"></script>
     <script src="/javascript/angular/routes/routes.js"></script>
     <script src="/javascript/angular/factories/app-data.js"></script>
+    <script src="/javascript/angular/controllers/header.js"></script>
     <script src="/javascript/angular/controllers/authentication.js"></script>
     <script src="/javascript/angular/controllers/profile.js"></script>
     <script src="/javascript/angular/controllers/attendance.js"></script>

@@ -74,14 +74,32 @@ router.get('/get-user-details', function(req, res) {
     }
 });
 
-router.post('/update-user-details', function(req, res) {
+router.post('/update-user-details', function(req, res, next) {
+    if (req.body.Type.toLowerCase() !== 'principal') {
+        next();
+    } else {
 
+        dbSchema
+            .User
+            .findOne({
+                'Roles.Type': 'Admin'
+            }, 'Roles')
+
+        .exec(function(err, response) {
+            req.body.AdminRole = response.Roles[0];
+            req.body.AdminRole.IsMyRole = false;
+            next();
+        });
+    }
+
+}, function(req, res) {
     if (!req.body)
         res.json({
             status: 'failure',
             message: 'user details not found',
             Data: null
         });
+
     dbSchema
         .User
         .findOne({
@@ -113,6 +131,15 @@ router.post('/update-user-details', function(req, res) {
                     Name: req.body.UserName,
                     IsMyRole: true
                 });
+
+                if (req.body.Type.toLowerCase() === 'principal') {
+                    user.Roles.push(req.body.AdminRole);
+                } else if (req.body.Type.toLowerCase() !== 'admin') {
+                    for (var i = 0; i < req.body.parentRoles.length; i++) {
+                        req.body.parentRoles[i].IsMyRole = false;
+                        user.Roles.push(req.body.parentRoles[i]);
+                    };
+                }
 
                 user.save(function(err, updatedUser) {
                     if (err) {

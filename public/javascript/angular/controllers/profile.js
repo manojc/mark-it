@@ -14,13 +14,14 @@
         self.Model = {};
 
         self.getProfileDetails = function() {
-            AttendanceReportFactory.getProfileDetails(function(profileResponse) {
-
-                self.Model = profileResponse.Data;
-                self.getUserRoles(function() {
-                    self.IsLoading = false;
-                });
-            });
+            var user = AttendanceReportFactory.get('User');
+            if (user) {
+                self.Model = user;
+                self.IsLoading = false;
+                initializeModel();
+            } else {
+                $location.path('/register');
+            }
         };
 
         self.updateUserDetails = function() {
@@ -40,6 +41,18 @@
                 });
             else
                 callback();
+        };
+
+        function initializeModel() {
+            if (!self.Model || !self.Model.Roles || !self.Model.Roles.length) {
+                $location.path('/register');
+            }
+
+            var selfRole = self.Model.Roles.find(function(item, index) {
+                return item.IsMyRole;
+            });
+
+            self.SelectedRole = selfRole;
         }
     }]);
 
