@@ -24,10 +24,7 @@ var UserSchema = new Schema({
     Email: 'String',
     ProfilePicUrl: 'String',
     IsNew: 'Boolean',
-    UserRoleId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Role'
-    }
+    Roles: []
 });
 var User = mongoose.model('User', UserSchema);
 

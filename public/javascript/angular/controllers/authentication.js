@@ -8,6 +8,7 @@
         var self = this;
         self.Model = null;
         self.RoleCollection = [];
+        self.SelectedRole = {};
         self.IsLoading = true;
         self.IsUserLoggedIn = false;
         self.isVerifiedUser = false;
@@ -16,12 +17,13 @@
             AttendanceReportFactory.getLoggedInUser(function(data) {
                 if (data.Data) {
                     self.Model = data.Data;
+                    AttendanceReportFactory.store('User', data.Data);
                     self.IsUserLoggedIn = true;
-                    if (self.Model.roles && self.Model.roles.length) {
+                    if (self.Model.Roles && self.Model.Roles.length) {
                         self.isVerifiedUser = true;
+                        $location.path('/')
                     };
                 }
-                app.constant('User', data.Data);
                 self.IsLoading = false;
 
                 if (callback && typeof callback === 'function') {
@@ -36,9 +38,18 @@
             });
         };
 
+        self.updateUserDetails = function() {
+            self.Model.Type = self.SelectedRole.Type;
+            AttendanceReportFactory.updateUserDetails(self.Model, function() {
+                $location.path('/');
+            });
+        };
+
         self.authenticate = function() {
 
-            if (!self.user || (self.user && !self.IsUserLoggedIn) || (self.user && !self.isVerifiedUser)) {
+            self.Model = AttendanceReportFactory.get('User');
+
+            if (!self.Model || !self.Model.Roles || !self.Model.Roles.length) {
                 $location.path('/register');
             }
         }

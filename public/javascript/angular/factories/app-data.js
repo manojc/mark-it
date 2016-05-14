@@ -95,7 +95,7 @@
                 });
             },
             updateUserDetails: function(user, callback) {
-                $http.post('/profile/update-user-details',user).then(function(response) {
+                $http.post('/profile/update-user-details', user).then(function(response) {
                     callback(response.data);
                 }, function(error) {
                     throw Error('/profile/update-user-details call failed');
@@ -111,11 +111,33 @@
             },
 
             store: function(key, value) {
-                mem[key] = value;
+                if (typeof Storage !== "undefined") {
+                    localStorage.setItem(key, JSON.stringify(value));
+                } else {
+                    mem[key] = value;
+                }
             },
 
             get: function(key) {
-                return mem[key];
+                if (typeof(Storage) !== "undefined") {
+                    var value = localStorage.getItem(key);
+                    if (value) {
+                        return JSON.parse(value)
+                    }
+                    return null;
+
+                } else {
+                    return mem[key];
+                }
+            },
+
+            clear: function() {
+                if (typeof(Storage) !== "undefined") {
+                    var value = localStorage.clear();
+
+                } else {
+                    return mem = {};
+                }
             }
         };
     }]);

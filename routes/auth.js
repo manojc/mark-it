@@ -61,6 +61,21 @@ router.get('/logout', function(req, res) {
 /* GET home page. */
 router.get('/get-logged-in-user', function(req, res) {
 
+
+        // res.json({
+        //     Status: 'Success',
+        //     Message: 'logged in user fetched successfully',
+        //     Data: {
+        //         Id: 12312312,
+        //         DisplayName: 'manoj chalode',
+        //         Email: 'chalodem@gmail.com',
+        //         ProfilePicUrl: '#',
+        //         Provider: 'facebook',
+        //         IsNew: true
+        //     }
+        // });
+
+
     if (!req.user || !req.isAuthenticated())
         res.redirect('/');
 
@@ -68,27 +83,13 @@ router.get('/get-logged-in-user', function(req, res) {
         res.json({
             Status: 'Success',
             Message: 'logged in user fetched successfully',
-            Data: {
-                Id: req.user.Id,
-                DisplayName: req.user.DisplayName,
-                Email: null,
-                ProfilePicUrl: req.user.ProfilePicUrl,
-                Provider: req.user.Provider,
-                IsNew: req.user.IsNew
-            }
+            Data: req.user
         });
     } else
         res.json({
             Status: 'Success',
             Message: 'logged in user fetched successfully',
-            Data: {
-                Id: req.user.Id,
-                DisplayName: req.user.DisplayName,
-                Email: req.user.Email,
-                ProfilePicUrl: req.user.ProfilePicUrl,
-                Provider: req.user.Provider,
-                IsNew: true
-            }
+            Data: req.user
         });
 });
 

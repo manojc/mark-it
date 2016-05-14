@@ -9,7 +9,7 @@
 
         $scope.Model = {};
 
-        AttendanceReportFactory.store('NotificationController', $scope);
+        AttendanceReportFactory.store('NotificationController', $scope.Model);
 
         self.getAlertType = function() {
 

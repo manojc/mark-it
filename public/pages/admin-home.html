@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <base href="/">
     <title>Home</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> {% if IsDevEnvironment %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> {% if isDevEnvironment %}
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/css/loading-bar.css">
-    <link rel="stylesheet" type="text/css" href="/css/style.css"> {% endif %} {% if !IsDevEnvironment %}
+    <link rel="stylesheet" type="text/css" href="/css/style.css"> {% endif %} {% if !isDevEnvironment %}
     <!-- minified css -->
     <link rel="stylesheet" type="text/css" href="/css/style.min.css"> {% endif %}
 </head>
@@ -17,7 +17,7 @@
 <body>
     <!-- html -->
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" ng-controller="HeaderController as ctrl">
             <div class="col-xs-12 col-lg-12">
                 <div class="navbar navbar-default">
                     <div class="container"><a href="/" class="navbar-brand">Mark It</a>
@@ -69,12 +69,21 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toogle pointer">Admin
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#/profile-details">Organizations</a></li>
+                                        <li><a href="/auth/logout">Configuration</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
                                     <a data-toggle="dropdown" class="dropdown-toogle pointer">Profile 
                                         <b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#/profile-details">Details</a></li>
-                                        <li><a href="/auth/logout">Logout</a></li>
+                                        <li><a href="#" ng-click="ctrl.logout()">Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -83,10 +92,10 @@
                 </div>
             </div>
         </div>
-        <div class="row" ng-controller="NotificationController as notification">
+        <div class="row" ng-controller="NotificationController as ctrl">
             <div class=" col-xs-12 col-lg-10 col-lg-offset-1" ng-show="Model.Message">
-                <div role="alert" class="alert alert-dismissible {{notification.getAlertType()}}">
-                    <button type="button" data-dismiss="alert" aria-label="Close" class="close" ng-click="notification.resetMessage()">
+                <div role="alert" class="alert alert-dismissible {{ctrl.getAlertType()}}">
+                    <button type="button" data-dismiss="alert" aria-label="Close" class="close" ng-click="ctrl.resetMessage()">
                         <span aria-hidden="true">×</span>
                     </button> {{Model.Message}}
                 </div>
@@ -95,7 +104,7 @@
         <div id="app-container" class="row app-background pbs" ng-view>
         </div>
     </div>
-    {% if IsDevEnvironment %}
+    {% if isDevEnvironment %}
     <!-- library scripts -->
     <script src="/javascript/libraries/jquery.min.js"></script>
     <script src="/javascript/libraries/angular.min.js"></script>
@@ -107,13 +116,14 @@
     <script src="/javascript/application.js"></script>
     <script src="/javascript/angular/routes/routes.js"></script>
     <script src="/javascript/angular/factories/app-data.js"></script>
+    <script src="/javascript/angular/controllers/header.js"></script>
     <script src="/javascript/angular/controllers/authentication.js"></script>
     <script src="/javascript/angular/controllers/profile.js"></script>
     <script src="/javascript/angular/controllers/attendance.js"></script>
     <script src="/javascript/angular/controllers/student.js"></script>
     <script src="/javascript/angular/controllers/notification.js"></script>
     <script src="/javascript/angular/controllers/class-room.js"></script>
-    {% endif %} {% if !IsDevEnvironment %}
+    {% endif %} {% if !isDevEnvironment %}
     <!-- minified script file -->
     <script src="/javascript/script.min.js"></script>
     {% endif %}

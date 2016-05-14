@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <base href="/">
     <title>Home</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> {% if IsDevEnvironment %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> {% if isDevEnvironment %}
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/css/loading-bar.css">
-    <link rel="stylesheet" type="text/css" href="/css/style.css"> {% endif %} {% if !IsDevEnvironment %}
+    <link rel="stylesheet" type="text/css" href="/css/style.css"> {% endif %} {% if !isDevEnvironment %}
     <!-- minified css -->
     <link rel="stylesheet" type="text/css" href="/css/style.min.css"> {% endif %}
 </head>
@@ -95,7 +95,7 @@
         <div id="app-container" class="row app-background pbs" ng-view>
         </div>
     </div>
-    {% if IsDevEnvironment %}
+    {% if isDevEnvironment %}
     <!-- library scripts -->
     <script src="/javascript/libraries/jquery.min.js"></script>
     <script src="/javascript/libraries/angular.min.js"></script>
@@ -113,7 +113,7 @@
     <script src="/javascript/angular/controllers/student.js"></script>
     <script src="/javascript/angular/controllers/notification.js"></script>
     <script src="/javascript/angular/controllers/class-room.js"></script>
-    {% endif %} {% if !IsDevEnvironment %}
+    {% endif %} {% if !isDevEnvironment %}
     <!-- minified script file -->
     <script src="/javascript/script.min.js"></script>
     {% endif %}

@@ -131,14 +131,7 @@ passport.deserializeUser(function(id, done) {
         else if (!dbUser)
             throw new Error('user not found!');
 
-        done(null, {
-            Id: dbUser._id,
-            DisplayName: dbUser.DisplayName,
-            Email: dbUser.Email,
-            ProfilePicUrl: dbUser.ProfilePicUrl,
-            Provider: dbUser.Provider,
-            IsNew: dbUser.IsNew
-        });
+        done(null, dbUser);
     });
 });
 //required packeges end

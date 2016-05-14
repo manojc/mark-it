@@ -6,6 +6,7 @@ var swig = require('swig');
 /* GET home page. */
 router.get('/', function(req, res) {
 
+
     var role = getUserRole(req.user);
     var homePagePath = getRoleBasedHomePage(role);
     var swigModel = getSwigModel(req.user);
@@ -35,11 +36,13 @@ router.get('*', function(req, res) {
 
 function getRoleBasedHomePage(role) {
 
-    if (!role) role = '';
-
     var homePagePath = './public/pages/';
 
-    switch (role.toLowerCase()) {
+    if (!role || !role.Type) {
+        return homePagePath + 'home.html';
+    }
+
+    switch (role.Type.toLowerCase()) {
 
         case 'admin':
             return homePagePath + 'admin-home.html';
@@ -67,9 +70,17 @@ function getRoleBasedHomePage(role) {
 }
 
 function getUserRole(user) {
-    if (!user || !user.role)
+    if (!user || !user.Roles)
         return '';
-    return user.role;
+
+    var role = user.Roles.find(function(item, index) {
+        return item.IsMyRole;
+    });
+
+    if (!role) {
+        return '';
+    }
+    return role;
 }
 
 function getSwigModel(user) {

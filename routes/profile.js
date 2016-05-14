@@ -87,73 +87,59 @@ router.post('/update-user-details', function(req, res) {
         .findOne({
             '_id': req.body.Id
         })
-        .exec(function(err, response) {
-            if (err)
+        .exec(function(err, user) {
+            if (err) {
                 res.json({
                     status: 'failure',
                     message: 'an error has occured',
                     Data: null
                 });
-            else {
-                if (!response) {
-                    res.json({
-                        status: 'failure',
-                        message: 'user details not found',
-                        Data: null
-                    });
-                } else {
-                    if (!response.IsNew) {
+            } else if (!user) {
+                res.json({
+                    status: 'failure',
+                    message: 'user details not found',
+                    Data: null
+                });
+            } else if (!user.IsNew) {
+                res.json({
+                    status: 'Warning',
+                    message: 'user details already updated',
+                    Data: user
+                });
+            } else {
+                user.IsNew = false;
+                user.Roles.push({
+                    Type: req.body.Type,
+                    Name: req.body.UserName,
+                    IsMyRole: true
+                });
+
+                user.save(function(err, updatedUser) {
+                    if (err) {
                         res.json({
-                            status: 'Warning',
-                            message: 'user details already updated',
-                            Data: response
+                            status: 'failure',
+                            message: 'an error has occured',
+                            Data: null
                         });
-                    } else {
-                        response.IsNew = false;
-                        new dbSchema.Role({
-                            Type: req.body.Type,
-                            Name: req.body.UserName
-                        }).save(function(err, roleResponse) {
-                            console.log(err);
-                            if (err)
-                                res.json({
-                                    status: 'failure',
-                                    message: 'an error has occured',
-                                    Data: null
-                                });
-                            else {
-                                if (!roleResponse)
-                                    res.json({
-                                        status: 'failure',
-                                        message: 'failed to save user role',
-                                        Data: null
-                                    });
-                                else {
-                                    response.UserRoleId = roleResponse._id;
-                                    response.save(function(err, updatedUser) {
-                                        if (err)
-                                            res.json({
-                                                status: 'failure',
-                                                message: 'an error has occured',
-                                                Data: null
-                                            });
-                                        else {
-                                            res.json({
-                                                status: 'Success',
-                                                message: 'user details updated successfully',
-                                                Data: updatedUser
-                                            });
-                                        }
-                                    });
-                                }
-                            }
+                    } else if (!updatedUser) {
+                        res.json({
+                            status: 'failure',
+                            message: 'could not update the user',
+                            Data: null
                         });
+
+                    } else if (updatedUser) {
+                        res.json({
+                            status: 'success',
+                            message: 'user details updated successfully',
+                            Data: updatedUser
+                        });
+
                     }
-                }
+                })
             }
+
         });
-
-
 });
 
 module.exports = router;
