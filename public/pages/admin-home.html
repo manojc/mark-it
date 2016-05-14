@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <base href="/">
     <title>Home</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> {% if isDevEnvironment %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> {% if IsDevEnvironment %}
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/css/loading-bar.css">
-    <link rel="stylesheet" type="text/css" href="/css/style.css"> {% endif %} {% if !isDevEnvironment %}
+    <link rel="stylesheet" type="text/css" href="/css/style.css"> {% endif %} {% if !IsDevEnvironment %}
     <!-- minified css -->
     <link rel="stylesheet" type="text/css" href="/css/style.min.css"> {% endif %}
 </head>
@@ -28,36 +28,53 @@
                         </button>
                         <div class="collapse navbar-collapse navHeaderCollapse">
                             <ul class="nav navbar-nav">
-                                <li class="active">
-                                    <a href="#/">Home</a>
-                                </li>
+                                <li class="active"><a href="#/">Home</a></li>
                                 <li class="dropdown">
-                                    <a data-toggle="dropdown" class="dropdown-toogle pointer">About Mark It
+                                    <a data-toggle="dropdown" class="dropdown-toogle pointer">Class Room
                                         <b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#/">Organizations</a>
-                                        </li>
-                                        <li>
-                                            <a href="#/">Team</a>
-                                        </li>
-                                        <li>
-                                            <a href="#/class-room/all">History</a>
-                                        </li>
-                                        <li>
-                                            <a href="#/">Feedback</a>
-                                        </li>
+                                        <li><a href="#/class-room/add">New</a></li>
+                                        <li><a href="#/class-room/all">List</a></li>
+                                        <li><a href="#/">Reports</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
-                                    <a data-toggle="dropdown" class="dropdown-toogle pointer">Register
+                                    <a data-toggle="dropdown" class="dropdown-toogle pointer">Attendance
                                         <b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#/register">Sign In</a>
-                                        </li>
+                                        <li><a href="#/new-attendance">New</a></li>
+                                        <li><a href="#/attendance-report">List</a></li>
+                                        <li><a href="#/">Reports</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toogle pointer">Students
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#/students/add">New</a></li>
+                                        <li><a href="#/students/all">List</a></li>
+                                        <li><a href="#/">Reports</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toogle pointer">Programs 
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#/">New</a></li>
+                                        <li><a href="#/">Details</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toogle pointer">Profile 
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#/profile-details">Details</a></li>
+                                        <li><a href="/auth/logout">Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -78,7 +95,7 @@
         <div id="app-container" class="row app-background pbs" ng-view>
         </div>
     </div>
-    {% if isDevEnvironment %}
+    {% if IsDevEnvironment %}
     <!-- library scripts -->
     <script src="/javascript/libraries/jquery.min.js"></script>
     <script src="/javascript/libraries/angular.min.js"></script>
@@ -96,7 +113,7 @@
     <script src="/javascript/angular/controllers/student.js"></script>
     <script src="/javascript/angular/controllers/notification.js"></script>
     <script src="/javascript/angular/controllers/class-room.js"></script>
-    {% endif %} {% if !isDevEnvironment %}
+    {% endif %} {% if !IsDevEnvironment %}
     <!-- minified script file -->
     <script src="/javascript/script.min.js"></script>
     {% endif %}

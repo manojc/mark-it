@@ -73,7 +73,8 @@ router.get('/get-logged-in-user', function(req, res) {
                 DisplayName: req.user.DisplayName,
                 Email: null,
                 ProfilePicUrl: req.user.ProfilePicUrl,
-                Provider: req.user.Provider
+                Provider: req.user.Provider,
+                IsNew: req.user.IsNew
             }
         });
     } else
@@ -85,7 +86,8 @@ router.get('/get-logged-in-user', function(req, res) {
                 DisplayName: req.user.DisplayName,
                 Email: req.user.Email,
                 ProfilePicUrl: req.user.ProfilePicUrl,
-                Provider: req.user.Provider
+                Provider: req.user.Provider,
+                IsNew: true
             }
         });
 });

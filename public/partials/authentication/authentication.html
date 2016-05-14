@@ -1,25 +1,68 @@
 <div class="col-xs-12 col-lg-6 col-lg-offset-3 mtl" ng-init="ctrl.getLoggedInUser()">
-    <h1 class="text-center" ng-show="ctrl.IsUserLoggedIn">Home Page</h1>
-    <div class="panel panel-info" ng-hide="ctrl.IsUserLoggedIn">
-        <div class="panel-heading">
-            <h3 class="panel-title">Login</h3>
+    <div ng-hide="ctrl.isVerifiedUser">
+        <div class="row" ng-show="ctrl.IsUserLoggedIn">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-6 col-lg-offset-3 text-center">
+                        <h3>Update Profile</h3>
+                    </div>
+                    <div class="col-lg-1 text-center mtxs">
+                        <img src="{{ctrl.Model.ProfilePicUrl}}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <label for="display-name">Display Name</label>
+                        <input id="display-name" type="text" disabled="disabled" class="form-control col-lg-4" ng-model="ctrl.Model.DisplayName">
+                    </div>
+                </div>
+                <div class="row mts">
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <label for="email-id">Email</label>
+                        <input id="email-id" type="text" disabled="disabled" class="form-control col-lg-4" ng-model="ctrl.Model.Email">
+                    </div>
+                </div>
+                <div class="row mts" ng-init="ctrl.getRoles()">
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <label for="user-name">User Role</label>
+                        <select ng-show="ctrl.Model.IsNew" class="form-control" ng-options="Role.Type for Role in ctrl.RoleCollection" ng-model="ctrl.SelectedRole"></select>
+                        <input type="text" ng-hide="ctrl.Model.IsNew" disabled="disabled" class="form-control col-lg-4" ng-model="ctrl.Model.Type">
+                    </div>
+                </div>
+                <div class="row mts">
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <label for="user-name">User Name</label>
+                        <input type="text" ng-disabled="!ctrl.Model.IsNew" class="form-control col-lg-4" ng-model="ctrl.Model.UserName">
+                    </div>
+                </div>
+                <div class="row mts" ng-show="ctrl.Model.IsNew">
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <button class="btn btn-success col-lg-12" ng-click="ctrl.updateUserDetails()">Update User Profile</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="panel-body text-center">
-            <div class="row">
-                <div class="col-xs-4">
-                    <a href="/auth/facebook">
-                        <img src="/images/Facebook-thumbnail.jpg" alt="facebook" class="image-thumbnail social-network-image">
-                    </a>
-                </div>
-                <div class="col-xs-4">
-                    <a href="/auth/google">
-                        <img src="/images/gmail-thumbnail.jpg" alt="gmail" class="image-thumbnail social-network-image">
-                    </a>
-                </div>
-                <div class="col-xs-4">
-                    <a href="/auth/twitter">
-                        <img src="/images/twitter-thumbnail.png" alt="twitter" class="image-circle social-network-image">
-                    </a>
+        <div class="panel panel-info" ng-hide="ctrl.IsUserLoggedIn">
+            <div class="panel-heading">
+                <h3 class="panel-title">Login</h3>
+            </div>
+            <div class="panel-body text-center">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <a href="/auth/facebook">
+                            <img src="/images/Facebook-thumbnail.jpg" alt="facebook" class="image-thumbnail social-network-image">
+                        </a>
+                    </div>
+                    <div class="col-xs-4">
+                        <a href="/auth/google">
+                            <img src="/images/gmail-thumbnail.jpg" alt="gmail" class="image-thumbnail social-network-image">
+                        </a>
+                    </div>
+                    <div class="col-xs-4">
+                        <a href="/auth/twitter">
+                            <img src="/images/twitter-thumbnail.png" alt="twitter" class="image-circle social-network-image">
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

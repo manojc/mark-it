@@ -4,6 +4,7 @@
         throw Error("Application is not initialized");
 
     app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+
         $routeProvider.
 
         when('/attendance-report', {
@@ -50,13 +51,22 @@
             controller: 'ClassRoomController',
             controllerAs: 'ctrl'
         }).
+
+
         when('/profile-details', {
             templateUrl: 'partials/profile/details.html',
             controller: 'ProfileController',
             controllerAs: 'ctrl'
         }).
-        when('/', {
+        when('/register', {
             templateUrl: 'partials/authentication/authentication.html',
+            controller: 'AuthenticationController',
+            controllerAs: 'ctrl'
+        }).
+        
+
+        when('/', {
+            templateUrl: 'partials/home/home.html',
             controller: 'AuthenticationController',
             controllerAs: 'ctrl'
         }).
