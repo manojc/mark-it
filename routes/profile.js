@@ -85,7 +85,7 @@ router.post('/update-user-details', function(req, res) {
     dbSchema
         .User
         .findOne({
-            '_id': req.body.Id
+            '_id': req.body._id
         })
         .exec(function(err, user) {
             if (err) {

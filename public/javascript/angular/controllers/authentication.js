@@ -21,8 +21,12 @@
                     self.IsUserLoggedIn = true;
                     if (self.Model.Roles && self.Model.Roles.length) {
                         self.isVerifiedUser = true;
-                        $location.path('/')
-                    };
+                        $location.path('/');
+                    } else {
+                        AttendanceReportFactory.getUserRoles(function(data) {
+                            self.RoleCollection = data.Data;
+                        });
+                    }
                 }
                 self.IsLoading = false;
 
@@ -33,15 +37,18 @@
         };
 
         self.getRoles = function() {
-            AttendanceReportFactory.getUserRoles(function(data) {
-                self.RoleCollection = data.Data;
-            });
+            if (!self.Model) {
+                return;
+            }
         };
 
         self.updateUserDetails = function() {
             self.Model.Type = self.SelectedRole.Type;
-            AttendanceReportFactory.updateUserDetails(self.Model, function() {
-                $location.path('/');
+            AttendanceReportFactory.updateUserDetails(self.Model, function(data) {
+                if (data && data.Data) {
+                    AttendanceReportFactory.store('User', data.Data);
+                    $location.path('/');
+                }
             });
         };
 

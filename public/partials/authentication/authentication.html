@@ -22,7 +22,7 @@
                         <input id="email-id" type="text" disabled="disabled" class="form-control col-lg-4" ng-model="ctrl.Model.Email">
                     </div>
                 </div>
-                <div class="row mts" ng-init="ctrl.getRoles()">
+                <div class="row mts">
                     <div class="col-lg-10 col-lg-offset-1">
                         <label for="user-name">User Role</label>
                         <select ng-show="ctrl.Model.IsNew" class="form-control" ng-options="Role.Type for Role in ctrl.RoleCollection" ng-model="ctrl.SelectedRole"></select>

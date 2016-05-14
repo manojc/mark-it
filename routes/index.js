@@ -38,6 +38,8 @@ function getRoleBasedHomePage(role) {
 
     var homePagePath = './public/pages/';
 
+    console.log(role);
+
     if (!role || !role.Type) {
         return homePagePath + 'home.html';
     }
